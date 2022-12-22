@@ -22,11 +22,10 @@ function Modification(name, filename, legacy, sheetSize) {
 }
 
 var MODIFICATIONS = {
-    "1-1-19": new Modification("Vanilla 1.1.19", "vanilla-1.1.19.json", false, [480, 512]),
-    "1-1-19x": new Modification("Vanilla 1.1.19 - Expensive", "vanilla-1.1.19-expensive.json", false, [480, 512]),
+    "Base": new Modification("Base Game", "testing_data.json", false, [480, 512]),
 }
 
-var DEFAULT_MODIFICATION = "1-1-19"
+var DEFAULT_MODIFICATION = "Base"
 
 function addOverrideOptions(version) {
     var tag = "local-" + version.replace(/\./g, "-")

@@ -1,1 +1,7 @@
 *.swp
+_site/
+.sass-cache/
+!data/data.json
+*.dat
+data-generation/__pycache__
+data-generation/data files/

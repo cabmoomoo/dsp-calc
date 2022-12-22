@@ -1,0 +1,4499 @@
+{
+    "items": {
+        "1000": {
+            "id": "1000",
+            "name": "Water",
+            "type": "RESOURCE",
+            "stack_size": 20,
+            "group": "items",
+            "subgroup": "row1",
+            "order": 7
+        },
+        "1001": {
+            "id": "1001",
+            "name": "Iron Ore",
+            "type": "RESOURCE",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row1",
+            "order": 1
+        },
+        "1002": {
+            "id": "1002",
+            "name": "Copper Ore",
+            "type": "RESOURCE",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row1",
+            "order": 2
+        },
+        "1003": {
+            "id": "1003",
+            "name": "Silicon Ore",
+            "type": "RESOURCE",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row1",
+            "order": 5
+        },
+        "1004": {
+            "id": "1004",
+            "name": "Titanium Ore",
+            "type": "RESOURCE",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row1",
+            "order": 6
+        },
+        "1005": {
+            "id": "1005",
+            "name": "Stone",
+            "type": "RESOURCE",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row1",
+            "order": 3
+        },
+        "1006": {
+            "id": "1006",
+            "name": "Coal",
+            "type": "RESOURCE",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row1",
+            "order": 4
+        },
+        "1007": {
+            "id": "1007",
+            "name": "Crude Oil",
+            "type": "RESOURCE",
+            "stack_size": 20,
+            "group": "items",
+            "subgroup": "row1",
+            "order": 8
+        },
+        "1011": {
+            "id": "1011",
+            "name": "Fire Ice",
+            "type": "RESOURCE",
+            "stack_size": 50,
+            "group": "items",
+            "subgroup": "row3",
+            "order": 7
+        },
+        "1012": {
+            "id": "1012",
+            "name": "Kimberlite Ore",
+            "type": "RESOURCE",
+            "stack_size": 50,
+            "group": "items",
+            "subgroup": "row1",
+            "order": 12
+        },
+        "1013": {
+            "id": "1013",
+            "name": "Fractal Silicon",
+            "type": "RESOURCE",
+            "stack_size": 50,
+            "group": "items",
+            "subgroup": "row2",
+            "order": 12
+        },
+        "1014": {
+            "id": "1014",
+            "name": "Optical Grating Crystal",
+            "type": "RESOURCE",
+            "stack_size": 50,
+            "group": "items",
+            "subgroup": "row3",
+            "order": 12
+        },
+        "1015": {
+            "id": "1015",
+            "name": "Spiniform Stalagmite Crystal",
+            "type": "RESOURCE",
+            "stack_size": 50,
+            "group": "items",
+            "subgroup": "row4",
+            "order": 12
+        },
+        "1016": {
+            "id": "1016",
+            "name": "Unipolar Magnet",
+            "type": "RESOURCE",
+            "stack_size": 50,
+            "group": "items",
+            "subgroup": "row5",
+            "order": 12
+        },
+        "1030": {
+            "id": "1030",
+            "name": "Log",
+            "type": "RESOURCE",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row6",
+            "order": 12
+        },
+        "1031": {
+            "id": "1031",
+            "name": "Plant Fuel",
+            "type": "RESOURCE",
+            "stack_size": 500,
+            "group": "items",
+            "subgroup": "row7",
+            "order": 12
+        },
+        "1101": {
+            "id": "1101",
+            "name": "Iron Ingot",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row2",
+            "order": 1
+        },
+        "1102": {
+            "id": "1102",
+            "name": "Magnet",
+            "type": "MATERIAL",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row3",
+            "order": 1
+        },
+        "1103": {
+            "id": "1103",
+            "name": "Steel",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row4",
+            "order": 1
+        },
+        "1104": {
+            "id": "1104",
+            "name": "Copper Ingot",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row2",
+            "order": 2
+        },
+        "1105": {
+            "id": "1105",
+            "name": "High-Purity Silicon",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row2",
+            "order": 5
+        },
+        "1106": {
+            "id": "1106",
+            "name": "Titanium Ingot",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row2",
+            "order": 6
+        },
+        "1107": {
+            "id": "1107",
+            "name": "Titanium Alloy",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row3",
+            "order": 6
+        },
+        "1108": {
+            "id": "1108",
+            "name": "Stone Brick",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row2",
+            "order": 3
+        },
+        "1109": {
+            "id": "1109",
+            "name": "Energetic Graphite",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row2",
+            "order": 4
+        },
+        "1110": {
+            "id": "1110",
+            "name": "Glass",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row3",
+            "order": 3
+        },
+        "1111": {
+            "id": "1111",
+            "name": "Prism",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row4",
+            "order": 3
+        },
+        "1112": {
+            "id": "1112",
+            "name": "Diamond",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row3",
+            "order": 4
+        },
+        "1113": {
+            "id": "1113",
+            "name": "Crystal Silicon",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row3",
+            "order": 5
+        },
+        "1114": {
+            "id": "1114",
+            "name": "Refined Oil",
+            "type": "MATERIAL",
+            "stack_size": 20,
+            "group": "items",
+            "subgroup": "row2",
+            "order": 8
+        },
+        "1115": {
+            "id": "1115",
+            "name": "Plastic",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row3",
+            "order": 8
+        },
+        "1116": {
+            "id": "1116",
+            "name": "Sulfuric Acid",
+            "type": "MATERIAL",
+            "stack_size": 20,
+            "group": "items",
+            "subgroup": "row2",
+            "order": 7
+        },
+        "1117": {
+            "id": "1117",
+            "name": "Organic Crystal",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row3",
+            "order": 9
+        },
+        "1118": {
+            "id": "1118",
+            "name": "Titanium Crystal",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row4",
+            "order": 9
+        },
+        "1119": {
+            "id": "1119",
+            "name": "Titanium Glass",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row6",
+            "order": 9
+        },
+        "1120": {
+            "id": "1120",
+            "name": "Hydrogen",
+            "type": "MATERIAL",
+            "stack_size": 20,
+            "group": "items",
+            "subgroup": "row1",
+            "order": 9
+        },
+        "1121": {
+            "id": "1121",
+            "name": "Deuterium",
+            "type": "MATERIAL",
+            "stack_size": 20,
+            "group": "items",
+            "subgroup": "row1",
+            "order": 10
+        },
+        "1122": {
+            "id": "1122",
+            "name": "Antimatter",
+            "type": "MATERIAL",
+            "stack_size": 20,
+            "group": "items",
+            "subgroup": "row1",
+            "order": 11
+        },
+        "1123": {
+            "id": "1123",
+            "name": "Graphene",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row3",
+            "order": 10
+        },
+        "1124": {
+            "id": "1124",
+            "name": "Carbon Nanotube",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row4",
+            "order": 10
+        },
+        "1125": {
+            "id": "1125",
+            "name": "Frame Material",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row7",
+            "order": 9
+        },
+        "1126": {
+            "id": "1126",
+            "name": "Casimir Crystal",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row4",
+            "order": 7
+        },
+        "1127": {
+            "id": "1127",
+            "name": "Strange Matter",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row4",
+            "order": 8
+        },
+        "1131": {
+            "id": "1131",
+            "name": "Foundation",
+            "type": "COMPONENT",
+            "stack_size": 1000,
+            "group": "items",
+            "subgroup": "row6",
+            "order": 1
+        },
+        "1141": {
+            "id": "1141",
+            "name": "Proliferator Mk.I",
+            "type": "MATERIAL",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row4",
+            "order": 6
+        },
+        "1142": {
+            "id": "1142",
+            "name": "Proliferator Mk.II",
+            "type": "MATERIAL",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row5",
+            "order": 6
+        },
+        "1143": {
+            "id": "1143",
+            "name": "Proliferator Mk.III",
+            "type": "MATERIAL",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row6",
+            "order": 6
+        },
+        "1201": {
+            "id": "1201",
+            "name": "Gear",
+            "type": "COMPONENT",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row5",
+            "order": 1
+        },
+        "1202": {
+            "id": "1202",
+            "name": "Magnetic Coil",
+            "type": "COMPONENT",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row3",
+            "order": 2
+        },
+        "1203": {
+            "id": "1203",
+            "name": "Electric Motor",
+            "type": "COMPONENT",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row4",
+            "order": 4
+        },
+        "1204": {
+            "id": "1204",
+            "name": "Electromagnetic Turbine",
+            "type": "COMPONENT",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row5",
+            "order": 4
+        },
+        "1205": {
+            "id": "1205",
+            "name": "Super-Magnetic Ring",
+            "type": "COMPONENT",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row6",
+            "order": 4
+        },
+        "1206": {
+            "id": "1206",
+            "name": "Particle Container",
+            "type": "COMPONENT",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row6",
+            "order": 3
+        },
+        "1208": {
+            "id": "1208",
+            "name": "Critical Photon",
+            "type": "MATERIAL",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row6",
+            "order": 2
+        },
+        "1209": {
+            "id": "1209",
+            "name": "Graviton Lens",
+            "type": "COMPONENT",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row6",
+            "order": 5
+        },
+        "1210": {
+            "id": "1210",
+            "name": "Space Warper",
+            "type": "COMPONENT",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row6",
+            "order": 8
+        },
+        "1301": {
+            "id": "1301",
+            "name": "Circuit Board",
+            "type": "COMPONENT",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row4",
+            "order": 2
+        },
+        "1302": {
+            "id": "1302",
+            "name": "Microcrystalline Component",
+            "type": "COMPONENT",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row4",
+            "order": 5
+        },
+        "1303": {
+            "id": "1303",
+            "name": "Processor",
+            "type": "COMPONENT",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row5",
+            "order": 5
+        },
+        "1304": {
+            "id": "1304",
+            "name": "Plane Filter",
+            "type": "COMPONENT",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row6",
+            "order": 10
+        },
+        "1305": {
+            "id": "1305",
+            "name": "Quantum Chip",
+            "type": "COMPONENT",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row6",
+            "order": 11
+        },
+        "1401": {
+            "id": "1401",
+            "name": "Plasma Exciter",
+            "type": "COMPONENT",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row5",
+            "order": 2
+        },
+        "1402": {
+            "id": "1402",
+            "name": "Particle Broadband",
+            "type": "COMPONENT",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row4",
+            "order": 11
+        },
+        "1403": {
+            "id": "1403",
+            "name": "Annihilation Constraint Sphere",
+            "type": "COMPONENT",
+            "stack_size": 20,
+            "group": "items",
+            "subgroup": "row3",
+            "order": 11
+        },
+        "1404": {
+            "id": "1404",
+            "name": "Photon Combiner",
+            "type": "COMPONENT",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row5",
+            "order": 3
+        },
+        "1405": {
+            "id": "1405",
+            "name": "Thruster",
+            "type": "COMPONENT",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row5",
+            "order": 7
+        },
+        "1406": {
+            "id": "1406",
+            "name": "Reinforced Thruster",
+            "type": "COMPONENT",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row5",
+            "order": 8
+        },
+        "1501": {
+            "id": "1501",
+            "name": "Solar Sail",
+            "type": "PRODUCT",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row7",
+            "order": 8
+        },
+        "1502": {
+            "id": "1502",
+            "name": "Dyson Sphere Component",
+            "type": "COMPONENT",
+            "stack_size": 100,
+            "group": "items",
+            "subgroup": "row7",
+            "order": 10
+        },
+        "1503": {
+            "id": "1503",
+            "name": "Small Carrier Rocket",
+            "type": "PRODUCT",
+            "stack_size": 20,
+            "group": "items",
+            "subgroup": "row7",
+            "order": 11
+        },
+        "1801": {
+            "id": "1801",
+            "name": "Hydrogen Fuel Rod",
+            "type": "PRODUCT",
+            "stack_size": 30,
+            "group": "items",
+            "subgroup": "row2",
+            "order": 9
+        },
+        "1802": {
+            "id": "1802",
+            "name": "Deuteron Fuel Rod",
+            "type": "PRODUCT",
+            "stack_size": 30,
+            "group": "items",
+            "subgroup": "row2",
+            "order": 10
+        },
+        "1803": {
+            "id": "1803",
+            "name": "Antimatter Fuel Rod",
+            "type": "PRODUCT",
+            "stack_size": 30,
+            "group": "items",
+            "subgroup": "row2",
+            "order": 11
+        },
+        "2001": {
+            "id": "2001",
+            "name": "Conveyor Belt MK.I",
+            "type": "LOGISTICS",
+            "stack_size": 300,
+            "group": "buildings",
+            "subgroup": "row2",
+            "order": 1
+        },
+        "2002": {
+            "id": "2002",
+            "name": "Conveyor Belt MK.II",
+            "type": "LOGISTICS",
+            "stack_size": 300,
+            "group": "buildings",
+            "subgroup": "row2",
+            "order": 2
+        },
+        "2003": {
+            "id": "2003",
+            "name": "Conveyor Belt MK.III",
+            "type": "LOGISTICS",
+            "stack_size": 300,
+            "group": "buildings",
+            "subgroup": "row2",
+            "order": 3
+        },
+        "2011": {
+            "id": "2011",
+            "name": "Sorter MK.I",
+            "type": "LOGISTICS",
+            "stack_size": 200,
+            "group": "buildings",
+            "subgroup": "row3",
+            "order": 1
+        },
+        "2012": {
+            "id": "2012",
+            "name": "Sorter MK.II",
+            "type": "LOGISTICS",
+            "stack_size": 200,
+            "group": "buildings",
+            "subgroup": "row3",
+            "order": 2
+        },
+        "2013": {
+            "id": "2013",
+            "name": "Sorter MK.III",
+            "type": "LOGISTICS",
+            "stack_size": 200,
+            "group": "buildings",
+            "subgroup": "row3",
+            "order": 3
+        },
+        "2020": {
+            "id": "2020",
+            "name": "Splitter",
+            "type": "LOGISTICS",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row2",
+            "order": 4
+        },
+        "2030": {
+            "id": "2030",
+            "name": "Traffic Monitor",
+            "type": "LOGISTICS",
+            "stack_size": 100,
+            "group": "buildings",
+            "subgroup": "row3",
+            "order": 4
+        },
+        "2040": {
+            "id": "2040",
+            "name": "Automatic Piler",
+            "type": "LOGISTICS",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row2",
+            "order": 5
+        },
+        "2101": {
+            "id": "2101",
+            "name": "Storage MK.I",
+            "type": "LOGISTICS",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row2",
+            "order": 6
+        },
+        "2102": {
+            "id": "2102",
+            "name": "Storage MK.II",
+            "type": "LOGISTICS",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row2",
+            "order": 7
+        },
+        "2103": {
+            "id": "2103",
+            "name": "Planetary Logistics Station",
+            "type": "LOGISTICS",
+            "stack_size": 10,
+            "group": "buildings",
+            "subgroup": "row2",
+            "order": 10
+        },
+        "2104": {
+            "id": "2104",
+            "name": "Interstellar Logistics Station",
+            "type": "LOGISTICS",
+            "stack_size": 10,
+            "group": "buildings",
+            "subgroup": "row2",
+            "order": 11
+        },
+        "2105": {
+            "id": "2105",
+            "name": "Orbital Collector",
+            "type": "LOGISTICS",
+            "stack_size": 10,
+            "group": "buildings",
+            "subgroup": "row2",
+            "order": 12
+        },
+        "2106": {
+            "id": "2106",
+            "name": "Storage Tank",
+            "type": "LOGISTICS",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row2",
+            "order": 8
+        },
+        "2107": {
+            "id": "2107",
+            "name": "Logistics Distributor",
+            "type": "LOGISTICS",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row2",
+            "order": 9
+        },
+        "2201": {
+            "id": "2201",
+            "name": "Tesla Tower",
+            "type": "LOGISTICS",
+            "stack_size": 100,
+            "group": "buildings",
+            "subgroup": "row1",
+            "order": 1
+        },
+        "2202": {
+            "id": "2202",
+            "name": "Wireless Power Tower",
+            "type": "LOGISTICS",
+            "stack_size": 100,
+            "group": "buildings",
+            "subgroup": "row1",
+            "order": 2
+        },
+        "2203": {
+            "id": "2203",
+            "name": "Wind Turbine",
+            "type": "PRODUCTION",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row1",
+            "order": 4
+        },
+        "2204": {
+            "id": "2204",
+            "name": "Thermal Power Plant",
+            "type": "PRODUCTION",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row1",
+            "order": 5
+        },
+        "2205": {
+            "id": "2205",
+            "name": "Solar Panel",
+            "type": "PRODUCTION",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row1",
+            "order": 6
+        },
+        "2206": {
+            "id": "2206",
+            "name": "Accumulator",
+            "type": "LOGISTICS",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row4",
+            "order": 11
+        },
+        "2207": {
+            "id": "2207",
+            "name": "Accumulator (Full)",
+            "type": "LOGISTICS",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row4",
+            "order": 12
+        },
+        "2208": {
+            "id": "2208",
+            "name": "Ray Receiver",
+            "type": "PRODUCTION",
+            "stack_size": 20,
+            "group": "buildings",
+            "subgroup": "row1",
+            "order": 10
+        },
+        "2209": {
+            "id": "2209",
+            "name": "Energy Exchanger",
+            "type": "LOGISTICS",
+            "stack_size": 20,
+            "group": "buildings",
+            "subgroup": "row1",
+            "order": 9
+        },
+        "2210": {
+            "id": "2210",
+            "name": "Artificial Star",
+            "type": "PRODUCTION",
+            "stack_size": 20,
+            "group": "buildings",
+            "subgroup": "row1",
+            "order": 11
+        },
+        "2211": {
+            "id": "2211",
+            "name": "Mini Fusion Power Plant",
+            "type": "PRODUCTION",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row1",
+            "order": 8
+        },
+        "2212": {
+            "id": "2212",
+            "name": "Satellite Substation",
+            "type": "LOGISTICS",
+            "stack_size": 30,
+            "group": "buildings",
+            "subgroup": "row1",
+            "order": 3
+        },
+        "2213": {
+            "id": "2213",
+            "name": "Geothermal Power Station",
+            "type": "PRODUCTION",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row1",
+            "order": 7
+        },
+        "2301": {
+            "id": "2301",
+            "name": "Mining Machine",
+            "type": "PRODUCTION",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row3",
+            "order": 5
+        },
+        "2302": {
+            "id": "2302",
+            "name": "Arc Smelter",
+            "type": "PRODUCTION",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row4",
+            "order": 4
+        },
+        "2303": {
+            "id": "2303",
+            "name": "Assembling Machine Mk.I",
+            "type": "PRODUCTION",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row4",
+            "order": 1
+        },
+        "2304": {
+            "id": "2304",
+            "name": "Assembling Machine Mk.II",
+            "type": "PRODUCTION",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row4",
+            "order": 2
+        },
+        "2305": {
+            "id": "2305",
+            "name": "Assembling Machine Mk.III",
+            "type": "PRODUCTION",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row4",
+            "order": 3
+        },
+        "2306": {
+            "id": "2306",
+            "name": "Water Pump",
+            "type": "PRODUCTION",
+            "stack_size": 30,
+            "group": "buildings",
+            "subgroup": "row3",
+            "order": 7
+        },
+        "2307": {
+            "id": "2307",
+            "name": "Oil Extractor",
+            "type": "PRODUCTION",
+            "stack_size": 20,
+            "group": "buildings",
+            "subgroup": "row3",
+            "order": 8
+        },
+        "2308": {
+            "id": "2308",
+            "name": "Oil Refinery",
+            "type": "PRODUCTION",
+            "stack_size": 30,
+            "group": "buildings",
+            "subgroup": "row3",
+            "order": 9
+        },
+        "2309": {
+            "id": "2309",
+            "name": "Chemical Plant",
+            "type": "PRODUCTION",
+            "stack_size": 30,
+            "group": "buildings",
+            "subgroup": "row4",
+            "order": 9
+        },
+        "2310": {
+            "id": "2310",
+            "name": "Miniature Particle Collider",
+            "type": "PRODUCTION",
+            "stack_size": 20,
+            "group": "buildings",
+            "subgroup": "row3",
+            "order": 10
+        },
+        "2311": {
+            "id": "2311",
+            "name": "EM-Rail Ejector",
+            "type": "PRODUCTION",
+            "stack_size": 30,
+            "group": "buildings",
+            "subgroup": "row3",
+            "order": 11
+        },
+        "2312": {
+            "id": "2312",
+            "name": "Vertical Launching Silo",
+            "type": "PRODUCTION",
+            "stack_size": 10,
+            "group": "buildings",
+            "subgroup": "row3",
+            "order": 12
+        },
+        "2313": {
+            "id": "2313",
+            "name": "Spray Coater",
+            "type": "PRODUCTION",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row4",
+            "order": 7
+        },
+        "2314": {
+            "id": "2314",
+            "name": "Fractionator",
+            "type": "PRODUCTION",
+            "stack_size": 30,
+            "group": "buildings",
+            "subgroup": "row4",
+            "order": 8
+        },
+        "2315": {
+            "id": "2315",
+            "name": "Plane Smelter",
+            "type": "PRODUCTION",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row4",
+            "order": 5
+        },
+        "2316": {
+            "id": "2316",
+            "name": "Advanced Mining Machine",
+            "type": "PRODUCTION",
+            "stack_size": 30,
+            "group": "buildings",
+            "subgroup": "row3",
+            "order": 6
+        },
+        "2317": {
+            "id": "2317",
+            "name": "Quantum Chemical Plant",
+            "type": "PRODUCTION",
+            "stack_size": 30,
+            "group": "buildings",
+            "subgroup": "row4",
+            "order": 10
+        },
+        "2901": {
+            "id": "2901",
+            "name": "Matrix Lab",
+            "type": "PRODUCTION",
+            "stack_size": 50,
+            "group": "buildings",
+            "subgroup": "row4",
+            "order": 6
+        },
+        "5001": {
+            "id": "5001",
+            "name": "Logistics Drone",
+            "type": "LOGISTICS",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row5",
+            "order": 10
+        },
+        "5002": {
+            "id": "5002",
+            "name": "Logistics Vessel",
+            "type": "LOGISTICS",
+            "stack_size": 50,
+            "group": "items",
+            "subgroup": "row5",
+            "order": 11
+        },
+        "5003": {
+            "id": "5003",
+            "name": "Logistics Bot",
+            "type": "LOGISTICS",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row5",
+            "order": 9
+        },
+        "6001": {
+            "id": "6001",
+            "name": "Electromagnetic Matrix",
+            "type": "MATRIX",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row7",
+            "order": 1
+        },
+        "6002": {
+            "id": "6002",
+            "name": "Energy Matrix",
+            "type": "MATRIX",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row7",
+            "order": 2
+        },
+        "6003": {
+            "id": "6003",
+            "name": "Structure Matrix",
+            "type": "MATRIX",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row7",
+            "order": 3
+        },
+        "6004": {
+            "id": "6004",
+            "name": "Information Matrix",
+            "type": "MATRIX",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row7",
+            "order": 4
+        },
+        "6005": {
+            "id": "6005",
+            "name": "Gravity Matrix",
+            "type": "MATRIX",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row7",
+            "order": 5
+        },
+        "6006": {
+            "id": "6006",
+            "name": "Universe Matrix",
+            "type": "MATRIX",
+            "stack_size": 200,
+            "group": "items",
+            "subgroup": "row7",
+            "order": 6
+        }
+    },
+    "recipes": {
+        "5": {
+            "id": "5",
+            "name": "Gear",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1201",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 1
+        },
+        "6": {
+            "id": "6",
+            "name": "Magnetic Coil",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1102",
+                    "amount": 2
+                },
+                {
+                    "name": "1104",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1202",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 1
+        },
+        "11": {
+            "id": "11",
+            "name": "Prism",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1110",
+                    "amount": 3
+                }
+            ],
+            "results": [
+                {
+                    "name": "1111",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 2
+        },
+        "12": {
+            "id": "12",
+            "name": "Plasma Exciter",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1202",
+                    "amount": 4
+                },
+                {
+                    "name": "1111",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "1401",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "19": {
+            "id": "19",
+            "name": "Hydrogen Fuel Rod",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1106",
+                    "amount": 1
+                },
+                {
+                    "name": "1120",
+                    "amount": 10
+                }
+            ],
+            "results": [
+                {
+                    "name": "1801",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 6
+        },
+        "20": {
+            "id": "20",
+            "name": " - Thruster",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1103",
+                    "amount": 2
+                },
+                {
+                    "name": "1104",
+                    "amount": 3
+                }
+            ],
+            "results": [
+                {
+                    "name": "1405",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 4
+        },
+        "21": {
+            "id": "21",
+            "name": "Reinforced Thruster",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1107",
+                    "amount": 5
+                },
+                {
+                    "name": "1204",
+                    "amount": 5
+                }
+            ],
+            "results": [
+                {
+                    "name": "1406",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 6
+        },
+        "26": {
+            "id": "26",
+            "name": "Titanium Crystal",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1117",
+                    "amount": 1
+                },
+                {
+                    "name": "1106",
+                    "amount": 3
+                }
+            ],
+            "results": [
+                {
+                    "name": "1118",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 4
+        },
+        "28": {
+            "id": "28",
+            "name": "Casimir Crystal",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1118",
+                    "amount": 1
+                },
+                {
+                    "name": "1123",
+                    "amount": 2
+                },
+                {
+                    "name": "1120",
+                    "amount": 12
+                }
+            ],
+            "results": [
+                {
+                    "name": "1126",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 4
+        },
+        "29": {
+            "id": "29",
+            "name": "Casimir Crystal (Advanced)",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1014",
+                    "amount": 8
+                },
+                {
+                    "name": "1123",
+                    "amount": 2
+                },
+                {
+                    "name": "1120",
+                    "amount": 12
+                }
+            ],
+            "results": [
+                {
+                    "name": "1126",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 4
+        },
+        "30": {
+            "id": "30",
+            "name": "Titanium Glass",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1110",
+                    "amount": 2
+                },
+                {
+                    "name": "1106",
+                    "amount": 2
+                },
+                {
+                    "name": "1000",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "1119",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 5
+        },
+        "36": {
+            "id": "36",
+            "name": "Particle Broadband",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1124",
+                    "amount": 2
+                },
+                {
+                    "name": "1113",
+                    "amount": 2
+                },
+                {
+                    "name": "1115",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1402",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 8
+        },
+        "38": {
+            "id": "38",
+            "name": "Plane Filter",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1126",
+                    "amount": 1
+                },
+                {
+                    "name": "1119",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "1304",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 12
+        },
+        "41": {
+            "id": "41",
+            "name": "Deuteron Fuel Rod",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1107",
+                    "amount": 1
+                },
+                {
+                    "name": "1121",
+                    "amount": 20
+                },
+                {
+                    "name": "1205",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1802",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 12
+        },
+        "42": {
+            "id": "42",
+            "name": "Annihilation Constraint Sphere",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1206",
+                    "amount": 1
+                },
+                {
+                    "name": "1303",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1403",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 20
+        },
+        "44": {
+            "id": "44",
+            "name": "Antimatter Fuel Rod",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1122",
+                    "amount": 12
+                },
+                {
+                    "name": "1120",
+                    "amount": 12
+                },
+                {
+                    "name": "1403",
+                    "amount": 1
+                },
+                {
+                    "name": "1107",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1803",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 24
+        },
+        "50": {
+            "id": "50",
+            "name": "Circuit Board",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 2
+                },
+                {
+                    "name": "1104",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1301",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 1
+        },
+        "51": {
+            "id": "51",
+            "name": "Processor",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1301",
+                    "amount": 2
+                },
+                {
+                    "name": "1302",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "1303",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 3
+        },
+        "52": {
+            "id": "52",
+            "name": "Quantum Chip",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1303",
+                    "amount": 2
+                },
+                {
+                    "name": "1304",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "1305",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 6
+        },
+        "53": {
+            "id": "53",
+            "name": "Microcrystalline Component",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1105",
+                    "amount": 2
+                },
+                {
+                    "name": "1104",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1302",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "54": {
+            "id": "54",
+            "name": "Organic Crystal (Original)",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1030",
+                    "amount": 20
+                },
+                {
+                    "name": "1031",
+                    "amount": 30
+                },
+                {
+                    "name": "1000",
+                    "amount": 10
+                }
+            ],
+            "results": [
+                {
+                    "name": "1117",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 6
+        },
+        "62": {
+            "id": "62",
+            "name": "Crystal Silicon (Advanced)",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1013",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1113",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 1.5
+        },
+        "68": {
+            "id": "68",
+            "name": "Photon Combiner",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1111",
+                    "amount": 2
+                },
+                {
+                    "name": "1301",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1404",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 3
+        },
+        "69": {
+            "id": "69",
+            "name": "Photon Combiner (Advanced)",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1014",
+                    "amount": 1
+                },
+                {
+                    "name": "1301",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1404",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 3
+        },
+        "70": {
+            "id": "70",
+            "name": "Solar Sail",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1123",
+                    "amount": 1
+                },
+                {
+                    "name": "1404",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1501",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 4
+        },
+        "78": {
+            "id": "78",
+            "name": "Space Warper",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1209",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1210",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 10
+        },
+        "79": {
+            "id": "79",
+            "name": "Space Warper (Advanced)",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "6005",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1210",
+                    "amount": 8
+                }
+            ],
+            "energy_required": 10
+        },
+        "80": {
+            "id": "80",
+            "name": "Frame Material",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1124",
+                    "amount": 4
+                },
+                {
+                    "name": "1107",
+                    "amount": 1
+                },
+                {
+                    "name": "1105",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1125",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 6
+        },
+        "81": {
+            "id": "81",
+            "name": "Dyson Sphere Component",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1125",
+                    "amount": 3
+                },
+                {
+                    "name": "1501",
+                    "amount": 3
+                },
+                {
+                    "name": "1303",
+                    "amount": 3
+                }
+            ],
+            "results": [
+                {
+                    "name": "1502",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 8
+        },
+        "83": {
+            "id": "83",
+            "name": "Small Carrier Rocket",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1502",
+                    "amount": 2
+                },
+                {
+                    "name": "1802",
+                    "amount": 4
+                },
+                {
+                    "name": "1305",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "1503",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 6
+        },
+        "94": {
+            "id": "94",
+            "name": "Logistics Drone",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 5
+                },
+                {
+                    "name": "1303",
+                    "amount": 2
+                },
+                {
+                    "name": "1405",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "5001",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 4
+        },
+        "96": {
+            "id": "96",
+            "name": "Logistics Vessel",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1107",
+                    "amount": 10
+                },
+                {
+                    "name": "1303",
+                    "amount": 10
+                },
+                {
+                    "name": "1406",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "5002",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 6
+        },
+        "97": {
+            "id": "97",
+            "name": "Electric Motor",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 2
+                },
+                {
+                    "name": "1201",
+                    "amount": 1
+                },
+                {
+                    "name": "1202",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1203",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "98": {
+            "id": "98",
+            "name": "Electromagnetic Turbine",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1203",
+                    "amount": 2
+                },
+                {
+                    "name": "1202",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "1204",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "99": {
+            "id": "99",
+            "name": "Particle Container",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1204",
+                    "amount": 2
+                },
+                {
+                    "name": "1104",
+                    "amount": 2
+                },
+                {
+                    "name": "1123",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "1206",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 4
+        },
+        "100": {
+            "id": "100",
+            "name": "Particle Container (Advanced)",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1016",
+                    "amount": 10
+                },
+                {
+                    "name": "1104",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "1206",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 4
+        },
+        "101": {
+            "id": "101",
+            "name": "Graviton Lens",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1112",
+                    "amount": 4
+                },
+                {
+                    "name": "1127",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1209",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 6
+        },
+        "103": {
+            "id": "103",
+            "name": "Super-Magnetic Ring",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1204",
+                    "amount": 2
+                },
+                {
+                    "name": "1102",
+                    "amount": 3
+                },
+                {
+                    "name": "1109",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1205",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 3
+        },
+        "106": {
+            "id": "106",
+            "name": "Proliferator Mk.I",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1006",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1141",
+                    "amount": 1
+                }
+            ],
+            "energy_required": ".5"
+        },
+        "107": {
+            "id": "107",
+            "name": "Proliferator Mk.II",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1141",
+                    "amount": 2
+                },
+                {
+                    "name": "1112",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1142",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 1
+        },
+        "108": {
+            "id": "108",
+            "name": "Proliferator Mk.III",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1142",
+                    "amount": 2
+                },
+                {
+                    "name": "1124",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1143",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "112": {
+            "id": "112",
+            "name": "Foundation",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1108",
+                    "amount": 3
+                },
+                {
+                    "name": "1103",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1131",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 1
+        },
+        "123": {
+            "id": "123",
+            "name": "Logistics Bot",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 2
+                },
+                {
+                    "name": "1204",
+                    "amount": 1
+                },
+                {
+                    "name": "1303",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "5003",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "23": {
+            "id": "23",
+            "name": "Plastic",
+            "category": "CHEMICAL",
+            "ingredients": [
+                {
+                    "name": "1114",
+                    "amount": 2
+                },
+                {
+                    "name": "1109",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1115",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 3
+        },
+        "24": {
+            "id": "24",
+            "name": "Sulfuric Acid",
+            "category": "CHEMICAL",
+            "ingredients": [
+                {
+                    "name": "1114",
+                    "amount": 6
+                },
+                {
+                    "name": "1005",
+                    "amount": 8
+                },
+                {
+                    "name": "1000",
+                    "amount": 4
+                }
+            ],
+            "results": [
+                {
+                    "name": "1116",
+                    "amount": 4
+                }
+            ],
+            "energy_required": 6
+        },
+        "25": {
+            "id": "25",
+            "name": "Organic Crystal",
+            "category": "CHEMICAL",
+            "ingredients": [
+                {
+                    "name": "1115",
+                    "amount": 2
+                },
+                {
+                    "name": "1114",
+                    "amount": 1
+                },
+                {
+                    "name": "1000",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1117",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 6
+        },
+        "31": {
+            "id": "31",
+            "name": "Graphene",
+            "category": "CHEMICAL",
+            "ingredients": [
+                {
+                    "name": "1109",
+                    "amount": 3
+                },
+                {
+                    "name": "1116",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1123",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 3
+        },
+        "32": {
+            "id": "32",
+            "name": "Graphene (Advanced)",
+            "category": "CHEMICAL",
+            "ingredients": [
+                {
+                    "name": "1011",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "1123",
+                    "amount": 2
+                },
+                {
+                    "name": "1120",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "33": {
+            "id": "33",
+            "name": "Carbon Nanotube",
+            "category": "CHEMICAL",
+            "ingredients": [
+                {
+                    "name": "1123",
+                    "amount": 3
+                },
+                {
+                    "name": "1106",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1124",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 4
+        },
+        "35": {
+            "id": "35",
+            "name": "Carbon Nanotube (Advanced)",
+            "category": "CHEMICAL",
+            "ingredients": [
+                {
+                    "name": "1015",
+                    "amount": 6
+                }
+            ],
+            "results": [
+                {
+                    "name": "1124",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 4
+        },
+        "115": {
+            "id": "115",
+            "name": "Deuterium Fractionation",
+            "category": "FRACTIONATE",
+            "ingredients": [
+                {
+                    "name": "1120",
+                    "amount": 100
+                }
+            ],
+            "results": [
+                {
+                    "name": "1121",
+                    "amount": 1
+                }
+            ],
+            "energy_required": ".017"
+        },
+        "40": {
+            "id": "40",
+            "name": "Deuterium",
+            "category": "PARTICLE",
+            "ingredients": [
+                {
+                    "name": "1120",
+                    "amount": 10
+                }
+            ],
+            "results": [
+                {
+                    "name": "1121",
+                    "amount": 5
+                }
+            ],
+            "energy_required": 2.5
+        },
+        "74": {
+            "id": "74",
+            "name": "Mass-Energy Storage",
+            "category": "PARTICLE",
+            "ingredients": [
+                {
+                    "name": "1208",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "1122",
+                    "amount": 2
+                },
+                {
+                    "name": "1120",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 2
+        },
+        "104": {
+            "id": "104",
+            "name": "Strange Matter",
+            "category": "PARTICLE",
+            "ingredients": [
+                {
+                    "name": "1206",
+                    "amount": 2
+                },
+                {
+                    "name": "1101",
+                    "amount": 2
+                },
+                {
+                    "name": "1121",
+                    "amount": 10
+                }
+            ],
+            "results": [
+                {
+                    "name": "1127",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 8
+        },
+        "16": {
+            "id": "16",
+            "name": "Plasma Refining",
+            "category": "REFINE",
+            "ingredients": [
+                {
+                    "name": "1007",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "1120",
+                    "amount": 1
+                },
+                {
+                    "name": "1114",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 4
+        },
+        "58": {
+            "id": "58",
+            "name": "X-Ray Cracking",
+            "category": "REFINE",
+            "ingredients": [
+                {
+                    "name": "1114",
+                    "amount": 1
+                },
+                {
+                    "name": "1120",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "1120",
+                    "amount": 3
+                },
+                {
+                    "name": "1109",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 4
+        },
+        "121": {
+            "id": "121",
+            "name": "Reforming Refine",
+            "category": "REFINE",
+            "ingredients": [
+                {
+                    "name": "1114",
+                    "amount": 2
+                },
+                {
+                    "name": "1120",
+                    "amount": 1
+                },
+                {
+                    "name": "1006",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1114",
+                    "amount": 3
+                }
+            ],
+            "energy_required": 4
+        },
+        "9": {
+            "id": "9",
+            "name": "Electromagnetic Matrix",
+            "category": "RESEARCH",
+            "ingredients": [
+                {
+                    "name": "1202",
+                    "amount": 1
+                },
+                {
+                    "name": "1301",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "6001",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 3
+        },
+        "18": {
+            "id": "18",
+            "name": "Energy Matrix",
+            "category": "RESEARCH",
+            "ingredients": [
+                {
+                    "name": "1109",
+                    "amount": 2
+                },
+                {
+                    "name": "1120",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "6002",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 6
+        },
+        "27": {
+            "id": "27",
+            "name": "Structure Matrix",
+            "category": "RESEARCH",
+            "ingredients": [
+                {
+                    "name": "1112",
+                    "amount": 1
+                },
+                {
+                    "name": "1118",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "6003",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 8
+        },
+        "55": {
+            "id": "55",
+            "name": "Information Matrix",
+            "category": "RESEARCH",
+            "ingredients": [
+                {
+                    "name": "1303",
+                    "amount": 2
+                },
+                {
+                    "name": "1402",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "6004",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 10
+        },
+        "102": {
+            "id": "102",
+            "name": "Gravity Matrix",
+            "category": "RESEARCH",
+            "ingredients": [
+                {
+                    "name": "1209",
+                    "amount": 1
+                },
+                {
+                    "name": "1305",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "6005",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 24
+        },
+        "75": {
+            "id": "75",
+            "name": "Universe Matrix",
+            "category": "RESEARCH",
+            "ingredients": [
+                {
+                    "name": "6001",
+                    "amount": 1
+                },
+                {
+                    "name": "6002",
+                    "amount": 1
+                },
+                {
+                    "name": "6003",
+                    "amount": 1
+                },
+                {
+                    "name": "6004",
+                    "amount": 1
+                },
+                {
+                    "name": "6005",
+                    "amount": 1
+                },
+                {
+                    "name": "1122",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "6006",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 15
+        },
+        "1": {
+            "id": "1",
+            "name": "Iron Ingot",
+            "category": "SMELT",
+            "ingredients": [
+                {
+                    "name": "1001",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1101",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 1
+        },
+        "2": {
+            "id": "2",
+            "name": "Magnet",
+            "category": "SMELT",
+            "ingredients": [
+                {
+                    "name": "1001",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1102",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 1.5
+        },
+        "3": {
+            "id": "3",
+            "name": "Copper Ingot",
+            "category": "SMELT",
+            "ingredients": [
+                {
+                    "name": "1002",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1104",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 1
+        },
+        "4": {
+            "id": "4",
+            "name": "Stone Brick",
+            "category": "SMELT",
+            "ingredients": [
+                {
+                    "name": "1005",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1108",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 1
+        },
+        "17": {
+            "id": "17",
+            "name": "Energetic Graphite",
+            "category": "SMELT",
+            "ingredients": [
+                {
+                    "name": "1006",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "1109",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "34": {
+            "id": "34",
+            "name": "Silicon Ore",
+            "category": "SMELT",
+            "ingredients": [
+                {
+                    "name": "1005",
+                    "amount": 10
+                }
+            ],
+            "results": [
+                {
+                    "name": "1003",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 10
+        },
+        "37": {
+            "id": "37",
+            "name": "Crystal Silicon",
+            "category": "SMELT",
+            "ingredients": [
+                {
+                    "name": "1105",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1113",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "57": {
+            "id": "57",
+            "name": "Glass",
+            "category": "SMELT",
+            "ingredients": [
+                {
+                    "name": "1005",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "1110",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "59": {
+            "id": "59",
+            "name": "High-Purity Silicon",
+            "category": "SMELT",
+            "ingredients": [
+                {
+                    "name": "1003",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "1105",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "60": {
+            "id": "60",
+            "name": "Diamond",
+            "category": "SMELT",
+            "ingredients": [
+                {
+                    "name": "1109",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1112",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "61": {
+            "id": "61",
+            "name": "Diamond (Advanced)",
+            "category": "SMELT",
+            "ingredients": [
+                {
+                    "name": "1012",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "1112",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 1.5
+        },
+        "63": {
+            "id": "63",
+            "name": "Steel",
+            "category": "SMELT",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 3
+                }
+            ],
+            "results": [
+                {
+                    "name": "1103",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 3
+        },
+        "65": {
+            "id": "65",
+            "name": "Titanium Ingot",
+            "category": "SMELT",
+            "ingredients": [
+                {
+                    "name": "1004",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "1106",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "66": {
+            "id": "66",
+            "name": "Titanium Alloy",
+            "category": "SMELT",
+            "ingredients": [
+                {
+                    "name": "1106",
+                    "amount": 4
+                },
+                {
+                    "name": "1103",
+                    "amount": 4
+                },
+                {
+                    "name": "1116",
+                    "amount": 8
+                }
+            ],
+            "results": [
+                {
+                    "name": "1107",
+                    "amount": 4
+                }
+            ],
+            "energy_required": 12
+        },
+        "7": {
+            "id": "7",
+            "name": "Wind Turbine",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 6
+                },
+                {
+                    "name": "1201",
+                    "amount": 1
+                },
+                {
+                    "name": "1202",
+                    "amount": 3
+                }
+            ],
+            "results": [
+                {
+                    "name": "2203",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 4
+        },
+        "8": {
+            "id": "8",
+            "name": "Tesla Tower",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 2
+                },
+                {
+                    "name": "1202",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "2201",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 1
+        },
+        "10": {
+            "id": "10",
+            "name": "Matrix Lab",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 8
+                },
+                {
+                    "name": "1110",
+                    "amount": 4
+                },
+                {
+                    "name": "1301",
+                    "amount": 4
+                },
+                {
+                    "name": "1202",
+                    "amount": 4
+                }
+            ],
+            "results": [
+                {
+                    "name": "2901",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 3
+        },
+        "13": {
+            "id": "13",
+            "name": "Wireless Power Tower",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "2201",
+                    "amount": 1
+                },
+                {
+                    "name": "1401",
+                    "amount": 3
+                }
+            ],
+            "results": [
+                {
+                    "name": "2202",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 3
+        },
+        "14": {
+            "id": "14",
+            "name": "Oil Extractor",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1103",
+                    "amount": 12
+                },
+                {
+                    "name": "1108",
+                    "amount": 12
+                },
+                {
+                    "name": "1301",
+                    "amount": 6
+                },
+                {
+                    "name": "1401",
+                    "amount": 4
+                }
+            ],
+            "results": [
+                {
+                    "name": "2307",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 8
+        },
+        "15": {
+            "id": "15",
+            "name": "Oil Refinery",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1103",
+                    "amount": 10
+                },
+                {
+                    "name": "1108",
+                    "amount": 10
+                },
+                {
+                    "name": "1301",
+                    "amount": 6
+                },
+                {
+                    "name": "1401",
+                    "amount": 6
+                }
+            ],
+            "results": [
+                {
+                    "name": "2308",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 6
+        },
+        "22": {
+            "id": "22",
+            "name": "Chemical Plant",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1103",
+                    "amount": 8
+                },
+                {
+                    "name": "1108",
+                    "amount": 8
+                },
+                {
+                    "name": "1110",
+                    "amount": 8
+                },
+                {
+                    "name": "1301",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "2309",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 5
+        },
+        "39": {
+            "id": "39",
+            "name": "Miniature Particle Collider",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1107",
+                    "amount": 20
+                },
+                {
+                    "name": "1125",
+                    "amount": 20
+                },
+                {
+                    "name": "1205",
+                    "amount": 25
+                },
+                {
+                    "name": "1123",
+                    "amount": 10
+                },
+                {
+                    "name": "1303",
+                    "amount": 8
+                }
+            ],
+            "results": [
+                {
+                    "name": "2310",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 15
+        },
+        "43": {
+            "id": "43",
+            "name": "Artificial Star",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1107",
+                    "amount": 20
+                },
+                {
+                    "name": "1125",
+                    "amount": 20
+                },
+                {
+                    "name": "1403",
+                    "amount": 10
+                },
+                {
+                    "name": "1305",
+                    "amount": 10
+                }
+            ],
+            "results": [
+                {
+                    "name": "2210",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 30
+        },
+        "45": {
+            "id": "45",
+            "name": "Assembling Machine Mk.I",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 4
+                },
+                {
+                    "name": "1201",
+                    "amount": 8
+                },
+                {
+                    "name": "1301",
+                    "amount": 4
+                }
+            ],
+            "results": [
+                {
+                    "name": "2303",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "46": {
+            "id": "46",
+            "name": "Assembling Machine Mk.II",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "2303",
+                    "amount": 1
+                },
+                {
+                    "name": "1123",
+                    "amount": 8
+                },
+                {
+                    "name": "1303",
+                    "amount": 4
+                }
+            ],
+            "results": [
+                {
+                    "name": "2304",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 3
+        },
+        "47": {
+            "id": "47",
+            "name": "Assembling Machine Mk.III",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "2304",
+                    "amount": 1
+                },
+                {
+                    "name": "1402",
+                    "amount": 8
+                },
+                {
+                    "name": "1305",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "2305",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 4
+        },
+        "48": {
+            "id": "48",
+            "name": "Mining Machine",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 4
+                },
+                {
+                    "name": "1301",
+                    "amount": 2
+                },
+                {
+                    "name": "1202",
+                    "amount": 2
+                },
+                {
+                    "name": "1201",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "2301",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 3
+        },
+        "49": {
+            "id": "49",
+            "name": "Water Pump",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 8
+                },
+                {
+                    "name": "1108",
+                    "amount": 4
+                },
+                {
+                    "name": "1203",
+                    "amount": 4
+                },
+                {
+                    "name": "1301",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "2306",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 4
+        },
+        "56": {
+            "id": "56",
+            "name": "Arc Smelter",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 4
+                },
+                {
+                    "name": "1108",
+                    "amount": 2
+                },
+                {
+                    "name": "1301",
+                    "amount": 4
+                },
+                {
+                    "name": "1202",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "2302",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 3
+        },
+        "64": {
+            "id": "64",
+            "name": "Thermal Power Plant",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 10
+                },
+                {
+                    "name": "1108",
+                    "amount": 4
+                },
+                {
+                    "name": "1201",
+                    "amount": 4
+                },
+                {
+                    "name": "1202",
+                    "amount": 4
+                }
+            ],
+            "results": [
+                {
+                    "name": "2204",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 5
+        },
+        "67": {
+            "id": "67",
+            "name": "Solar Panel",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1104",
+                    "amount": 10
+                },
+                {
+                    "name": "1105",
+                    "amount": 10
+                },
+                {
+                    "name": "1301",
+                    "amount": 5
+                }
+            ],
+            "results": [
+                {
+                    "name": "2205",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 6
+        },
+        "71": {
+            "id": "71",
+            "name": "EM-Rail Ejector",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1103",
+                    "amount": 20
+                },
+                {
+                    "name": "1201",
+                    "amount": 20
+                },
+                {
+                    "name": "1303",
+                    "amount": 5
+                },
+                {
+                    "name": "1205",
+                    "amount": 10
+                }
+            ],
+            "results": [
+                {
+                    "name": "2311",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 6
+        },
+        "72": {
+            "id": "72",
+            "name": "Ray Receiver",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1103",
+                    "amount": 20
+                },
+                {
+                    "name": "1105",
+                    "amount": 20
+                },
+                {
+                    "name": "1404",
+                    "amount": 10
+                },
+                {
+                    "name": "1303",
+                    "amount": 5
+                },
+                {
+                    "name": "1205",
+                    "amount": 20
+                }
+            ],
+            "results": [
+                {
+                    "name": "2208",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 8
+        },
+        "73": {
+            "id": "73",
+            "name": "Satellite Substation",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "2202",
+                    "amount": 1
+                },
+                {
+                    "name": "1205",
+                    "amount": 10
+                },
+                {
+                    "name": "1125",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "2212",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 5
+        },
+        "76": {
+            "id": "76",
+            "name": "Accumulator",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 6
+                },
+                {
+                    "name": "1205",
+                    "amount": 1
+                },
+                {
+                    "name": "1113",
+                    "amount": 6
+                }
+            ],
+            "results": [
+                {
+                    "name": "2206",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 5
+        },
+        "77": {
+            "id": "77",
+            "name": "Energy Exchanger",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1107",
+                    "amount": 40
+                },
+                {
+                    "name": "1103",
+                    "amount": 40
+                },
+                {
+                    "name": "1303",
+                    "amount": 40
+                },
+                {
+                    "name": "1206",
+                    "amount": 8
+                }
+            ],
+            "results": [
+                {
+                    "name": "2209",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 15
+        },
+        "82": {
+            "id": "82",
+            "name": "Vertical Launching Silo",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1107",
+                    "amount": 80
+                },
+                {
+                    "name": "1125",
+                    "amount": 30
+                },
+                {
+                    "name": "1209",
+                    "amount": 20
+                },
+                {
+                    "name": "1305",
+                    "amount": 10
+                }
+            ],
+            "results": [
+                {
+                    "name": "2312",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 30
+        },
+        "84": {
+            "id": "84",
+            "name": "Conveyor Belt MK.I",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 2
+                },
+                {
+                    "name": "1201",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "2001",
+                    "amount": 3
+                }
+            ],
+            "energy_required": 1
+        },
+        "89": {
+            "id": "89",
+            "name": "Conveyor Belt MK.II",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "2001",
+                    "amount": 3
+                },
+                {
+                    "name": "1204",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "2002",
+                    "amount": 3
+                }
+            ],
+            "energy_required": 1
+        },
+        "92": {
+            "id": "92",
+            "name": "Conveyor Belt MK.III",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "2002",
+                    "amount": 3
+                },
+                {
+                    "name": "1205",
+                    "amount": 1
+                },
+                {
+                    "name": "1123",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "2003",
+                    "amount": 3
+                }
+            ],
+            "energy_required": 1
+        },
+        "85": {
+            "id": "85",
+            "name": "Sorter MK.I",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 1
+                },
+                {
+                    "name": "1301",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "2011",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 1
+        },
+        "88": {
+            "id": "88",
+            "name": "Sorter MK.II",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "2011",
+                    "amount": 2
+                },
+                {
+                    "name": "1203",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "2012",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 1
+        },
+        "90": {
+            "id": "90",
+            "name": "Sorter MK.III",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "2012",
+                    "amount": 2
+                },
+                {
+                    "name": "1204",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "2013",
+                    "amount": 2
+                }
+            ],
+            "energy_required": 1
+        },
+        "86": {
+            "id": "86",
+            "name": "Storage MK.I",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 4
+                },
+                {
+                    "name": "1108",
+                    "amount": 4
+                }
+            ],
+            "results": [
+                {
+                    "name": "2101",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "91": {
+            "id": "91",
+            "name": "Storage MK.II",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1103",
+                    "amount": 8
+                },
+                {
+                    "name": "1108",
+                    "amount": 8
+                }
+            ],
+            "results": [
+                {
+                    "name": "2102",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 4
+        },
+        "87": {
+            "id": "87",
+            "name": "Splitter",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 3
+                },
+                {
+                    "name": "1201",
+                    "amount": 2
+                },
+                {
+                    "name": "1301",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "2020",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "93": {
+            "id": "93",
+            "name": "Planetary Logistics Station",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1103",
+                    "amount": 40
+                },
+                {
+                    "name": "1106",
+                    "amount": 40
+                },
+                {
+                    "name": "1303",
+                    "amount": 40
+                },
+                {
+                    "name": "1206",
+                    "amount": 20
+                }
+            ],
+            "results": [
+                {
+                    "name": "2103",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 20
+        },
+        "95": {
+            "id": "95",
+            "name": "Interstellar Logistics Station",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "2103",
+                    "amount": 1
+                },
+                {
+                    "name": "1107",
+                    "amount": 40
+                },
+                {
+                    "name": "1206",
+                    "amount": 20
+                }
+            ],
+            "results": [
+                {
+                    "name": "2104",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 30
+        },
+        "109": {
+            "id": "109",
+            "name": "Spray Coater",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1103",
+                    "amount": 4
+                },
+                {
+                    "name": "1401",
+                    "amount": 2
+                },
+                {
+                    "name": "1301",
+                    "amount": 2
+                },
+                {
+                    "name": "1302",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "2313",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 3
+        },
+        "110": {
+            "id": "110",
+            "name": "Fractionator",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1103",
+                    "amount": 8
+                },
+                {
+                    "name": "1108",
+                    "amount": 4
+                },
+                {
+                    "name": "1110",
+                    "amount": 4
+                },
+                {
+                    "name": "1303",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "2314",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 3
+        },
+        "111": {
+            "id": "111",
+            "name": "Orbital Collector",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "2104",
+                    "amount": 1
+                },
+                {
+                    "name": "1205",
+                    "amount": 50
+                },
+                {
+                    "name": "1406",
+                    "amount": 20
+                },
+                {
+                    "name": "2207",
+                    "amount": 20
+                }
+            ],
+            "results": [
+                {
+                    "name": "2105",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 30
+        },
+        "113": {
+            "id": "113",
+            "name": "Mini Fusion Power Plant",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1107",
+                    "amount": 12
+                },
+                {
+                    "name": "1205",
+                    "amount": 10
+                },
+                {
+                    "name": "1124",
+                    "amount": 8
+                },
+                {
+                    "name": "1303",
+                    "amount": 4
+                }
+            ],
+            "results": [
+                {
+                    "name": "2211",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 10
+        },
+        "114": {
+            "id": "114",
+            "name": "Storage Tank",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 8
+                },
+                {
+                    "name": "1108",
+                    "amount": 4
+                },
+                {
+                    "name": "1110",
+                    "amount": 4
+                }
+            ],
+            "results": [
+                {
+                    "name": "2106",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "116": {
+            "id": "116",
+            "name": "Plane Smelter",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "2302",
+                    "amount": 1
+                },
+                {
+                    "name": "1125",
+                    "amount": 5
+                },
+                {
+                    "name": "1304",
+                    "amount": 4
+                },
+                {
+                    "name": "1016",
+                    "amount": 15
+                }
+            ],
+            "results": [
+                {
+                    "name": "2315",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 5
+        },
+        "117": {
+            "id": "117",
+            "name": "Traffic Monitor",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 3
+                },
+                {
+                    "name": "1201",
+                    "amount": 2
+                },
+                {
+                    "name": "1110",
+                    "amount": 1
+                },
+                {
+                    "name": "1301",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "2030",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 2
+        },
+        "118": {
+            "id": "118",
+            "name": "Geothermal Power Station",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1103",
+                    "amount": 15
+                },
+                {
+                    "name": "1104",
+                    "amount": 20
+                },
+                {
+                    "name": "1404",
+                    "amount": 4
+                },
+                {
+                    "name": "1205",
+                    "amount": 1
+                }
+            ],
+            "results": [
+                {
+                    "name": "2213",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 6
+        },
+        "119": {
+            "id": "119",
+            "name": "Advanced Mining Machine",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1107",
+                    "amount": 20
+                },
+                {
+                    "name": "1125",
+                    "amount": 10
+                },
+                {
+                    "name": "1205",
+                    "amount": 10
+                },
+                {
+                    "name": "1305",
+                    "amount": 4
+                },
+                {
+                    "name": "1014",
+                    "amount": 40
+                }
+            ],
+            "results": [
+                {
+                    "name": "2316",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 20
+        },
+        "120": {
+            "id": "120",
+            "name": "Automatic Piler",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1103",
+                    "amount": 3
+                },
+                {
+                    "name": "1201",
+                    "amount": 4
+                },
+                {
+                    "name": "1205",
+                    "amount": 1
+                },
+                {
+                    "name": "1303",
+                    "amount": 2
+                }
+            ],
+            "results": [
+                {
+                    "name": "2040",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 4
+        },
+        "122": {
+            "id": "122",
+            "name": "Logistics Distributor",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "1101",
+                    "amount": 8
+                },
+                {
+                    "name": "1401",
+                    "amount": 4
+                },
+                {
+                    "name": "1303",
+                    "amount": 4
+                }
+            ],
+            "results": [
+                {
+                    "name": "2107",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 8
+        },
+        "124": {
+            "id": "124",
+            "name": "Quantum Chemical Plant",
+            "category": "ASSEMBLE",
+            "ingredients": [
+                {
+                    "name": "2309",
+                    "amount": 1
+                },
+                {
+                    "name": "1119",
+                    "amount": 10
+                },
+                {
+                    "name": "1127",
+                    "amount": 3
+                },
+                {
+                    "name": "1305",
+                    "amount": 3
+                }
+            ],
+            "results": [
+                {
+                    "name": "2317",
+                    "amount": 1
+                }
+            ],
+            "energy_required": 10
+        }
+    },
+    "assembling-machine": {
+        "Assembling Machine Mk.I": {
+            "crafting_categories": [
+                "ASSEMBLE"
+            ],
+            "crafting_speed": 0.75,
+            "energy_usage": 360000,
+            "name": "Assembling Machine Mk.I"
+        },
+        "Assembling Machine Mk.II": {
+            "crafting_categories": [
+                "ASSEMBLE"
+            ],
+            "crafting_speed": 1,
+            "energy_usage": 360000,
+            "name": "Assembling Machine Mk.II"
+        },
+        "Assembling Machine Mk.III": {
+            "crafting_categories": [
+                "ASSEMBLE"
+            ],
+            "crafting_speed": 1.5,
+            "energy_usage": 360000,
+            "name": "Assembling Machine Mk.III"
+        },
+        "Oil Refinery": {
+            "name": "Oil Refinery",
+            "crafting_categories": [
+                "REFINE"
+            ],
+            "crafting_speed": 1,
+            "energy_usage": 960000
+        },
+        "Matrix Lab": {
+            "name": "Matrix Lab",
+            "crafting_categories": [
+                "RESEARCH"
+            ],
+            "energy_usage": 480000,
+            "crafting_speed": 1
+        },
+        "Chemical Plant": {
+            "name": "Chemical Plant",
+            "crafting_categories": [
+                "CHEMICAL"
+            ],
+            "energy_usage": 720000,
+            "crafting_speed": 1
+        },
+        "Fractionator": {
+            "name": "Fractionator",
+            "crafting_categories": [
+                "fractionator"
+            ],
+            "energy_usage": 720000,
+            "crafting_speed": 1
+        },
+        "Miniature Particle Collider": {
+            "name": "Miniature Particle Collider",
+            "crafting_categories": [
+                "miniature_particle_collider"
+            ],
+            "energy_usage": 12000000,
+            "crafting_speed": 1
+        }
+    },
+    "furnace": {
+        "Arc Smelter": {
+            "crafting_categories": [
+                "SMELT"
+            ],
+            "crafting_speed": 1,
+            "energy_usage": 360000,
+            "name": "Arc Smelter"
+        },
+        "Plane Smelter": {
+            "crafting_categories": [
+                "SMELT"
+            ],
+            "crafting_speed": 2,
+            "energy_usage": 360000,
+            "name": "Plane Smelter"
+        }
+    },
+    "groups": {
+        "groups": {
+            "items": {
+                "order": "a",
+                "subgroups": {
+                    "row1": "a",
+                    "row2": "b",
+                    "row3": "c",
+                    "row4": "d",
+                    "row5": "e",
+                    "row6": "f",
+                    "row7": "g"
+                }
+            },
+            "buildings": {
+                "order": "b",
+                "subgroups": {
+                    "row1": "a",
+                    "row2": "b",
+                    "row3": "c",
+                    "row4": "d",
+                    "row5": "e",
+                    "row6": "f",
+                    "row7": "g"
+                }
+            }
+        }
+    },
+    "mining-drill": {
+        "Mining Machine": {
+            "energy_usage": 420,
+            "mining_rate": 60,
+            "name": "Mining Machine",
+            "resource_categories": [
+                "mining"
+            ]
+        },
+        "Oil Extractor": {
+            "name": "Oil Extractor",
+            "resource_categories": [
+                "oil"
+            ],
+            "mining_rate": 120,
+            "energy_usage": 840
+        },
+        "Water Pump": {
+            "name": "Water Pump",
+            "resource_categories": [
+                "pump"
+            ],
+            "mining_rate": 60,
+            "energy_usage": 300
+        }
+    },
+    "resource": {
+        "1000": {
+            "name": "Water",
+            "minable": {
+                "mining_time": 1,
+                "results": [
+                    {
+                        "amount": 1,
+                        "name": "1000"
+                    }
+                ]
+            }
+        },
+        "1001": {
+            "name": "Iron Ore",
+            "minable": {
+                "mining_time": 1,
+                "results": [
+                    {
+                        "amount": 1,
+                        "name": "1001"
+                    }
+                ]
+            }
+        },
+        "1002": {
+            "name": "Copper Ore",
+            "minable": {
+                "mining_time": 1,
+                "results": [
+                    {
+                        "amount": 1,
+                        "name": "1002"
+                    }
+                ]
+            }
+        },
+        "1003": {
+            "name": "Silicon Ore",
+            "minable": {
+                "mining_time": 1,
+                "results": [
+                    {
+                        "amount": 1,
+                        "name": "1003"
+                    }
+                ]
+            }
+        },
+        "1004": {
+            "name": "Titanium Ore",
+            "minable": {
+                "mining_time": 1,
+                "results": [
+                    {
+                        "amount": 1,
+                        "name": "1004"
+                    }
+                ]
+            }
+        },
+        "1005": {
+            "name": "Stone",
+            "minable": {
+                "mining_time": 1,
+                "results": [
+                    {
+                        "amount": 1,
+                        "name": "1005"
+                    }
+                ]
+            }
+        },
+        "1006": {
+            "name": "Coal",
+            "minable": {
+                "mining_time": 1,
+                "results": [
+                    {
+                        "amount": 1,
+                        "name": "1006"
+                    }
+                ]
+            }
+        },
+        "1007": {
+            "name": "Crude Oil",
+            "minable": {
+                "mining_time": 1,
+                "results": [
+                    {
+                        "amount": 1,
+                        "name": "1007"
+                    }
+                ]
+            }
+        },
+        "1011": {
+            "name": "Fire Ice",
+            "minable": {
+                "mining_time": 1,
+                "results": [
+                    {
+                        "amount": 1,
+                        "name": "1011"
+                    }
+                ]
+            }
+        },
+        "1012": {
+            "name": "Kimberlite Ore",
+            "minable": {
+                "mining_time": 1,
+                "results": [
+                    {
+                        "amount": 1,
+                        "name": "1012"
+                    }
+                ]
+            }
+        },
+        "1013": {
+            "name": "Fractal Silicon",
+            "minable": {
+                "mining_time": 1,
+                "results": [
+                    {
+                        "amount": 1,
+                        "name": "1013"
+                    }
+                ]
+            }
+        },
+        "1014": {
+            "name": "Optical Grating Crystal",
+            "minable": {
+                "mining_time": 1,
+                "results": [
+                    {
+                        "amount": 1,
+                        "name": "1014"
+                    }
+                ]
+            }
+        },
+        "1015": {
+            "name": "Spiniform Stalagmite Crystal",
+            "minable": {
+                "mining_time": 1,
+                "results": [
+                    {
+                        "amount": 1,
+                        "name": "1015"
+                    }
+                ]
+            }
+        },
+        "1016": {
+            "name": "Unipolar Magnet",
+            "minable": {
+                "mining_time": 1,
+                "results": [
+                    {
+                        "amount": 1,
+                        "name": "1016"
+                    }
+                ]
+            }
+        },
+        "1030": {
+            "name": "Log",
+            "minable": {
+                "mining_time": 1,
+                "results": [
+                    {
+                        "amount": 1,
+                        "name": "1030"
+                    }
+                ]
+            }
+        },
+        "1031": {
+            "name": "Plant Fuel",
+            "minable": {
+                "mining_time": 1,
+                "results": [
+                    {
+                        "amount": 1,
+                        "name": "1031"
+                    }
+                ]
+            }
+        }
+    },
+    "transport-belt": {
+        "Conveyor Belt MK.I": {
+            "name": "Conveyor Belt MK.I",
+            "speed": 360
+        },
+        "Conveyor Belt MK.II": {
+            "name": "Conveyor Belt MK.II",
+            "speed": 720
+        },
+        "Conveyor Belt MK.III": {
+            "name": "Conveyor Belt MK.III",
+            "speed": 1800
+        }
+    }
+}

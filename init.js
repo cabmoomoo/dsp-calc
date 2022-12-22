@@ -102,7 +102,7 @@ function loadData(modName, settings) {
         settings = {}
     }
     loadDataRunner(modName, function(data) {
-        getSprites(data)
+        //getSprites(data)
         var graph = getRecipeGraph(data)
         modules = getModules(data)
         sortedModules = sorted(modules, function(m) { return modules[m].order })
