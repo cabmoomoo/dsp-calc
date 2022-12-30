@@ -41,7 +41,7 @@ function formatSettings(targets) {
     if (spec.furnace.name != DEFAULT_FURNACE) {
         settings += "furnace=" + spec.furnace.name + "&"
     }
-    if (preferredFuel.name != DEFAULT_FUEL) {
+    /* if (preferredFuel.name != DEFAULT_FUEL) {
         settings += "fuel=" + preferredFuel.name + "&"
     }
     if (oilGroup != DEFAULT_OIL) {
@@ -49,7 +49,10 @@ function formatSettings(targets) {
     }
     if (kovarexEnabled != DEFAULT_KOVAREX) {
         settings += "k=off&"
-    }
+    } */
+    /* if (altRecipesEnabled != DEFAULT_ALTS) {
+        settings += "a=" + altRecipesEnabled + "&"
+    } */
     if (preferredBelt != DEFAULT_BELT) {
         settings += "belt=" + preferredBelt + "&"
     }

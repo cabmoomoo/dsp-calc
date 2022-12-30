@@ -196,6 +196,18 @@ function changeKovarex(event) {
     itemUpdate()
 }
 
+// Triggered when an Alt Recipe checkbox is toggeled.
+function changeAlt(event, name) {
+    setAltRecipe(event.target.checked, name)
+    itemUpdate()
+}
+
+// Triggered when the crysil checkbox is toggled.
+function changeCrySil(event) {
+    setCrySil(event.target.checked)
+    itemUpdate()
+}
+
 // Triggered when the preferred belt is changed.
 function changeBelt(belt) {
     setPreferredBelt(belt.name)

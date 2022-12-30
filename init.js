@@ -104,7 +104,7 @@ function loadData(modName, settings) {
     loadDataRunner(modName, function(data) {
         //getSprites(data)
         var graph = getRecipeGraph(data)
-        modules = getModules(data)
+        /* modules = getModules(data)
         sortedModules = sorted(modules, function(m) { return modules[m].order })
         moduleRows = []
         let category = null
@@ -120,7 +120,7 @@ function loadData(modName, settings) {
         for (var moduleName in modules) {
             var module = modules[moduleName]
             shortModules[module.shortName()] = module
-        }
+        } */
         var factories = getFactories(data)
         spec = new FactorySpec(factories)
         if ("ignore" in settings) {
@@ -134,7 +134,7 @@ function loadData(modName, settings) {
         var recipes = graph[1]
 
         belts = getBelts(data)
-        fuel = getFuel(data, items)["chemical"]
+        // fuel = getFuel(data, items)["chemical"]
 
         itemGroups = getItemGroups(items, data)
         solver = new Solver(items, recipes)
@@ -149,6 +149,9 @@ function loadData(modName, settings) {
                 var targetString = targets[i]
                 var parts = targetString.split(":")
                 var name = parts[0]
+                while ((name.search("%20")) > -1) {
+                    name = name.replace("%20", " ")
+                }
                 var target = addTarget(name)
                 var type = parts[1]
                 if (type == "f") {

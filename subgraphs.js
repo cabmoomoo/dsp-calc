@@ -258,7 +258,15 @@ function findGroups(spec, items, recipes) {
     for (var itemName in items) {
         var item = items[itemName]
         if (item.recipes.length > 1) {
-            groups.merge(item.recipes)
+            let itemRecipes = []
+            for (let rec of item.recipes) {
+                if (!(rec.name in solver.disabledRecipes)) {
+                    itemRecipes.push(rec)
+                }
+            }
+            if (itemRecipes.length > 1) {
+                groups.merge(itemRecipes)
+            }
         }
     }
 

@@ -33,7 +33,20 @@ Item.prototype = {
         this.uses.push(recipe)
     },
     isWeird: function() {
-        return this.recipes.length > 1 || this.recipes[0].solveGroup !== null
+        if (this.recipes.length > 1) {
+            let recipeCount = this.recipes.length
+            for (let x of this.recipes) {
+                if (x.name in solver.disabledRecipes) {
+                    recipeCount--
+                }
+            }
+            if (recipeCount != 1) {
+                return true
+            }
+        } else if (this.recipes[0].solveGroup !== null) {
+            return true
+        }
+        return false
     },
     produce: function(rate, ignore, spec) {
         var totals = new Totals(rate, this)
@@ -41,7 +54,7 @@ Item.prototype = {
             totals.addUnfinished(this.name, rate)
             return totals
         }
-        var recipe = this.recipes[0]
+        var recipe = nonDisabledRecipe(this)
         var gives = recipe.gives(this, spec)
         rate = rate.div(gives)
         totals.add(recipe.name, rate)
@@ -74,6 +87,15 @@ Item.prototype = {
     }
 }
 
+function nonDisabledRecipe(item) {
+    let allRecipes = item.recipes
+    for (let rec of allRecipes) {
+        if (!(rec.name in solver.disabledRecipes)) {
+            return rec
+        }
+    }
+}
+
 function getItem(data, items, name) {
     if (name in items) {
         return items[name]
@@ -101,16 +123,5 @@ function getItem(data, items, name) {
 
 function getItems(data) {
     var items = {}
-    var cycleName = "nuclear-reactor-cycle"
-    var reactor = data.items["nuclear-reactor"]
-    items[cycleName] = new Item(
-        cycleName,
-        reactor.icon_col,
-        reactor.icon_row,
-        "abstract",
-        "production",
-        "energy",
-        "f[nuclear-energy]-d[reactor-cycle]",
-    )
     return items
 }

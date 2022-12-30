@@ -116,6 +116,39 @@ div.tooltip div.product span.count {
 div.tooltip img.ingredient {
     background-color: var(--light);
 }
+/* yoinked from dsp-calculator */
+#alt_recipe_settings .ingredient {
+    position: relative;
+    display: inline-block;
+}
+#alt_recipe_settings .count {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    font-size: 12px;
+    color: var(--foreground);
+    background-color: var(--light);
+    border-top-left-radius: 4px;
+    padding-left: 2px;
+    padding-top: 2px;
+}
+#alt_recipe_settings .arrow {
+    font-size: 16px;
+}
+#alt_recipe_settings .open .count {
+    font-size: 16px
+}
+#alt_recipe_settings .open .arrow {
+    font-size: 32px;
+}
+.open .icon {
+    height: 64px;
+    width: 64px;
+}
+.open .itemDropdown .icon {
+    height: 32px;
+    width: 32px;
+}
 /* build targets */
 .targetButton {
     height: 2em;
@@ -388,7 +421,7 @@ div.graph {
 }
 .dropdownWrapper.open div.itemDropdown {
     height: 400px;
-    width: 380px;
+    width: 450px;
     overflow-y: scroll;
     transition: height 0.3s;
 }

@@ -13,7 +13,25 @@ See the License for the specific language governing permissions and
 limitations under the License.*/
 "use strict"
 
-var PRIORITY = ["uranium-ore", "steam", "coal", "crude-oil", "water"]
+var PRIORITY = [
+    // manually harvested
+    "Plant Fuel",
+    "Log",
+    // energy-intense
+    "Critical Photon",
+    // extra steps
+    "Organic Crystal",
+    "Sulfuric Acid",
+    "Deuterium",
+    "Hydrogen",
+    // slightly advanced materials
+    "Titanium Ore",
+    "Silicon Ore",
+    // starting-world resources acquired with tech
+    "Crude Oil",
+    "Coal",
+    "Water"
+]
 
 function MatrixSolver(spec, recipes) {
     var products = {}
@@ -55,7 +73,11 @@ function MatrixSolver(spec, recipes) {
         }
         var item = ingredients[itemName]
         items.push(item)
-        var recipe = item.recipes[0]
+        for (let rec of item.recipes) {
+            if (!(rec.name in solver.disabledRecipes)) {
+                var recipe = rec
+            }
+        }
         this.inputRecipes.push(recipe)
     }
     var allRecipes = recipeArray.concat(this.inputRecipes)

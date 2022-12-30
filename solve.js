@@ -107,6 +107,7 @@ Solver.prototype = {
             }
         }
         var groups = r.groups
+        console.log(groups)
         this.matrixSolvers = []
         for (var i = 0; i < groups.length; i++) {
             var group = groups[i]

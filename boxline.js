@@ -161,9 +161,9 @@ function renderBoxGraph({nodes, links}, direction, ignore, sheetWidth, sheetHeig
         .attr("width", iconSize)
         .attr("height", iconSize)
         .append("image")
-            .attr("xlink:href", "images/sprite-sheet-" + sheet_hash + ".png")
-            .attr("width", sheetWidth)
-            .attr("height", sheetHeight)
+            .attr("xlink:href", d => nodeIcon(d.item.name))
+            .attr("width", iconSize)
+            .attr("height", iconSize)
     edgeLabels.append("text")
         .attr("x", d => {
             let edge = d.label

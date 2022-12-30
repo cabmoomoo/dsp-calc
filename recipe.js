@@ -196,51 +196,6 @@ function ignoreRecipe(d) {
 function getRecipeGraph(data) {
     var recipes = {}
     var items = getItems(data)
-    var water = getItem(data, items, "water")
-    recipes["water"] = new Recipe(
-        "water",
-        water.icon_col,
-        water.icon_row,
-        "water",
-        RationalFromFloats(1, 1200),
-        [],
-        [new Ingredient(one, water)]
-    )
-    var reactor = data.items["nuclear-reactor"]
-    recipes["nuclear-reactor-cycle"] = new Recipe(
-        "nuclear-reactor-cycle",
-        reactor.icon_col,
-        reactor.icon_row,
-        "nuclear",
-        RationalFromFloat(200),
-        [new Ingredient(one, getItem(data, items, "uranium-fuel-cell"))],
-        [
-            new Ingredient(one, getItem(data, items, "used-up-uranium-fuel-cell")),
-            new Ingredient(one, items["nuclear-reactor-cycle"]),
-        ]
-    )
-    var rocket = data.items["rocket-silo"]
-    recipes["rocket-launch"] = new Recipe(
-        "rocket-launch",
-        rocket.icon_col,
-        rocket.icon_row,
-        "rocket-launch",
-        one,
-        [
-            new Ingredient(RationalFromFloat(100), getItem(data, items, "rocket-part")),
-            new Ingredient(one, getItem(data, items, "satellite"))
-        ], [new Ingredient(RationalFromFloat(1000), getItem(data, items, "space-science-pack"))]
-    )
-    var steam = data.items["steam"]
-    recipes["steam"] = new Recipe(
-        "steam",
-        steam.icon_col,
-        steam.icon_row,
-        "boiler",
-        RationalFromFloats(1, 60),
-        [new Ingredient(one, getItem(data, items, "water"))],
-        [new Ingredient(one, getItem(data, items, "steam"))]
-    )
 
     for (var name in data.recipes) {
         var recipe = data.recipes[name]

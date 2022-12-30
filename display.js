@@ -640,7 +640,7 @@ function FactoryRow(row, recipe) {
 
     this.factoryCells = new FactoryCountCells(row)
 
-    this.modulesCell = document.createElement("td")
+    /* this.modulesCell = document.createElement("td")
     this.modulesCell.classList.add("pad", "module", "factory")
     this.node.appendChild(this.modulesCell)
 
@@ -685,7 +685,7 @@ function FactoryRow(row, recipe) {
     this.downArrow.title = "copy this recipe's modules to all other recipes"
     this.downArrow.addEventListener("click", new CopyAllHandler(recipeName))
     downArrowCell.appendChild(this.downArrow)
-    this.node.appendChild(downArrowCell)
+    this.node.appendChild(downArrowCell) */
 
     this.fuelCell = document.createElement("td")
     this.fuelCell.classList.add("pad", "factory")
@@ -733,7 +733,7 @@ FactoryRow.prototype = {
         this.count = count
         this.factory = factory
 
-        var moduleDelta = this.factory.modules.length - this.modules.length
+        /* var moduleDelta = this.factory.modules.length - this.modules.length
         if (moduleDelta < 0) {
             this.modules.length = this.factory.modules.length
             for (var i = moduleDelta; i < 0; i++) {
@@ -766,7 +766,7 @@ FactoryRow.prototype = {
             this.setHasModules()
         } else {
             this.setHasNoModules()
-        }
+        } */
         this.power = this.factory.powerUsage(spec, this.count)
         this.setPower(this.power)
     },
@@ -1211,7 +1211,7 @@ RecipeTable.prototype = {
                 csvLines.push(csvLine)
             }
             newRowArray.push(row)
-            if (row.hasModules()) {
+            /* if (row.hasModules()) {
                 last = row
                 if (downArrowShown) {
                     row.setUpDownArrow()
@@ -1219,7 +1219,7 @@ RecipeTable.prototype = {
                     downArrowShown = true
                     row.setDownArrow()
                 }
-            }
+            } */
         }
         this.rowArray = newRowArray
         if (last) {

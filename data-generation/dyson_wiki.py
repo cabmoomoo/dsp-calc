@@ -224,10 +224,10 @@ def format_item_for_JSON(item_entry):
     item, disabled = item_entry
     if disabled:
         return None
-    if item.id == 1121:
+    if item.id == 1121: #Deuterium hack ???
         item.produce_from = None
     fields = {
-        'id': str(item.id),
+        'game_id': str(item.id),
         'name':wiki_title(item.name),
         'type':item.type.name,
         'stack_size':item.stack_size
@@ -239,9 +239,18 @@ def format_item_for_JSON(item_entry):
         fields['group'] = "buildings"
     fields['subgroup'] = "row" + item.grid_index[1]
     fields['order'] = int(item.grid_index[2] + item.grid_index[3])
-    return (fields['id'], fields)
+    return (fields['name'], fields)
 
-def format_recipe_for_JSON(recipe_entry):
+def mapIDs(items_map):
+    ID_dict = {}
+    for x in items_map.values():
+        item, disabled = x
+        if disabled:
+            continue
+        ID_dict[item.id] = wiki_title(item.name)
+    return ID_dict
+
+def format_recipe_for_JSON(recipe_entry, ID_dict):
     rec, disabled = recipe_entry
 
     time_spend = round(rec.time_spend / 60.0, 3)
@@ -253,15 +262,13 @@ def format_recipe_for_JSON(recipe_entry):
     inputs = []
     outputs = []
     for i in range(0, len(rec.items)):
-        # k is index, v is item id
         fullItem = {}
-        fullItem["name"] =  str(rec.items[i]) #key_name
+        fullItem["name"] =  str(ID_dict[rec.items[i]]) #name
         fullItem["amount"] = rec.item_counts[i] #amount
         inputs.append(fullItem)
     for i in range(0, len(rec.results)):
-        # k is index, v is item id
         fullItem = {}
-        fullItem["name"] = str(rec.results[i]) #key_name
+        fullItem["name"] = str(ID_dict[rec.results[i]]) #name
         fullItem["amount"] = rec.result_counts[i] #amount
         outputs.append(fullItem)
 
@@ -275,7 +282,14 @@ def format_recipe_for_JSON(recipe_entry):
     }
     if disabled:
         fields['disabled'] = 'true'
-    return (fields['id'], fields)
+
+    if rec.name == 'Deuterium Fractionation':
+        fields['energy_required'] = 1
+        fields['ingredients'][0]['amount'] = 1
+        fields['results'][0]["probability"] = 0.01
+        fields['results'].append({"name": "Hydrogen", "amount": 1, "probability":0.99})
+    
+    return (fields['name'], fields)
 
 def prepare_resources(items):
     all_resources = []
@@ -287,15 +301,18 @@ def prepare_resources(items):
     prepped_resources = {}
     for x in all_resources:
         fields = {}
-        fields["name"] = x["name"]
+        if (x["name"] != "Silicon Ore"):
+            fields["name"] = x["name"]
+        else:
+            fields["name"] = "Silicon Vein"
         fields["minable"] = {
             "mining_time": 1,
             "results": [{
                 "amount": 1,
-                "name": x["id"]
+                "name": x["name"]
             }]
         }
-        prepped_resources[x["id"]] = fields
+        prepped_resources[x["name"]] = fields
 
 
     #all_resources.append(manual_JSON.organic_crystal_hack(items))
@@ -322,14 +339,16 @@ def print_JSON(data):
         if new_item != None:
             mega_dict["items"][new_item[0]] = new_item[1]
     mega_dict["mining-drill"] = manual_JSON.prepare_drills()
+    id_to_name_dict = mapIDs(items_map)
     for x in recipes_map.values():
-        new_rec = format_recipe_for_JSON(x)
+        new_rec = format_recipe_for_JSON(x, id_to_name_dict)
         mega_dict["recipes"][new_rec[0]] = new_rec[1]
+    mega_dict["recipes"] = manual_JSON.custom_oil(mega_dict["recipes"])
     mega_dict["resource"] = prepare_resources(mega_dict["items"])
     mega_dict["transport-belt"] = manual_JSON.prepare_belts()
 
     # "../data/data.json"
-    save_file = open("testing_data.json", "w")
+    save_file = open("../data/testing_data.json", "w")
     save_file.write(json.dumps(mega_dict))
     save_file.close
 

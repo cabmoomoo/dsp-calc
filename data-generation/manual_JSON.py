@@ -1,5 +1,5 @@
 def prepare_groups():
-    groups = {"groups":{
+    groups = {
         "items":{
             "order": "a",
             "subgroups": {
@@ -24,7 +24,7 @@ def prepare_groups():
                 "row7": "g"
             }
         }
-    }}
+    }
     return groups
 
 def prepare_furnaces():
@@ -47,20 +47,20 @@ def prepare_drills():
     drills = {
         "Mining Machine": {
             "energy_usage": 420,
-            "mining_rate": 60,
+            "mining_speed": 60,
             "name": "Mining Machine",
             "resource_categories": [ "mining" ]
         },
         "Oil Extractor": {
             "name": "Oil Extractor",
             "resource_categories": [ "oil" ],
-            "mining_rate": 120,
+            "mining_speed": 120,
             "energy_usage": 840
         },
         "Water Pump": {
             "name": "Water Pump",
             "resource_categories": [ "pump" ],
-            "mining_rate": 60,
+            "mining_speed": 60,
             "energy_usage": 300
         }
     }
@@ -70,15 +70,15 @@ def prepare_belts():
     belts = {
         "Conveyor Belt MK.I": {
             "name": "Conveyor Belt MK.I",
-            "speed": 360
+            "speed": 6
         },
         "Conveyor Belt MK.II": {
             "name": "Conveyor Belt MK.II",
-            "speed": 720
+            "speed": 12
         },
         "Conveyor Belt MK.III": {
             "name": "Conveyor Belt MK.III",
-            "speed": 1800
+            "speed": 30
         }
     }
     return belts
@@ -123,13 +123,13 @@ def prepare_assemblers():
         },
         "Fractionator": {
             "name": "Fractionator",
-            "crafting_categories": ["fractionator"],
+            "crafting_categories": ["FRACTIONATE"],
             "energy_usage": 720000,
             "crafting_speed": 1,
         },
         "Miniature Particle Collider": {
             "name": "Miniature Particle Collider",
-            "crafting_categories": ["miniature_particle_collider"],
+            "crafting_categories": ["PARTICLE"],
             "energy_usage": 12000000,
             "crafting_speed": 1,
         }
@@ -151,7 +151,7 @@ def accumulator_hack(items):
     'name': "Accumulator(full)",
     'category': None,
     'ingredients': [[acc,1]],
-    'products': [[acc_full,1]],
+    'results': [[acc_full,1]],
     'time': 150,
     }  
     return fields
@@ -167,78 +167,78 @@ def organic_crystal_hack(items):
     org_crys["category"] = "mining"
     return org_crys
 
-def custom_oil(items, recipes): 
-    recipe_list = [
-        {
+def custom_oil(recipes): 
+    recipe_list = {
+        "Plasma Refining (simplified)": {
             "key_name": "oil1",
-            "name": "Plasma Refining",
+            "name": "Plasma Refining (simplified)",
             "category": "REFINE",
             "ingredients": [
-                [
-                    "1007",
-                    2
-                ]
+                {
+                    "name": "Crude Oil",
+                    "amount": 2
+                }
             ],
-            "products": [
-                [
-                    "1120",
-                    1
-                ],
-                [
-                    "1114",
-                    2
-                ]
+            "results": [
+                {
+                    "name": "Hydrogen",
+                    "amount": 1
+                },
+                {
+                    "name": "Refined Oil",
+                    "amount": 2
+                }
             ],
-            "time": 4
+            "energy_required": 4,
         },
-        {
+        "X-Ray Cracking (simplified)":{
             "key_name": "oil2",
-            "name": "X-Ray Cracking",
+            "name": "X-Ray Cracking (simplified)",
             "category": "REFINE",
             "ingredients": [
-                [
-                    "1114",
-                    1
-                ]
+                {
+                    "name": "Refined Oil",
+                    "amount": 1
+                }
             ],
-            "products": [
-                [
-                    "1120",
-                    1
-                ],
-                [
-                    "1109",
-                    1
-                ]
+            "results": [
+                {
+                    "name": "Hydrogen",
+                    "amount": 1
+                },
+                {
+                    "name": "Energetic Graphite",
+                    "amount": 1
+                }
             ],
-            "time": 4
+            "energy_required": 4,
         },
-        {
+        "Reforming Refine (simplified)":{
             "key_name": "oil3",
-            "name": "Reforming Refine",
+            "name": "Reforming Refine (simplified)",
             "category": "REFINE",
             "ingredients": [
-                [
-                    "1120",
-                    1
-                ],
-                [
-                    "1006",
-                    1
-                ]
+                {
+                    "name": "Hydrogen",
+                    "amount": 1
+                },
+                {
+                    "name": "Coal",
+                    "amount": 1
+                }
             ],
-            "products": [
-                [
-                    "1114",
-                    1
-                ]
+            "results": [
+                {
+                    "name": "Refined Oil",
+                    "amount": 1
+                }
             ],
-            "time": 4
+            "energy_required": 4,
         }
-    ]
-    game_recipe_keys = ["16", "58", "121"]
-    for k,v in recipes:
-        if v["key_name"] in game_recipe_keys:
-            recipes.pop(k)
-    recipes.append(recipe_list)
-    return recipe_list
+    }
+
+    for x in recipe_list.values():
+        rec_name = x["name"]
+        recipes[rec_name] = x
+    
+    return recipes
