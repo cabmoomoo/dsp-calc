@@ -107,7 +107,6 @@ Solver.prototype = {
             }
         }
         var groups = r.groups
-        console.log(groups)
         this.matrixSolvers = []
         for (var i = 0; i < groups.length; i++) {
             var group = groups[i]
@@ -144,6 +143,9 @@ Solver.prototype = {
             var solver = this.matrixSolvers[i]
             var match = solver.match(totals.unfinished)
             if (Object.keys(match).length == 0) {
+                continue
+            }
+            if (!(solver.checkDisabledByproducts(match, spec, this.disabledRecipes))) {
                 continue
             }
             var solution = solver.solveFor(match, spec, this.disabledRecipes)

@@ -28,8 +28,8 @@ var PRIORITY = [
     "Titanium Ore",
     "Silicon Ore",
     // starting-world resources acquired with tech
-    "Crude Oil",
-    "Coal",
+    //"Crude Oil",
+    //"Coal",
     "Water"
 ]
 
@@ -182,6 +182,25 @@ MatrixSolver.prototype = {
             A.setIndex(row, A.cols - 1, cost)
             cost = cost.mul(ratio)
         }
+    },
+    checkDisabledByproducts(products, spec, disabled) {
+        var A = this.matrix.copy()
+        var potentialRecipes = []
+        for (var itemName in products) {
+            for (var recipeName in this.recipeIndexes) {
+                for (var recipeProduct of solver.recipes[recipeName].products) {
+                    if (recipeProduct.item.name == itemName) {
+                        potentialRecipes.push(recipeName)
+                    }
+                }
+            }
+        }
+        for (var recipeName of potentialRecipes) {
+            if (recipeName in disabled) {
+                potentialRecipes.splice(potentialRecipes.indexOf[recipeName],1)
+            }
+        }
+        return (potentialRecipes.length > 0)
     },
     solveFor: function(products, spec, disabled) {
         var A = this.matrix.copy()

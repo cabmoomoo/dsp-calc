@@ -1,6 +1,10 @@
 # Factorio Calculator
 
-This is the repostory for the [Factorio Calculator](https://kirkmcdonald.github.io/calc.html), a tool for calculating resource requirements and production ratios in the game [Factorio](https://factorio.com/).
+This is the repostory for the [Dyson Sphere Program Calculator](https://cabmoomoo.github.io/dsp-calc/), a tool for calculating resource requirements and production ratios in the game [Dyson Sphere Program](https://store.steampowered.com/app/1366540/Dyson_Sphere_Program/).
+
+# WIP
+
+Everything below this point is carry-over from the Factorio Calculator. If/when I get close to finallizing the project, I'll hopefully get around to updating this.
 
 ## Running locally
 

@@ -184,9 +184,12 @@ function changeFuel(fuel) {
     itemUpdate()
 }
 
-// Triggered when the preferred oil recipe is changed.
-function changeOil(oil) {
-    setOilRecipe(oil.priority)
+// Triggered when the oil priorities are changed.
+function oilPriorityChanged() {
+    // Do this in separate functions as settings loads before
+    // items need to be updated. Calling itemUpdate() early in
+    // settings will probably break stuff, certainly waste time.
+    changeOilPriority()
     itemUpdate()
 }
 

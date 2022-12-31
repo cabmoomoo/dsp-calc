@@ -306,9 +306,11 @@ function renderAltRecipes(settings) {
     // These recipes will typically be one recipe or the other
     items.push(solver.items["Silicon Ore"])
     items.push(solver.items["Space Warper"])
+    items.push(solver.items["Deuterium"])
     solver.addDisabledRecipes({
         "Silicon Vein": true,
-        "Space Warper (Advanced)": true
+        "Space Warper (Advanced)": true,
+        "Deuterium Fractionation": true
     })
 
     let div = d3.select("#alt_recipe_settings")
@@ -374,68 +376,47 @@ function disableAltRecipes(recipe) {
 
 // oil
 
-var OIL_OPTIONS = [
-    {
-        "name": "default",
-        "priority": "default",
-        "recipes": {"Plasma Refining": true, "X-Ray Cracking": true, "Reforming Refine": true},
-        "icon": "X-Ray Cracking"
-    },
-    {
-        "name": "simplified",
-        "priority": "simplified",
-        "recipes": {"Plasma Refining (simplified)": true, "X-Ray Cracking (simplified)": true, "Reforming Refine (simplified)": true},
-        "icon": "Refined Oil"
+var DEFAULT_OIL = "HLoNc"
+
+function changeOilPriority() {
+    let highPrio = document.getElementById("highPrio")
+    let lowPrio = document.getElementById("lowPrio")
+    let noPrio = document.getElementById("noPrio")
+    let dragOil = document.getElementById("dragOil")
+    let dragCoal = document.getElementById("dragCoal")
+
+    // While there can currently only be 1 item in each priority (hardcoded
+    // in calc.html), doing it this way is just as easy and leaves room
+    // for more priority choices in the future.
+    if (lowPrio.children.length > 0) {
+        for (let childNode of lowPrio.children) {
+            let resName = childNode.name
+            if (!(PRIORITY.includes(resName))) {
+                PRIORITY.splice(-1,0,resName)
+            }
+        }
     }
-        
-]
-
-var DEFAULT_OIL = "default"
-
-var OIL_EXCLUSION = {
-    "default": "simplified",
-    "simplified": "default"
+    if (highPrio.children.length > 0) {
+        for (let childNode of highPrio.children) {
+            let resName = childNode.name
+            if (!(PRIORITY.includes(resName))) {
+                PRIORITY.splice(-1,0,resName)
+            }
+        }
+    }
+    if (noPrio.children.length > 0) {
+        for (let childNode of noPrio.children) {
+            let resName = childNode.name
+            if (!(PRIORITY.includes(resName))) {
+                continue
+            }
+            PRIORITY.splice(PRIORITY.indexOf(resName),1)
+        }
+    }
 }
 
-var oilGroup = DEFAULT_OIL
-
-function renderOil(settings) {
-    var oil = DEFAULT_OIL
-    // Named "p" for historical reasons.
-    if ("p" in settings) {
-        oil = settings.p
-    }
-    setOilRecipe(oil)
-    var oldNode = document.getElementById("oil")
-    var cell = oldNode.parentNode
-    var node = document.createElement("span")
-    node.id = "oil"
-    let dropdown = makeDropdown(d3.select(node))
-    let inputs = dropdown.selectAll("div").data(OIL_OPTIONS).join("div")
-    let labels = addInputs(
-        inputs,
-        "oil_dropdown",
-        d => d.priority === oil,
-        changeOil,
-    )
-    labels.append(d => getImage({"name": d["icon"]}, true, dropdown.node()))
-    cell.replaceChild(node, oldNode)
-}
-
-function setOilRecipe(name) {
-    if (OIL_EXCLUSION[oilGroup] == "default") {
-        solver.removeDisabledRecipes(OIL_OPTIONS[0]["recipes"])
-    }
-    else {
-        solver.removeDisabledRecipes(OIL_OPTIONS[1]["recipes"])
-    }
-    oilGroup = name
-    if (OIL_EXCLUSION[oilGroup] == "default") {
-        solver.addDisabledRecipes(OIL_OPTIONS[0]["recipes"])
-    }
-    else {
-        solver.addDisabledRecipes(OIL_OPTIONS[1]["recipes"])
-    }
+function handleOil(settings) {
+    changeOilPriority()
 }
 
 // kovarex
@@ -699,7 +680,8 @@ function renderSettings(settings) {
     renderMinimumAssembler(settings)
     renderFurnace(settings)
     renderAltRecipes(settings)
-    renderOil(settings)
+    // renderOil(settings)
+    handleOil(settings) //Oil made directly in HTML
     // renderKovarex(settings)
     renderBelt(settings)
     // renderPipe(settings)

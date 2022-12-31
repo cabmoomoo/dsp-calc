@@ -343,7 +343,7 @@ def print_JSON(data):
     for x in recipes_map.values():
         new_rec = format_recipe_for_JSON(x, id_to_name_dict)
         mega_dict["recipes"][new_rec[0]] = new_rec[1]
-    mega_dict["recipes"] = manual_JSON.custom_oil(mega_dict["recipes"])
+    # mega_dict["recipes"] = manual_JSON.custom_oil(mega_dict["recipes"])
     mega_dict["resource"] = prepare_resources(mega_dict["items"])
     mega_dict["transport-belt"] = manual_JSON.prepare_belts()
 
