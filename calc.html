@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <title>DSP Calculator</title>
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link id="favicon" rel="shortcut icon" href="images/Circuit Board.png" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="calc.css">
     <link rel="stylesheet" type="text/css" href="dropdown.css">
     <script src="third_party/d3.min.js"></script>
@@ -76,7 +76,8 @@
     </style>
 </head>
 
-<!--Copyright 2015-2020 Kirk McDonald
+<!--Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -97,12 +98,14 @@ limitations under the License.-->
     <ul id="targets" class="targets"><li><button class="targetButton ui" title="Add new item." onclick="plusHandler()">+</a></li></ul>
     </td>
 
-    <td class="changecell">
+    <!-- Carry-over from Factorio Calculator - keeping it so I don't 
+        have to make my own if I ever update this -->
+    <!-- <td class="changecell">
     <div class="changebox">
     Recent changes:<br>
     2021-01-29 - Updated to 1.1.19
     </div>
-    </td>
+    </td> -->
     </tr>
     </table>
 
@@ -300,6 +303,13 @@ limitations under the License.-->
         </tr>
 
         <tr>
+        <td class="setting-label">Default proliferator mode:</td>
+        <!-- input class = hmmmm... -->
+        <td><input id="default_prolif_mode" class="setting-range prolif-range" type="range" value="1" min="1" max="2" width="32px" onchange="changeDefaultProlifMode(this.value)">
+            <span id="default_prolif_mode_tip" class="setting-tip"></span></td>
+        </tr>
+
+        <tr>
         <td class="setting-label">Default beacon:</td>
         <td><span id="default_beacon"></span> &times; <input id="default_beacon_count" class="beacon" type="number" value="0" onchange="changeDefaultBeaconCount(event)"></td>
         </tr>
@@ -340,7 +350,7 @@ limitations under the License.-->
             <li>Handling of complex production, such as oil. There are a variety of ways to make Hydrogen, and getting proper ratios of each can be a challenge.</li>
             <li>Alternative recipe options. Many production chains can be augmented or bypassed using rare resources, and a few items simply have superior, later-game options.</li>
             <li>Adjustable priorities for coal and oil.</li>
-            <li>Support for Proliferators (WIP!)</li>
+            <li>Calculations including proliferators for perfect ratios even with productivity.</li>
         </ul>
         And, of course, the calculator carries over some features from the Factorio Calculator, including:
         <ul>
@@ -365,6 +375,13 @@ limitations under the License.-->
             <li>Plastic at 4.5 items/second, with oil at any priority and coal with no priority</li>
         </ul>
         Oh, and the different priorities are only relative to each other, so if you have one in no priority, it makes no difference which slot the other is in.
+
+        <h3>How do the proliferators work?</h3>
+        Proliferators always increase the energy costs of a recipe, and give you the choice between increased products (productivity) or production speed. If all ingredients entering a facility have been sprayed, you will always get one or the other.
+        <p>
+        While I think the game supports different levels of proliferation on different ingredients, the benefits of such mixing would be minimal. This calculator assumes when a recipe is set to have a proliferator level, all items entering that recipe's facilities will be 100% proliferated at that level.
+        <p>
+        For example: the default recipe of this calculator is circuit boards, which require 2 iron ingots and 1 copper ingot per cylce. Setting the circuit boards recipe to have Proliferator Mk.III means you expect all iron and copper ingots entering the facility to be sprayed.
 
         <h3>What does clicking on an item's icon in the "Factory" tab do?</h3>
         It omits the dependencies of that item's recipe from the solution. The intent behind this feature is to model the case of building a factory when you are shipping in one or more ingredients from elsewhere. For example, if you are making an advanced circuit factory and want to ship in electronic circuits, and want to see the remaining copper cable requirements on their own.

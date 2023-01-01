@@ -1,4 +1,5 @@
-/*Copyright 2015-2019 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -33,7 +34,7 @@ function Module(name, col, row, category, order, productivity, speed, power, lim
 Module.prototype = {
     constructor: Module,
     shortName: function() {
-        return this.name[0] + this.name[this.name.length - 1]
+        return this.name[0] + this.order
     },
     canUse: function(recipe) {
         if (recipe.allModules()) {
@@ -160,7 +161,6 @@ function getModules(data) {
         var item = data.items[name]
         var effect = item.effect
         var category = item.category
-        var order = item.order
         var speed = RationalFromFloat((effect.speed || {}).bonus || 0)
         var productivity = RationalFromFloat((effect.productivity || {}).bonus || 0)
         var power = RationalFromFloat((effect.consumption || {}).bonus || 0)
@@ -170,7 +170,7 @@ function getModules(data) {
             item.icon_col,
             item.icon_row,
             category,
-            order,
+            i,
             productivity,
             speed,
             power,

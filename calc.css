@@ -193,6 +193,23 @@ input.prec, input.length {
 input.mprod {
     width: 4em;
 }
+.prolif-range {
+    width: 4em;
+    background: #58D4FF;
+    -webkit-appearance: none;
+}
+.slider-Speed {
+    background: #FFB374;
+}
+.setting-tip {
+    vertical-align: middle;
+}
+.tip-Prod {
+    color: #58D4FF;
+}
+.tip-Speed {
+    color: #FFB374;
+}
 /* factories tab */
 input.beacon {
     width: 4em;

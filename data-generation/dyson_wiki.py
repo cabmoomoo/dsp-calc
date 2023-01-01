@@ -338,6 +338,7 @@ def print_JSON(data):
         new_item = format_item_for_JSON(x)
         if new_item != None:
             mega_dict["items"][new_item[0]] = new_item[1]
+    mega_dict["items"] = manual_JSON.prepare_prolif_modules(mega_dict["items"])
     mega_dict["mining-drill"] = manual_JSON.prepare_drills()
     id_to_name_dict = mapIDs(items_map)
     for x in recipes_map.values():
@@ -346,6 +347,11 @@ def print_JSON(data):
     # mega_dict["recipes"] = manual_JSON.custom_oil(mega_dict["recipes"])
     mega_dict["resource"] = prepare_resources(mega_dict["items"])
     mega_dict["transport-belt"] = manual_JSON.prepare_belts()
+    mega_dict["modules"] = [
+        "Proliferator Mk.I",
+        "Proliferator Mk.II",
+        "Proliferator Mk.III",
+    ]
 
     # "../data/data.json"
     save_file = open("../data/testing_data.json", "w")

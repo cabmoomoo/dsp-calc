@@ -1,4 +1,5 @@
-/*Copyright 2015-2019 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -59,7 +60,7 @@ Recipe.prototype = {
     gives: function(item, spec) {
         var factory = spec.getFactory(this)
         var prod = one
-        if (factory) {
+        if (factory && factory.prolifMode == 'Prod') {
             prod = factory.prodEffect(spec)
         }
         for (var i=0; i < this.products.length; i++) {

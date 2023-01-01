@@ -1,4 +1,5 @@
-/*Copyright 2015-2019 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -35,9 +36,6 @@ FactoryDef.prototype = {
     makeFactory: function(spec, recipe) {
         return new Factory(this, spec, recipe)
     },
-    canBeacon: function() {
-        return this.moduleSlots > 0
-    },
     renderTooltip: function() {
         var t = document.createElement("div")
         t.classList.add("frame")
@@ -64,10 +62,6 @@ FactoryDef.prototype = {
         t.appendChild(b)
         t.appendChild(new Text(this.speed.toDecimal()))
         t.appendChild(document.createElement("br"))
-        b = document.createElement("b")
-        b.textContent = "Module slots: "
-        t.appendChild(b)
-        t.appendChild(new Text(this.moduleSlots))
         return t
     }
 }
@@ -139,6 +133,7 @@ function Factory(factoryDef, spec, recipe) {
     this.recipe = recipe
     this.modules = []
     this.setFactory(factoryDef, spec)
+    this.prolifMode = spec.defaultProlifMode
     this.beaconModule = spec.defaultBeacon
     this.beaconCount = spec.defaultBeaconCount
 }
@@ -237,7 +232,9 @@ Factory.prototype = {
         return {"fuel": "electric", "power": power}
     },
     recipeRate: function(spec, recipe) {
-        return recipe.time.reciprocate().mul(this.factory.speed).mul(this.speedEffect(spec))
+        return recipe.time.reciprocate().mul(this.factory.speed).mul(
+            this.prolifMode == 'Speed' ? this.speedEffect(spec) : one
+        )
     },
     copyModules: function(other, recipe) {
         var length = Math.max(this.modules.length, other.modules.length)
@@ -248,10 +245,7 @@ Factory.prototype = {
                 needRecalc = other.setModule(i, module) || needRecalc
             }
         }
-        if (other.factory.canBeacon()) {
-            other.beaconModule = this.beaconModule
-            other.beaconCount = this.beaconCount
-        }
+        other.prolifMode = this.prolifMode
         return needRecalc
     },
 }
@@ -414,7 +408,7 @@ FactorySpec.prototype = {
             return factory
         }
         this.spec[recipe.name] = factoryDef.makeFactory(this, recipe)
-        this.spec[recipe.name].beaconCount = this.defaultBeaconCount
+        this.spec[recipe.name].prolifMode = this.defaultProlifMode
         return this.spec[recipe.name]
     },
     moduleCount: function(recipe) {
@@ -435,6 +429,11 @@ FactorySpec.prototype = {
             return false
         }
         return factory.setModule(index, module)
+    },
+    getProlifMode: function(recipe) {
+        var factory = this.getFactory(recipe)
+        var prolifMode = factory.prolifMode
+        return prolifMode
     },
     getBeaconInfo: function(recipe) {
         var factory = this.getFactory(recipe)
@@ -469,6 +468,17 @@ FactorySpec.prototype = {
         }
         this.defaultBeacon = module
         this.defaultBeaconCount = count
+    },
+    setDefaultProlifMode: function(mode) {
+        for (var recipeName in this.spec) {
+            var factory = this.spec[recipeName]
+            var recipe = factory.recipe
+            // Set anything set to the old default to the new.
+            if (factory.prolifMode == this.defaultProlifMode || !(factory.prolifMode)) {
+                factory.prolifMode = mode
+            }
+        }
+        this.defaultProlifMode = mode
     },
     getCount: function(recipe, rate) {
         var factory = this.getFactory(recipe)
@@ -513,7 +523,7 @@ function getFactories(data) {
                 d.crafting_categories,
                 d.ingredient_count,
                 RationalFromFloat(d.crafting_speed),
-                d.module_slots,
+                d.module_slots || 1,
                 RationalFromFloat(d.energy_usage),
                 fuel
             ))

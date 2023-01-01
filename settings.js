@@ -1,4 +1,5 @@
-/*Copyright 2015-2020 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -542,6 +543,31 @@ function renderDefaultModule(settings) {
     cell.replaceChild(node, oldDefMod)
 }
 
+// default prolifMode
+function renderDefaultProlifMode(settings) {
+    var defaultProlifMode = 'Prod'
+    if ("dpm" in settings) {
+        defaultProlifMode = 'Speed'
+    }
+    spec.setDefaultProlifMode(defaultProlifMode)
+
+    var dpmSlider = document.getElementById("default_prolif_mode")
+    dpmSlider.value = defaultProlifMode == 'Prod' ? 1 : 2
+    dpmSlider.classList.add("slider-" + defaultProlifMode)
+    var dpmTip = document.getElementById("default_prolif_mode_tip")
+    dpmTip.textContent = dpmSlider.value == 1 ? 'Productivity' : 'Speed'
+    dpmTip.classList.add("tip-" + defaultProlifMode)
+}
+
+function updateProlifModeUI(mode) {
+    var dpmSlider = document.getElementById("default_prolif_mode")
+    dpmSlider.value = mode == 'Prod' ? 1 : 2
+    dpmSlider.className = ("prolif-range slider-" + mode)
+    var dpmTip = document.getElementById("default_prolif_mode_tip")
+    dpmTip.textContent = dpmSlider.value == 1 ? 'Productivity' : 'Speed'
+    dpmTip.className = ("setting-tip tip-" + mode)
+}
+
 // default beacon
 function renderDefaultBeacon(settings) {
     var defaultBeacon = null
@@ -686,8 +712,9 @@ function renderSettings(settings) {
     renderBelt(settings)
     // renderPipe(settings)
     renderMiningProd(settings)
-    // renderDefaultModule(settings)
-    // renderDefaultBeacon(settings)
+    renderDefaultProlifMode(settings)
+    renderDefaultModule(settings)
+    renderDefaultBeacon(settings)
     renderVisualizerType(settings)
     renderVisualizerDirection(settings)
     renderNodeBreadth(settings)

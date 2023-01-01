@@ -136,6 +136,57 @@ def prepare_assemblers():
     }
     return assemblers
 
+def prepare_prolif_modules(items):
+    modules = {
+        "Proliferator Mk.I": {
+            "name": "Proliferator Mk.I",
+            "effect": {
+                "consumption": {
+                    "bonus": 0.3
+                },
+                "productivity": {
+                    "bonus": 0.125
+                },
+                "speed": {
+                    "bonus": 0.25
+                }
+            }
+        },
+        "Proliferator Mk.II": {
+            "name": "Proliferator Mk.II",
+            "effect": {
+                "consumption": {
+                    "bonus": 0.7
+                },
+                "productivity": {
+                    "bonus": 0.2
+                },
+                "speed": {
+                    "bonus": 0.5
+                }
+            }
+        },
+        "Proliferator Mk.III": {
+            "name": "Proliferator Mk.II",
+            "effect": {
+                "consumption": {
+                    "bonus": 1.5
+                },
+                "productivity": {
+                    "bonus": 0.25
+                },
+                "speed": {
+                    "bonus": 1
+                }
+            }
+        },
+    }
+    allItems = items
+    for moduleName in modules:
+        module = modules[moduleName]
+        allItems[moduleName] = {**items[moduleName], **module}
+    return allItems
+
 def accumulator_hack(items):
     # Every item needs a recipe, and the energy exchanger is not a registered building
     # No point registering the building just for the one recipe

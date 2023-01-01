@@ -1,4 +1,5 @@
-/*Copyright 2015-2020 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -41,15 +42,6 @@ function formatSettings(targets) {
     if (spec.furnace.name != DEFAULT_FURNACE) {
         settings += "furnace=" + spec.furnace.name + "&"
     }
-    /* if (preferredFuel.name != DEFAULT_FUEL) {
-        settings += "fuel=" + preferredFuel.name + "&"
-    }
-    if (oilGroup != DEFAULT_OIL) {
-        settings += "p=" + oilGroup + "&"
-    }
-    if (kovarexEnabled != DEFAULT_KOVAREX) {
-        settings += "k=off&"
-    } */
     /* if (altRecipesEnabled != DEFAULT_ALTS) {
         settings += "a=" + altRecipesEnabled + "&"
     } */
@@ -67,11 +59,8 @@ function formatSettings(targets) {
     if (spec.defaultModule) {
         settings += "dm=" + spec.defaultModule.shortName() + "&"
     }
-    if (spec.defaultBeacon) {
-        settings += "db=" + spec.defaultBeacon.shortName() + "&"
-    }
-    if (!spec.defaultBeaconCount.isZero()) {
-        settings += "dbc=" + spec.defaultBeaconCount.toDecimal(0) + "&"
+    if (spec.defaultProlifMode != 'Prod') {
+        settings += "dpm=" + spec.defaultProlifMode + "&"
     }
     if (visualizer !== DEFAULT_VISUALIZER) {
         settings += "vis=" + visualizer + "&"
