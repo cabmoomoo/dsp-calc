@@ -1,4 +1,5 @@
-/*Copyright 2015-2019 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -224,6 +225,11 @@ class GraphNode {
     }
 }
 
+function nodeIcon(name) {
+    let iconPath = "images/" + name + ".png"
+    return iconPath
+}
+
 function renderNode(selection, margin, justification, ignore, sheetWidth, sheetHeight, recipeColors) {
     selection.each(d => {
         if (justification === "left") {
@@ -249,16 +255,15 @@ function renderNode(selection, margin, justification, ignore, sheetWidth, sheetH
             .text(d => d.text())
     let labeledNode = selection.filter(d => d.rate !== null)
     labeledNode.append("svg")
-        .attr("viewBox", d => imageViewBox(d.recipe))
         .attr("x", d => d.labelX + margin + 0.5)
         .attr("y", d => (d.y0 + d.y1) / 2 - iconSize/2 + 0.5)
         .attr("width", iconSize)
         .attr("height", iconSize)
         .append("image")
             .classed("ignore", d => ignore[d.recipe.name])
-            .attr("xlink:href", "images/sprite-sheet-" + sheet_hash + ".png")
-            .attr("width", sheetWidth)
-            .attr("height", sheetHeight)
+            .attr("xlink:href", d => nodeIcon(d.recipe.name))
+            .attr("width", iconSize)
+            .attr("height", iconSize)
     labeledNode.append("text")
         .attr("x", d => d.labelX + iconSize + (d.factory === null ? 0 : colonWidth + iconSize) + margin + 3)
         .attr("y", d => (d.y0 + d.y1) / 2)
@@ -282,9 +287,9 @@ function renderNode(selection, margin, justification, ignore, sheetWidth, sheetH
         .attr("width", iconSize)
         .attr("height", iconSize)
         .append("image")
-            .attr("xlink:href", "images/sprite-sheet-" + sheet_hash + ".png")
-            .attr("width", sheetWidth)
-            .attr("height", sheetHeight)
+            .attr("xlink:href", d => nodeIcon(d.factory.name))
+            .attr("width", iconSize)
+            .attr("height", iconSize)
 }
 
 const iconSize = 32
@@ -608,9 +613,9 @@ function renderGraph(totals, ignore) {
         .attr("width", iconSize/2)
         .attr("height", iconSize/2)
     linkIcon.append("image")
-            .attr("xlink:href", "images/sprite-sheet-" + sheet_hash + ".png")
-            .attr("width", sheetWidth)
-            .attr("height", sheetHeight)
+            .attr("xlink:href", d => nodeIcon(d.item.name))
+            .attr("width", iconSize/2)
+            .attr("height", iconSize/2)
     if (direction === "down") {
         linkIcon
             .attr("x", d => d.y0 - iconSize/4 + 0.25)

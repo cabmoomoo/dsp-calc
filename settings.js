@@ -1,4 +1,5 @@
-/*Copyright 2015-2020 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,6 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.*/
 "use strict"
 
+/* 
+At some point, I might want to remove the Modification system, as it is unlikely this calculator will ever need to support multiple recipe sets, different versions of the game, or mods. At the same time, it doesn't hurt to be optimistic about the future of the game. Who knows, maybe some day we'll be able to support complete overhaul modpacks.
+ */
+
 // data set
 function Modification(name, filename, legacy, sheetSize) {
     this.name = name
@@ -22,11 +27,10 @@ function Modification(name, filename, legacy, sheetSize) {
 }
 
 var MODIFICATIONS = {
-    "1-1-19": new Modification("Vanilla 1.1.19", "vanilla-1.1.19.json", false, [480, 512]),
-    "1-1-19x": new Modification("Vanilla 1.1.19 - Expensive", "vanilla-1.1.19-expensive.json", false, [480, 512]),
+    "Base": new Modification("Base Game", "data.json", false, [480, 512]),
 }
 
-var DEFAULT_MODIFICATION = "1-1-19"
+var DEFAULT_MODIFICATION = "Base"
 
 function addOverrideOptions(version) {
     var tag = "local-" + version.replace(/\./g, "-")
@@ -192,7 +196,7 @@ function renderMinimumAssembler(settings) {
     if ("use_3" in settings && settings.use_3 == "true") {
         min = "3"
     }
-    var assemblers = spec.factories["crafting"]
+    var assemblers = spec.factories["ASSEMBLE"]
     if ("min" in settings) {
         min = settings.min
         if (Number(settings.min) > assemblers.length) {
@@ -238,7 +242,7 @@ function renderFurnace(settings) {
     var cell = oldNode.parentNode
     var node = document.createElement("span")
     node.id = "furnace"
-    let furnaces = spec.factories["smelting"]
+    let furnaces = spec.factories["SMELT"]
     let dropdown = makeDropdown(d3.select(node))
     let inputs = dropdown.selectAll("div").data(furnaces).join("div")
     let labels = addInputs(
@@ -251,123 +255,209 @@ function renderFurnace(settings) {
     cell.replaceChild(node, oldNode)
 }
 
-// fuel
-var DEFAULT_FUEL = "coal"
+// alt-recipes
 
-var preferredFuel
+var SPECIAL_RESOURCES = [
+    "Kimberlite Ore",
+    "Fractal Silicon",
+    "Optical Grating Crystal",
+    "Spiniform Stalagmite Crystal",
+    "Unipolar Magnet",
+    "Fire Ice"
+]
 
-function renderFuel(settings) {
-    var fuelName = DEFAULT_FUEL
-    if ("fuel" in settings) {
-        fuelName = settings.fuel
-    }
-    setPreferredFuel(fuelName)
-    var oldNode = document.getElementById("fuel")
-    var cell = oldNode.parentNode
-    var node = document.createElement("span")
-    node.id = "fuel"
-    let dropdown = makeDropdown(d3.select(node))
-    let inputs = dropdown.selectAll("div").data(fuel).join("div")
-    let labels = addInputs(
-        inputs,
-        "fuel_dropdown",
-        d => d.name === fuelName,
-        changeFuel,
-    )
-    labels.append(d => {
-        let im = getImage(d, false, dropdown.node())
-        im.title += " (" + d.valueString() + ")"
-        return im
-    })
-    cell.replaceChild(node, oldNode)
+var ENABLED_ALTS = []
+
+var DEFAULT_ENABLED_ALTS = []
+
+function changeAltRecipe(recipe) {
+    disableAltRecipes(recipe)
+    itemUpdate()
 }
 
-function setPreferredFuel(name) {
-    for (var i = 0; i < fuel.length; i++) {
-        var f = fuel[i]
-        if (f.name === name) {
-            preferredFuel = f
+function renderIngredient(ingSpan) {
+    ingSpan.classed("ingredient", true)
+        .attr("title", d => d.name)
+        .append("img")
+        .classed("icon", true)
+        .attr("src", d => {return "images/"+d.name+".png"})
+    ingSpan.append("span")
+        .classed("count", true)
+        .text(d => d.amount)
+}
+
+function renderAltRecipes(settings) {
+    /* spec.altRecipes = new Map()
+    if ("alt" in settings) {
+        let alt = settings.get("alt").split(",")
+        for (let recipeName of alt) {
+            let recipe = solver.recipes[recipeName]
+            spec.setRecipe(recipe)
+        }
+    } */
+
+    let items = []
+    for (let resource of SPECIAL_RESOURCES) {
+        let resItem = solver.items[resource]
+        let resRecipes = resItem.uses
+        for (let rec of resRecipes) {
+            let resProduct = rec.products[0].item
+            if (resProduct.recipes.length < 2) {
+                continue
+            }
+            solver.addDisabledRecipes({[rec.name]: true})
+            items.push(resProduct)
+        }
+    }
+    // Manually add special items with multiple recipes
+    // Several others have multiple recipes (like refined oil),
+    // but using a matrix to solve those is better
+    // These recipes will typically be one recipe or the other
+    items.push(solver.items["Silicon Ore"])
+    items.push(solver.items["Organic Crystal"])
+    items.push(solver.items["Space Warper"])
+    items.push(solver.items["Deuterium"])
+    let manualAlts = {
+        "Silicon Vein": true,
+        "Organic Crystal (Original)": true,
+        "Organic Crystal Vein": true,
+        "Space Warper (Advanced)": true,
+        "Deuterium Fractionation": true
+    }
+    solver.addDisabledRecipes(manualAlts)
+
+    for (let item of items) {
+        for (let rec of item.recipes) {
+            if (!(rec.name in solver.disabledRecipes)) {
+                ENABLED_ALTS.push(rec.name)
+            }
+        }
+    }
+
+    DEFAULT_ENABLED_ALTS = [...ENABLED_ALTS]
+
+    if ("alt" in settings) {
+        let alts = settings.alt.split(",")
+        for (let recipeName of alts) {
+            if (recipeName) {
+                while ((recipeName.search("%20")) > -1) {
+                    recipeName = recipeName.replace("%20", " ")
+                }
+                disableAltRecipes(solver.recipes[recipeName])
+            }
+        }
+    }
+
+    let div = d3.select("#alt_recipe_settings")
+    div.selectAll("*").remove()
+
+    let inputs = div.selectAll("div")
+        .data(items)
+        .enter().append("div")
+    let recipeLabel = dropdownInputs(
+        inputs,
+        d => d.recipes,
+        d => `altrecipe-${d.products[0].item.name}`,
+        d => !(d.name in solver.disabledRecipes),
+        changeAltRecipe,
+    )
+
+    let productSpan = recipeLabel.append("span")
+        .selectAll("span")
+        .data(d => {
+            let prodList = []
+            for (let x of d.products) {
+                let itemClone = {}
+                itemClone.name = x.item.name
+                itemClone.amount = x.amount
+                prodList.push(itemClone)
+            }
+            return prodList
+        })
+        .join("span")
+    renderIngredient(productSpan)
+    recipeLabel.append("span")
+        .classed("arrow", true)
+        .text("\u21d0")
+    let ingredientSpan = recipeLabel.append("span")
+        .selectAll("span")
+        .data(d => {
+            let ingList = [];
+            for (let x of d.ingredients) {
+                let itemClone = {}
+                itemClone.name = x.item.name
+                itemClone.amount = x.amount
+                ingList.push(itemClone)
+            };
+            return ingList
+        })
+        .join("span")
+    renderIngredient(ingredientSpan)
+}
+
+function disableAltRecipes(recipe) {
+    let recItem = recipe.products[0].item
+    let altRecipes = recItem.recipes
+    let allRecsObj = {}
+    for (let rec of altRecipes) {
+        if (ENABLED_ALTS.includes(rec.name)) {
+            ENABLED_ALTS.splice(ENABLED_ALTS.indexOf(rec.name),1)
+        }
+        allRecsObj[rec.name] = true
+    }
+    solver.addDisabledRecipes(allRecsObj)
+    let newRecObj = {}
+    newRecObj[recipe.name] = true
+    solver.removeDisabledRecipes(newRecObj)
+    ENABLED_ALTS.push(recipe.name)
+}
+
+
+// oil
+
+var DEFAULT_OIL = "HLoNc"
+
+function changeOilPriority() {
+    let highPrio = document.getElementById("highPrio")
+    let lowPrio = document.getElementById("lowPrio")
+    let noPrio = document.getElementById("noPrio")
+
+    // While there can currently only be 1 item in each priority (hardcoded
+    // in calc.html), doing it this way is just as easy and leaves room
+    // for more priority choices in the future.
+    if (highPrio.children.length > 0) {
+        for (let childNode of highPrio.children) {
+            let resName = childNode.name
+            if (!(PRIORITY.includes(resName))) {
+                PRIORITY.splice(-1,0,resName)
+            }
+        }
+    }
+    if (lowPrio.children.length > 0) {
+        for (let childNode of lowPrio.children) {
+            let resName = childNode.name
+            if (!(PRIORITY.includes(resName))) {
+                PRIORITY.splice(-1,0,resName)
+            }
+        }
+    }
+    if (noPrio.children.length > 0) {
+        for (let childNode of noPrio.children) {
+            let resName = childNode.name
+            if (!(PRIORITY.includes(resName))) {
+                continue
+            }
+            PRIORITY.splice(PRIORITY.indexOf(resName),1)
         }
     }
 }
 
-// oil
-function Oil(recipeName, priorityName) {
-    this.name = recipeName
-    this.priority = priorityName
-}
-
-var OIL_OPTIONS = [
-    new Oil("advanced-oil-processing", "default"),
-    new Oil("basic-oil-processing", "basic"),
-    new Oil("coal-liquefaction", "coal")
-]
-
-var DEFAULT_OIL = "default"
-
-var OIL_EXCLUSION = {
-    "default": {},
-    "basic": {"advanced-oil-processing": true},
-    "coal": {"advanced-oil-processing": true, "basic-oil-processing": true}
-}
-
-var oilGroup = DEFAULT_OIL
-
-function renderOil(settings) {
-    var oil = DEFAULT_OIL
-    // Named "p" for historical reasons.
-    if ("p" in settings) {
-        oil = settings.p
-    }
-    setOilRecipe(oil)
-    var oldNode = document.getElementById("oil")
-    var cell = oldNode.parentNode
-    var node = document.createElement("span")
-    node.id = "oil"
-    let dropdown = makeDropdown(d3.select(node))
-    let inputs = dropdown.selectAll("div").data(OIL_OPTIONS).join("div")
-    let labels = addInputs(
-        inputs,
-        "oil_dropdown",
-        d => d.priority === oil,
-        changeOil,
-    )
-    labels.append(d => getImage(solver.recipes[d.name], false, dropdown.node()))
-    cell.replaceChild(node, oldNode)
-}
-
-function setOilRecipe(name) {
-    solver.removeDisabledRecipes(OIL_EXCLUSION[oilGroup])
-    oilGroup = name
-    solver.addDisabledRecipes(OIL_EXCLUSION[oilGroup])
-}
-
-// kovarex
-var DEFAULT_KOVAREX = true
-
-var kovarexEnabled
-
-function renderKovarex(settings) {
-    var k = DEFAULT_KOVAREX
-    if ("k" in settings) {
-        k = settings.k !== "off"
-    }
-    setKovarex(k)
-    var input = document.getElementById("kovarex")
-    input.checked = k
-}
-
-function setKovarex(enabled) {
-    kovarexEnabled = enabled
-    if (enabled) {
-        solver.removeDisabledRecipes({"kovarex-enrichment-process": true})
-    } else {
-        solver.addDisabledRecipes({"kovarex-enrichment-process": true})
-    }
+function handleOil(settings) {
+    changeOilPriority()
 }
 
 // belt
-var DEFAULT_BELT = "transport-belt"
+var DEFAULT_BELT = "Conveyor Belt MK.I"
 
 var preferredBelt = DEFAULT_BELT
 var preferredBeltSpeed = null
@@ -402,29 +492,12 @@ function setPreferredBelt(name) {
             preferredBeltSpeed = belt.speed
         }
     }
-}
-
-// pipe
-var DEFAULT_PIPE = RationalFromFloat(17)
-
-var minPipeLength = DEFAULT_PIPE
-var maxPipeThroughput = null
-
-function renderPipe(settings) {
-    var pipe = DEFAULT_PIPE.toDecimal(0)
-    if ("pipe" in settings) {
-        pipe = settings.pipe
-    }
-    setMinPipe(pipe)
-    document.getElementById("pipe_length").value = minPipeLength.toDecimal(0)
-}
-
-function setMinPipe(lengthString) {
-    minPipeLength = RationalFromString(lengthString)
-    maxPipeThroughput = pipeThroughput(minPipeLength)
+    hackDeuteriumFractionation() //hacks.js
 }
 
 // mining productivity bonus
+
+// Usable feature, but disabled until I can rework the math
 var DEFAULT_MINING_PROD = "0"
 
 function renderMiningProd(settings) {
@@ -463,33 +536,29 @@ function renderDefaultModule(settings) {
     cell.replaceChild(node, oldDefMod)
 }
 
-// default beacon
-function renderDefaultBeacon(settings) {
-    var defaultBeacon = null
-    var defaultCount = zero
-    if ("db" in settings) {
-        defaultBeacon = shortModules[settings.db]
+// default prolifMode
+function renderDefaultProlifMode(settings) {
+    var defaultProlifMode = 'Prod'
+    if ("dpm" in settings) {
+        defaultProlifMode = 'Speed'
     }
-    if ("dbc" in settings) {
-        defaultCount = RationalFromString(settings.dbc)
-    }
-    spec.setDefaultBeacon(defaultBeacon, defaultCount)
+    spec.setDefaultProlifMode(defaultProlifMode)
 
-    var dbcField = document.getElementById("default_beacon_count")
-    dbcField.value = defaultCount.toDecimal(0)
+    var dpmSlider = document.getElementById("default_prolif_mode")
+    dpmSlider.value = defaultProlifMode == 'Prod' ? 1 : 2
+    dpmSlider.classList.add("slider-" + defaultProlifMode)
+    var dpmTip = document.getElementById("default_prolif_mode_tip")
+    dpmTip.textContent = dpmSlider.value == 1 ? 'Productivity' : 'Speed'
+    dpmTip.classList.add("tip-" + defaultProlifMode)
+}
 
-    var oldDefMod = document.getElementById("default_beacon")
-    var cell = oldDefMod.parentNode
-    var node = document.createElement("span")
-    node.id = "default_beacon"
-    moduleDropdown(
-        d3.select(node),
-        "default_beacon_dropdown",
-        d => d === defaultBeacon,
-        changeDefaultBeacon,
-        d => d === null || d.canBeacon(),
-    )
-    cell.replaceChild(node, oldDefMod)
+function updateProlifModeUI(mode) {
+    var dpmSlider = document.getElementById("default_prolif_mode")
+    dpmSlider.value = mode == 'Prod' ? 1 : 2
+    dpmSlider.className = ("prolif-range slider-" + mode)
+    var dpmTip = document.getElementById("default_prolif_mode_tip")
+    dpmTip.textContent = dpmSlider.value == 1 ? 'Productivity' : 'Speed'
+    dpmTip.className = ("setting-tip tip-" + mode)
 }
 
 // visualizer settings
@@ -600,14 +669,12 @@ function renderSettings(settings) {
     renderPrecisions(settings)
     renderMinimumAssembler(settings)
     renderFurnace(settings)
-    renderFuel(settings)
-    renderOil(settings)
-    renderKovarex(settings)
+    renderAltRecipes(settings)
+    handleOil(settings) //Oil made directly in HTML
     renderBelt(settings)
-    renderPipe(settings)
-    renderMiningProd(settings)
+    // renderMiningProd(settings)
+    renderDefaultProlifMode(settings)
     renderDefaultModule(settings)
-    renderDefaultBeacon(settings)
     renderVisualizerType(settings)
     renderVisualizerDirection(settings)
     renderNodeBreadth(settings)

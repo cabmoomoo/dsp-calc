@@ -1,1 +1,9 @@
+# This gitignore file has been built for my experiments directly in the clone. Most of the files shown here are only relevant if you run jekyll or the data-generation files.
+
 *.swp
+_site/
+.sass-cache/
+!data/data.json
+*.dat
+data-generation/__pycache__
+data-generation/data files/

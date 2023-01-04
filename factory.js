@@ -1,4 +1,5 @@
-/*Copyright 2015-2019 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -35,9 +36,6 @@ FactoryDef.prototype = {
     makeFactory: function(spec, recipe) {
         return new Factory(this, spec, recipe)
     },
-    canBeacon: function() {
-        return this.moduleSlots > 0
-    },
     renderTooltip: function() {
         var t = document.createElement("div")
         t.classList.add("frame")
@@ -64,10 +62,6 @@ FactoryDef.prototype = {
         t.appendChild(b)
         t.appendChild(new Text(this.speed.toDecimal()))
         t.appendChild(document.createElement("br"))
-        b = document.createElement("b")
-        b.textContent = "Module slots: "
-        t.appendChild(b)
-        t.appendChild(new Text(this.moduleSlots))
         return t
     }
 }
@@ -139,6 +133,7 @@ function Factory(factoryDef, spec, recipe) {
     this.recipe = recipe
     this.modules = []
     this.setFactory(factoryDef, spec)
+    this.prolifMode = spec.defaultProlifMode
     this.beaconModule = spec.defaultBeacon
     this.beaconCount = spec.defaultBeaconCount
 }
@@ -237,7 +232,9 @@ Factory.prototype = {
         return {"fuel": "electric", "power": power}
     },
     recipeRate: function(spec, recipe) {
-        return recipe.time.reciprocate().mul(this.factory.speed).mul(this.speedEffect(spec))
+        return recipe.time.reciprocate().mul(this.factory.speed).mul(
+            this.prolifMode == 'Speed' ? this.speedEffect(spec) : one
+        )
     },
     copyModules: function(other, recipe) {
         var length = Math.max(this.modules.length, other.modules.length)
@@ -248,10 +245,7 @@ Factory.prototype = {
                 needRecalc = other.setModule(i, module) || needRecalc
             }
         }
-        if (other.factory.canBeacon()) {
-            other.beaconModule = this.beaconModule
-            other.beaconCount = this.beaconCount
-        }
+        other.prolifMode = this.prolifMode
         return needRecalc
     },
 }
@@ -311,7 +305,7 @@ RocketSilo.prototype.recipeRate = function(spec, recipe) {
 
 var assembly_machine_categories = {
     "advanced-crafting": true,
-    "crafting": true,
+    "ASSEMBLE": true,
     "crafting-with-fluid": true,
 }
 
@@ -342,8 +336,8 @@ function FactorySpec(factories) {
         this.factories[category].sort(compareFactories)
     }
     this.setMinimum("1")
-    var smelters = this.factories["smelting"]
-    this.furnace = smelters[smelters.length - 1]
+    var smelters = this.factories["SMELT"]
+    this.furnace = smelters[0]
     DEFAULT_FURNACE = this.furnace.name
     this.miningProd = zero
     this.ignore = {}
@@ -358,13 +352,13 @@ FactorySpec.prototype = {
     // min is a string like "1", "2", or "3".
     setMinimum: function(min) {
         var minIndex = Number(min) - 1
-        this.minimum = this.factories["crafting"][minIndex]
+        this.minimum = this.factories["ASSEMBLE"][minIndex]
     },
     useMinimum: function(recipe) {
         return recipe.category in assembly_machine_categories
     },
     setFurnace: function(name) {
-        var smelters = this.factories["smelting"]
+        var smelters = this.factories["SMELT"]
         for (var i = 0; i < smelters.length; i++) {
             if (smelters[i].name == name) {
                 this.furnace = smelters[i]
@@ -373,7 +367,7 @@ FactorySpec.prototype = {
         }
     },
     useFurnace: function(recipe) {
-        return recipe.category == "smelting"
+        return recipe.category == "SMELT"
     },
     getFactoryDef: function(recipe) {
         if (this.useFurnace(recipe)) {
@@ -414,7 +408,7 @@ FactorySpec.prototype = {
             return factory
         }
         this.spec[recipe.name] = factoryDef.makeFactory(this, recipe)
-        this.spec[recipe.name].beaconCount = this.defaultBeaconCount
+        this.spec[recipe.name].prolifMode = this.defaultProlifMode
         return this.spec[recipe.name]
     },
     moduleCount: function(recipe) {
@@ -435,6 +429,11 @@ FactorySpec.prototype = {
             return false
         }
         return factory.setModule(index, module)
+    },
+    getProlifMode: function(recipe) {
+        var factory = this.getFactory(recipe)
+        var prolifMode = factory.prolifMode
+        return prolifMode
     },
     getBeaconInfo: function(recipe) {
         var factory = this.getFactory(recipe)
@@ -470,6 +469,17 @@ FactorySpec.prototype = {
         this.defaultBeacon = module
         this.defaultBeaconCount = count
     },
+    setDefaultProlifMode: function(mode) {
+        for (var recipeName in this.spec) {
+            var factory = this.spec[recipeName]
+            var recipe = factory.recipe
+            // Set anything set to the old default to the new.
+            if (factory.prolifMode == this.defaultProlifMode || !(factory.prolifMode)) {
+                factory.prolifMode = mode
+            }
+        }
+        this.defaultProlifMode = mode
+    },
     getCount: function(recipe, rate) {
         var factory = this.getFactory(recipe)
         if (!factory) {
@@ -499,69 +509,6 @@ function renderTooltipBase() {
 
 function getFactories(data) {
     var factories = []
-    var pumpDef = data["offshore-pump"]["offshore-pump"]
-    var pump = new FactoryDef(
-        "offshore-pump",
-        pumpDef.icon_col,
-        pumpDef.icon_row,
-        ["water"],
-        1,
-        one,
-        0,
-        zero,
-        null
-    )
-    pump.renderTooltip = renderTooltipBase
-    factories.push(pump)
-    var reactorDef = data["reactor"]["nuclear-reactor"]
-    var reactor = new FactoryDef(
-        "nuclear-reactor",
-        reactorDef.icon_col,
-        reactorDef.icon_row,
-        ["nuclear"],
-        1,
-        one,
-        0,
-        zero,
-        null
-    )
-    reactor.renderTooltip = renderTooltipBase
-    factories.push(reactor)
-    var boilerDef = data["boiler"]["boiler"]
-    // XXX: Should derive this from game data.
-    var boiler_energy
-    if (useLegacyCalculations) {
-        boiler_energy = RationalFromFloat(3600000)
-    } else {
-        boiler_energy = RationalFromFloat(1800000)
-    }
-    var boiler = new FactoryDef(
-        "boiler",
-        boilerDef.icon_col,
-        boilerDef.icon_row,
-        ["boiler"],
-        1,
-        one,
-        0,
-        boiler_energy,
-        "chemical"
-    )
-    boiler.renderTooltip = renderTooltipBase
-    factories.push(boiler)
-    var siloDef = data["rocket-silo"]["rocket-silo"]
-    var launch = new RocketLaunchDef(
-        "rocket-silo",
-        siloDef.icon_col,
-        siloDef.icon_row,
-        ["rocket-launch"],
-        2,
-        one,
-        0,
-        zero,
-        null
-    )
-    launch.renderTooltip = renderTooltipBase
-    factories.push(launch)
     for (var type in {"assembling-machine": true, "furnace": true}) {
         for (var name in data[type]) {
             var d = data[type][name]
@@ -576,31 +523,17 @@ function getFactories(data) {
                 d.crafting_categories,
                 d.ingredient_count,
                 RationalFromFloat(d.crafting_speed),
-                d.module_slots,
+                d.module_slots || 1,
                 RationalFromFloat(d.energy_usage),
                 fuel
             ))
         }
     }
-    for (var name in data["rocket-silo"]) {
-        var d = data["rocket-silo"][name]
-        factories.push(new RocketSiloDef(
-            d.name,
-            d.icon_col,
-            d.icon_row,
-            d.crafting_categories,
-            d.ingredient_count,
-            RationalFromFloat(d.crafting_speed),
-            d.module_slots,
-            RationalFromFloat(d.energy_usage),
-            null
-        ))
-    }
     for (var name in data["mining-drill"]) {
         var d = data["mining-drill"][name]
-        if (d.name == "pumpjack") {
+        /* if (["Oil Extractor", "Water Pump"].includes(d.name)) {
             continue
-        }
+        } */
         var fuel = null
         if (d.energy_source && d.energy_source.type === "burner") {
             fuel = d.energy_source.fuel_category
@@ -615,9 +548,9 @@ function getFactories(data) {
             d.name,
             d.icon_col,
             d.icon_row,
-            ["mining-basic-solid"],
+            d.resource_categories,
             power,
-            RationalFromFloat(d.mining_speed),
+            RationalFromString(d.mining_speed),
             d.module_slots,
             RationalFromFloat(d.energy_usage),
             fuel

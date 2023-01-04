@@ -1,4 +1,5 @@
-/*Copyright 2015-2019 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,7 +14,25 @@ See the License for the specific language governing permissions and
 limitations under the License.*/
 "use strict"
 
-var PRIORITY = ["uranium-ore", "steam", "coal", "crude-oil", "water"]
+var PRIORITY = [
+    // manually harvested
+    "Plant Fuel",
+    "Log",
+    // energy-intense
+    "Critical Photon",
+    // extra steps
+    "Organic Crystal",
+    "Sulfuric Acid",
+    "Deuterium",
+    "Hydrogen",
+    // slightly advanced materials
+    "Titanium Ore",
+    "Silicon Ore",
+    // starting-world resources acquired with tech
+    //"Crude Oil",
+    //"Coal",
+    "Water"
+]
 
 function MatrixSolver(spec, recipes) {
     var products = {}
@@ -55,7 +74,11 @@ function MatrixSolver(spec, recipes) {
         }
         var item = ingredients[itemName]
         items.push(item)
-        var recipe = item.recipes[0]
+        for (let rec of item.recipes) {
+            if (!(rec.name in solver.disabledRecipes)) {
+                var recipe = rec
+            }
+        }
         this.inputRecipes.push(recipe)
     }
     var allRecipes = recipeArray.concat(this.inputRecipes)
@@ -161,6 +184,25 @@ MatrixSolver.prototype = {
             cost = cost.mul(ratio)
         }
     },
+    checkDisabledByproducts(products, spec, disabled) {
+        var A = this.matrix.copy()
+        var potentialRecipes = []
+        for (var itemName in products) {
+            for (var recipeName in this.recipeIndexes) {
+                for (var recipeProduct of solver.recipes[recipeName].products) {
+                    if (recipeProduct.item.name == itemName) {
+                        potentialRecipes.push(recipeName)
+                    }
+                }
+            }
+        }
+        for (var recipeName of potentialRecipes) {
+            if (recipeName in disabled) {
+                potentialRecipes.splice(potentialRecipes.indexOf[recipeName],1)
+            }
+        }
+        return (potentialRecipes.length > 0)
+    },
     solveFor: function(products, spec, disabled) {
         var A = this.matrix.copy()
         for (var itemName in products) {
@@ -186,7 +228,7 @@ MatrixSolver.prototype = {
             var factory = spec.getFactory(recipe)
             if (factory) {
                 var prod = factory.prodEffect(spec)
-                if (prod.equal(one)) {
+                if (prod.equal(one) && factory.prolifMode != "Prod") {
                     continue
                 }
                 if (useLegacyCalculations) {

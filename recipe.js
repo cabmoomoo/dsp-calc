@@ -1,4 +1,5 @@
-/*Copyright 2015-2019 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -59,7 +60,7 @@ Recipe.prototype = {
     gives: function(item, spec) {
         var factory = spec.getFactory(this)
         var prod = one
-        if (factory) {
+        if (factory && factory.prolifMode == 'Prod') {
             prod = factory.prodEffect(spec)
         }
         for (var i=0; i < this.products.length; i++) {
@@ -153,7 +154,7 @@ Recipe.prototype = {
 }
 
 function makeRecipe(data, d, items) {
-    var time = RationalFromFloat(d.energy_required)
+    var time = RationalFromFloat(d.time)
     var products = []
     for (var i=0; i < d.results.length; i++) {
         products.push(makeIngredient(data, d.results[i], items))
@@ -196,51 +197,6 @@ function ignoreRecipe(d) {
 function getRecipeGraph(data) {
     var recipes = {}
     var items = getItems(data)
-    var water = getItem(data, items, "water")
-    recipes["water"] = new Recipe(
-        "water",
-        water.icon_col,
-        water.icon_row,
-        "water",
-        RationalFromFloats(1, 1200),
-        [],
-        [new Ingredient(one, water)]
-    )
-    var reactor = data.items["nuclear-reactor"]
-    recipes["nuclear-reactor-cycle"] = new Recipe(
-        "nuclear-reactor-cycle",
-        reactor.icon_col,
-        reactor.icon_row,
-        "nuclear",
-        RationalFromFloat(200),
-        [new Ingredient(one, getItem(data, items, "uranium-fuel-cell"))],
-        [
-            new Ingredient(one, getItem(data, items, "used-up-uranium-fuel-cell")),
-            new Ingredient(one, items["nuclear-reactor-cycle"]),
-        ]
-    )
-    var rocket = data.items["rocket-silo"]
-    recipes["rocket-launch"] = new Recipe(
-        "rocket-launch",
-        rocket.icon_col,
-        rocket.icon_row,
-        "rocket-launch",
-        one,
-        [
-            new Ingredient(RationalFromFloat(100), getItem(data, items, "rocket-part")),
-            new Ingredient(one, getItem(data, items, "satellite"))
-        ], [new Ingredient(RationalFromFloat(1000), getItem(data, items, "space-science-pack"))]
-    )
-    var steam = data.items["steam"]
-    recipes["steam"] = new Recipe(
-        "steam",
-        steam.icon_col,
-        steam.icon_row,
-        "boiler",
-        RationalFromFloats(1, 60),
-        [new Ingredient(one, getItem(data, items, "water"))],
-        [new Ingredient(one, getItem(data, items, "steam"))]
-    )
 
     for (var name in data.recipes) {
         var recipe = data.recipes[name]
@@ -254,11 +210,11 @@ function getRecipeGraph(data) {
         var entity = data.resource[entityName]
         var category = entity.category
         if (!category) {
-            category = "basic-solid"
+            category = "mining"
         }
-        if (category != "basic-solid") {
+        /* if (category != "basic-solid") {
             continue
-        }
+        } */
         var name = entity.name
         var props = entity.minable
         var ingredients = null
@@ -282,7 +238,7 @@ function getRecipeGraph(data) {
             name,
             entity.icon_col,
             entity.icon_row,
-            "mining-" + category,
+            category,
             hardness,
             RationalFromFloat(props.mining_time),
             ingredients,

@@ -1,4 +1,5 @@
-/*Copyright 2015-2019 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.*/
 "use strict"
 
-var DEFAULT_ITEM = "advanced-circuit"
+var DEFAULT_ITEM = "Circuit Board"
 
 var build_targets = []
 
@@ -132,7 +133,6 @@ function BuildTarget(index, itemName) {
     this.rate.size = 5
     this.rate.title = "Enter a value to specify the rate. The number of factories will be determined based on the rate."
     this.element.appendChild(this.rate)
-    this.displayRecipes()
 }
 BuildTarget.prototype = {
     constructor: BuildTarget,
@@ -148,22 +148,23 @@ BuildTarget.prototype = {
             return
         }
         let self = this
-        let dropdown = makeDropdown(d3.select(this.recipeSelector))
-        let inputs = dropdown.selectAll("div").data(item.recipes).join("div")
-        let labels = addInputs(
-            inputs,
-            "target-recipe-" + recipeSelectorCount,
-            (d, i) => self.recipeIndex === i,
-            (d, i) => RecipeSelectorHandler(self, i),
-        )
-        labels.append(d => getImage(d, false, dropdown.node()))
-        recipeSelectorCount++
+        for (let i = 0; i < item.recipes.length; i++) {
+            rec = item.recipes[i]
+            if (!(rec.name in solver.disabledRecipes)) {
+                self.recipeIndex = i
+                break
+            }
+        }
+        let recipe = item.recipes[self.recipeIndex]
+        let recIndicator = getImage(recipe, false, this.recipeSelector)
+        this.recipeSelector.appendChild(recIndicator)
         this.recipeSelector.appendChild(new Text(" \u00d7 "))
     },
     // Returns the rate at which this item is being requested. Also updates
     // the text boxes in response to changes in options.
     getRate: function() {
         this.setRateLabel()
+        this.displayRecipes()
         var item = solver.items[this.itemName]
         var rate = zero
         // XXX: Hmmm...

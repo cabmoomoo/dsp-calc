@@ -1,4 +1,5 @@
-/*Copyright 2019 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -161,9 +162,9 @@ function renderBoxGraph({nodes, links}, direction, ignore, sheetWidth, sheetHeig
         .attr("width", iconSize)
         .attr("height", iconSize)
         .append("image")
-            .attr("xlink:href", "images/sprite-sheet-" + sheet_hash + ".png")
-            .attr("width", sheetWidth)
-            .attr("height", sheetHeight)
+            .attr("xlink:href", d => nodeIcon(d.item.name))
+            .attr("width", iconSize)
+            .attr("height", iconSize)
     edgeLabels.append("text")
         .attr("x", d => {
             let edge = d.label

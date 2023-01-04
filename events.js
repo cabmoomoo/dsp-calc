@@ -1,4 +1,5 @@
-/*Copyright 2015-2019 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -72,7 +73,7 @@ function searchTargets() {
             }
             currentHrHasContent = false
         } else {
-            let title = item.name.replace(/-/g, "")
+            let title = item.name.toLowerCase().replace(/[^a-z0-9]+/g, "")
             if (title.indexOf(search_text) === -1) {
                 this.style.display = "none"
             } else {
@@ -94,12 +95,6 @@ function ItemHandler(target) {
         target.displayRecipes()
         itemUpdate()
     }
-}
-
-// Triggered when a build target's recipe selector is changed.
-function RecipeSelectorHandler(target, i) {
-    target.recipeIndex = i
-    itemUpdate()
 }
 
 // The "x" button to remove a target.
@@ -184,9 +179,12 @@ function changeFuel(fuel) {
     itemUpdate()
 }
 
-// Triggered when the preferred oil recipe is changed.
-function changeOil(oil) {
-    setOilRecipe(oil.priority)
+// Triggered when the oil priorities are changed.
+function oilPriorityChanged() {
+    // Do this in separate functions as settings loads before
+    // items need to be updated. Calling itemUpdate() early in
+    // settings will probably break stuff, certainly waste time.
+    changeOilPriority()
     itemUpdate()
 }
 
@@ -217,6 +215,18 @@ function changeMprod() {
 // Triggered when the default module is changed.
 function changeDefaultModule(module) {
     spec.setDefaultModule(module)
+    recipeTable.updateDisplayedModules()
+    itemUpdate()
+}
+
+// Triggered when the default proliferator mode is changed.
+function changeDefaultProlifMode(modeNum) {
+    let mode = 'Prod'
+    if (modeNum == 2) {
+        mode = 'Speed'
+    }
+    updateProlifModeUI(mode)
+    spec.setDefaultProlifMode(mode)
     recipeTable.updateDisplayedModules()
     itemUpdate()
 }
@@ -338,30 +348,18 @@ function getFactory(recipeName) {
     return spec.getFactory(recipe)
 }
 
-// Triggered when a beacon module is changed.
-function BeaconHandler(recipeName) {
-    return function(module) {
-        var factory = getFactory(recipeName)
-        factory.beaconModule = module
-        if (isFactoryTarget(recipeName) && !factory.beaconCount.isZero()) {
-            itemUpdate()
-        } else {
-            display()
-        }
-    }
-}
-
-// Triggered when a beacon module count is changed.
-function BeaconCountHandler(recipeName) {
+// Triggered when a recipe's proliferator mode is changed.
+function ProlifModeHandler(recipeName) {
     this.handleEvent = function(event) {
-        var moduleCount = RationalFromString(event.target.value)
+        var prolifNum = event.target.value
         var factory = getFactory(recipeName)
-        factory.beaconCount = moduleCount
-        if (isFactoryTarget(recipeName) && factory.beaconModule) {
-            itemUpdate()
+        factory.prolifMode = prolifNum == 1 ? 'Prod' : 'Speed'
+        if (prolifNum == 1) {
+            event.target.classList.remove("slider-Speed")
         } else {
-            display()
+            event.target.classList.add("slider-Speed")
         }
+        itemUpdate()
     }
 }
 

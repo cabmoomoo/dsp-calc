@@ -1,4 +1,5 @@
-/*Copyright 2015-2019 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -644,38 +645,40 @@ function FactoryRow(row, recipe) {
     this.modulesCell.classList.add("pad", "module", "factory")
     this.node.appendChild(this.modulesCell)
 
-    this.copyButton = document.createElement("button")
-    this.copyButton.classList.add("ui", "copy")
-    this.copyButton.textContent = "\u2192"
-    this.copyButton.title = "copy to rest of modules"
-    this.copyButton.addEventListener("click", new ModuleCopyHandler(this))
-    this.modulesCell.appendChild(this.copyButton)
-
     this.dropdowns = []
     this.modules = []
 
-    var beaconCell = document.createElement("td")
-    beaconCell.classList.add("pad", "module", "factory")
-    let {inputs} = moduleDropdown(
-        d3.select(beaconCell),
-        "mod-" + recipeName + "-beacon",
+    var prolifModeCell = document.createElement("td")
+    prolifModeCell.classList.add("pad", "module", "factory")
+    /* let {inputs} = moduleDropdown(
+        d3.select(prolifModeCell),
+        "prolif-" + recipeName + "-mode",
         d => d === null,
         BeaconHandler(recipeName),
         d => d === null || d.canBeacon(),
     )
-    this.beacon = inputs
-    var beaconX = document.createElement("span")
-    beaconX.appendChild(new Text(" \u00D7 "))
-    beaconCell.appendChild(beaconX)
+    this.beacon = inputs */
 
-    this.beaconCount = document.createElement("input")
+    /* this.beaconCount = document.createElement("input")
     this.beaconCount.addEventListener("change", new BeaconCountHandler(recipeName))
     this.beaconCount.type = "number"
     this.beaconCount.value = 0
     this.beaconCount.classList.add("beacon")
     this.beaconCount.title = "The number of broadcasted modules which will affect this factory."
     beaconCell.appendChild(this.beaconCount)
-    this.node.appendChild(beaconCell)
+    this.node.appendChild(beaconCell) */
+
+    var prolifMode = document.createElement("input")
+    prolifMode.addEventListener("change", new ProlifModeHandler(recipeName))
+    prolifMode.type = "range"
+    prolifMode.value = 1
+    prolifMode.min = 1
+    prolifMode.max = 2
+    prolifMode.classList.add("prolif-range")
+    prolifMode.title = "The mode of the factories when supplied with sprayed materials"
+    this.prolifModeInput = prolifMode
+    prolifModeCell.appendChild(this.prolifModeInput)
+    this.node.appendChild(prolifModeCell)
 
     var downArrowCell = document.createElement("td")
     downArrowCell.classList.add("module", "factory")
@@ -755,18 +758,12 @@ FactoryRow.prototype = {
                 this.modules.push(inputs)
             }
         }
-        if (moduleDelta != 0) {
-            if (this.dropdowns.length > 1) {
-                this.modulesCell.insertBefore(this.copyButton, this.dropdowns[1])
-            } else {
-                this.modulesCell.appendChild(this.copyButton)
-            }
-        }
         if (this.modules.length > 0) {
             this.setHasModules()
         } else {
             this.setHasNoModules()
         }
+
         this.power = this.factory.powerUsage(spec, this.count)
         this.setPower(this.power)
     },
@@ -779,9 +776,8 @@ FactoryRow.prototype = {
             var module = spec.getModule(this.recipe, i)
             this.setDisplayedModule(i, module)
         }
-        // XXX
-        var beacon = spec.getBeaconInfo(this.recipe)
-        this.setDisplayedBeacon(beacon.module, beacon.count)
+        var prolifMode = spec.getProlifMode(this.recipe)
+        this.setProlifMode(prolifMode)
     },
     setDisplayedModule: function(index, module) {
         var name
@@ -791,6 +787,19 @@ FactoryRow.prototype = {
             name = NO_MODULE
         }
         this.modules[index][name].checked = true
+    },
+    setProlifMode: function(mode) {
+        this.prolifMode = mode
+        let modeNum = 1
+        if (mode == 'Speed') {
+            modeNum = 2
+        }
+        if (modeNum == 1) {
+            this.prolifModeInput.classList.remove("slider-Speed")
+        } else {
+            this.prolifModeInput.classList.add("slider-Speed")
+        }
+        this.prolifModeInput.value = modeNum
     },
     setDisplayedBeacon: function(module, count) {
         var name
@@ -1041,8 +1050,8 @@ function RecipeTable(node) {
         Header("belts", 2),
         Header("surplus/" + rateName),
         Header("factories", 2),
-        Header("modules", 1),
-        Header("beacons", 1),
+        Header("proliferator", 1),
+        Header("mode", 1),
         Header(""),
         Header("power", 2),
         Header("")

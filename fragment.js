@@ -1,4 +1,5 @@
-/*Copyright 2015-2020 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -41,20 +42,21 @@ function formatSettings(targets) {
     if (spec.furnace.name != DEFAULT_FURNACE) {
         settings += "furnace=" + spec.furnace.name + "&"
     }
-    if (preferredFuel.name != DEFAULT_FUEL) {
-        settings += "fuel=" + preferredFuel.name + "&"
+    let altDifference = []
+    for (let recName of ENABLED_ALTS) {
+        if (!(DEFAULT_ENABLED_ALTS.includes(recName))) {
+            altDifference.push(recName)
+        }
     }
-    if (oilGroup != DEFAULT_OIL) {
-        settings += "p=" + oilGroup + "&"
-    }
-    if (kovarexEnabled != DEFAULT_KOVAREX) {
-        settings += "k=off&"
+    if (altDifference.length > 0) {
+        settings += "alt="
+        for (let recName of altDifference) {
+            settings += recName + ","
+        }
+        settings += "&"
     }
     if (preferredBelt != DEFAULT_BELT) {
         settings += "belt=" + preferredBelt + "&"
-    }
-    if (!minPipeLength.equal(DEFAULT_PIPE)) {
-        settings += "pipe=" + minPipeLength.toDecimal(0) + "&"
     }
     if (!spec.miningProd.isZero()) {
         var hundred = RationalFromFloat(100)
@@ -64,11 +66,8 @@ function formatSettings(targets) {
     if (spec.defaultModule) {
         settings += "dm=" + spec.defaultModule.shortName() + "&"
     }
-    if (spec.defaultBeacon) {
-        settings += "db=" + spec.defaultBeacon.shortName() + "&"
-    }
-    if (!spec.defaultBeaconCount.isZero()) {
-        settings += "dbc=" + spec.defaultBeaconCount.toDecimal(0) + "&"
+    if (spec.defaultProlifMode != 'Prod') {
+        settings += "dpm=" + spec.defaultProlifMode + "&"
     }
     if (visualizer !== DEFAULT_VISUALIZER) {
         settings += "vis=" + visualizer + "&"
@@ -168,7 +167,7 @@ function formatSettings(targets) {
     }
     var zip = "zip=" + window.btoa(pako.deflateRaw(settings, {to: "string"}))
     if (zip.length < settings.length) {
-        return zip
+        // return zip
     }
     return settings
 }

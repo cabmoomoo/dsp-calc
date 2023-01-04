@@ -1,4 +1,5 @@
-/*Copyright 2015-2019 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -23,20 +24,7 @@ function getBelts(data) {
     var beltObjs = []
     for (var beltName in beltData) {
         var beltInfo = beltData[beltName]
-        // Belt speed is given in tiles/tick, which we can convert to
-        // items/second as follows:
-        //       tiles      ticks              32 pixels/tile
-        // speed ----- * 60 ------ * 2 lanes * --------------
-        //       tick       second             9 pixels/item
-        // 0.17 changes this formula from 9 pixels/item to 8 pixels/item.
-        var baseSpeed = RationalFromFloat(beltInfo.speed)
-        var pixelsPerSecond = baseSpeed.mul(RationalFromFloat(3840))
-        var speed
-        if (useLegacyCalculations) {
-            speed = pixelsPerSecond.div(RationalFromFloat(9))
-        } else {
-            speed = pixelsPerSecond.div(RationalFromFloat(8))
-        }
+        var speed = RationalFromFloat(beltInfo["speed"])
         beltObjs.push(new Belt(beltName, speed))
     }
     beltObjs.sort(function(a, b) {

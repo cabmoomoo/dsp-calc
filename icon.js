@@ -1,4 +1,5 @@
-/*Copyright 2015-2019 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -27,10 +28,16 @@ function Sprite(name, col, row) {
 function getImage(obj, suppressTooltip, tooltipTarget) {
     var im = blankImage()
     im.classList.add("icon")
-    var x = -obj.icon_col * PX_WIDTH
+    /* var x = -obj.icon_col * PX_WIDTH
     var y = -obj.icon_row * PX_HEIGHT
     im.style.setProperty("background", "url(images/sprite-sheet-" + sheet_hash + ".png)")
-    im.style.setProperty("background-position", x + "px " + y + "px")
+    im.style.setProperty("background-position", x + "px " + y + "px") */
+    if (!obj.icon) {
+        im.src = "images/" + obj.name + ".png"
+    }
+    else {
+        im.src = "images/" + obj.icon + ".png"
+    }
     if (tooltipsEnabled && obj.renderTooltip && !suppressTooltip) {
         addTooltip(im, obj, tooltipTarget)
     } else {
@@ -56,9 +63,10 @@ function blankImage() {
 var sprites
 
 function getExtraImage(name) {
-    return getImage(sprites[name])
+    return getImage({"name": name})
+    //return getImage(name)
 }
-
+/* 
 function getSprites(data) {
     sheet_hash = data.sprites.hash
     sprites = {}
@@ -67,3 +75,4 @@ function getSprites(data) {
         sprites[name] = new Sprite(d.name, d.icon_col, d.icon_row)
     }
 }
+ */

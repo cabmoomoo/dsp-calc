@@ -1,4 +1,5 @@
-/*Copyright 2015-2019 Kirk McDonald
+/*Copyright 2022 Caleb Barbee
+Original Work Copyright Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -46,6 +47,21 @@ var useLegacyCalculations
 var spriteSheetSize
 
 var initDone = false
+
+// I couldn't think of a better place to put this, and it makes me happy when it works
+function randFavicon() {
+    let fav_num = Math.floor(Math.random() * 10)
+    let fav_list = ["Annihilation Constraint Sphere", "Assembling Machine Mk.III", "Plane Smelter", "Microcrystalline Component", "Processor", "Small Carrier Rocket", "Circuit Board", "Super-Magnetic Ring", "Traffic Monitor", "Universe Matrix"]
+    let fav_name = fav_list[fav_num]
+
+    let newFavicon = document.createElement('link')
+        newFavicon.rel = 'shortcut icon'
+        newFavicon.type = 'image/x-icon'
+        newFavicon.href = `images/${fav_name}.png`
+
+    let oldFavicon = document.getElementById('favicon')
+    document.head.replaceChild(newFavicon, oldFavicon)
+}
 
 // Set the page back to a state immediately following initial setup, but before
 // the dataset is loaded for the first time.
@@ -102,7 +118,7 @@ function loadData(modName, settings) {
         settings = {}
     }
     loadDataRunner(modName, function(data) {
-        getSprites(data)
+        //getSprites(data)
         var graph = getRecipeGraph(data)
         modules = getModules(data)
         sortedModules = sorted(modules, function(m) { return modules[m].order })
@@ -134,7 +150,7 @@ function loadData(modName, settings) {
         var recipes = graph[1]
 
         belts = getBelts(data)
-        fuel = getFuel(data, items)["chemical"]
+        // fuel = getFuel(data, items)["chemical"]
 
         itemGroups = getItemGroups(items, data)
         solver = new Solver(items, recipes)
@@ -149,6 +165,9 @@ function loadData(modName, settings) {
                 var targetString = targets[i]
                 var parts = targetString.split(":")
                 var name = parts[0]
+                while ((name.search("%20")) > -1) {
+                    name = name.replace("%20", " ")
+                }
                 var target = addTarget(name)
                 var type = parts[1]
                 if (type == "f") {
@@ -227,6 +246,7 @@ function loadData(modName, settings) {
 }
 
 function init() {
+    randFavicon()
     var settings = loadSettings(window.location.hash)
     if (OVERRIDE !== null) {
         addOverrideOptions(OVERRIDE)
