@@ -285,7 +285,7 @@ limitations under the License.-->
 
         <tr>
         <td class="setting-label">Default proliferator mode:</td>
-        <td><input id="default_prolif_mode" class="setting-range prolif-range" type="range" value="1" min="1" max="2" width="32px" onchange="changeDefaultProlifMode(this.value)">
+        <td style="display: flex; align-items: center;"><input id="default_prolif_mode" class="setting-range prolif-range" type="range" value="1" min="1" max="2" width="32px" onchange="changeDefaultProlifMode(this.value)">
             <span id="default_prolif_mode_tip" class="setting-tip"></span></td>
         </tr>
 
@@ -371,7 +371,7 @@ limitations under the License.-->
         <h3>What's the deal with deuterium fractionators?</h3>
         Deuterium fractionators will operate as fast as you can feed them hydrogen. As such, the speed one fractionator works at is based entirely on the speed of the belt feeding it. In a closed loop, 1 fractionator being fed by a saturated Mk.I belt will produce an average of 0.06 deuterium per second. As such, once the belt is saturated, you only need an average of 0.06 hydrogen per second incoming.
         <p>
-        Deuterium fractionators also support item stacking. To calculate this, simply multiply your desired rate by the height of your stacks. 
+        Deuterium fractionators also support item stacking. To calculate this, simply divide the number of fractionators needed for your desired rate by the height of your stacks. 
         <p>
         Do note, the factory tab lists the total hyrdogen being produced by all recipes, including the hyrdogen that will be looped. For a better understanding of this, I encourage you to utilize the Visualize tab.
 
