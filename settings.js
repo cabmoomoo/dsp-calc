@@ -14,6 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.*/
 "use strict"
 
+/* 
+At some point, I might want to remove the Modification system, as it is unlikely this calculator will ever need to support multiple recipe sets, different versions of the game, or mods. At the same time, it doesn't hurt to be optimistic about the future of the game. Who knows, maybe some day we'll be able to support complete overhaul modpacks.
+ */
+
 // data set
 function Modification(name, filename, legacy, sheetSize) {
     this.name = name
@@ -23,7 +27,7 @@ function Modification(name, filename, legacy, sheetSize) {
 }
 
 var MODIFICATIONS = {
-    "Base": new Modification("Base Game", "testing_data.json", false, [480, 512]),
+    "Base": new Modification("Base Game", "data.json", false, [480, 512]),
 }
 
 var DEFAULT_MODIFICATION = "Base"
@@ -262,6 +266,10 @@ var SPECIAL_RESOURCES = [
     "Fire Ice"
 ]
 
+var ENABLED_ALTS = []
+
+var DEFAULT_ENABLED_ALTS = []
+
 function changeAltRecipe(recipe) {
     disableAltRecipes(recipe)
     itemUpdate()
@@ -279,14 +287,14 @@ function renderIngredient(ingSpan) {
 }
 
 function renderAltRecipes(settings) {
-    spec.altRecipes = new Map()
+    /* spec.altRecipes = new Map()
     if ("alt" in settings) {
         let alt = settings.get("alt").split(",")
-        for (let recipeKey of alt) {
-            let recipe = spec.recipes.get(recipeKey)
+        for (let recipeName of alt) {
+            let recipe = solver.recipes[recipeName]
             spec.setRecipe(recipe)
         }
-    }
+    } */
 
     let items = []
     for (let resource of SPECIAL_RESOURCES) {
@@ -302,17 +310,43 @@ function renderAltRecipes(settings) {
         }
     }
     // Manually add special items with multiple recipes
-    // Several others have multiple recipes (like hydrogen),
+    // Several others have multiple recipes (like refined oil),
     // but using a matrix to solve those is better
     // These recipes will typically be one recipe or the other
     items.push(solver.items["Silicon Ore"])
+    items.push(solver.items["Organic Crystal"])
     items.push(solver.items["Space Warper"])
     items.push(solver.items["Deuterium"])
-    solver.addDisabledRecipes({
+    let manualAlts = {
         "Silicon Vein": true,
+        "Organic Crystal (Original)": true,
+        "Organic Crystal Vein": true,
         "Space Warper (Advanced)": true,
         "Deuterium Fractionation": true
-    })
+    }
+    solver.addDisabledRecipes(manualAlts)
+
+    for (let item of items) {
+        for (let rec of item.recipes) {
+            if (!(rec.name in solver.disabledRecipes)) {
+                ENABLED_ALTS.push(rec.name)
+            }
+        }
+    }
+
+    DEFAULT_ENABLED_ALTS = [...ENABLED_ALTS]
+
+    if ("alt" in settings) {
+        let alts = settings.alt.split(",")
+        for (let recipeName of alts) {
+            if (recipeName) {
+                while ((recipeName.search("%20")) > -1) {
+                    recipeName = recipeName.replace("%20", " ")
+                }
+                disableAltRecipes(solver.recipes[recipeName])
+            }
+        }
+    }
 
     let div = d3.select("#alt_recipe_settings")
     div.selectAll("*").remove()
@@ -366,12 +400,16 @@ function disableAltRecipes(recipe) {
     let altRecipes = recItem.recipes
     let allRecsObj = {}
     for (let rec of altRecipes) {
+        if (ENABLED_ALTS.includes(rec.name)) {
+            ENABLED_ALTS.splice(ENABLED_ALTS.indexOf(rec.name),1)
+        }
         allRecsObj[rec.name] = true
     }
     solver.addDisabledRecipes(allRecsObj)
     let newRecObj = {}
     newRecObj[recipe.name] = true
     solver.removeDisabledRecipes(newRecObj)
+    ENABLED_ALTS.push(recipe.name)
 }
 
 
@@ -383,22 +421,20 @@ function changeOilPriority() {
     let highPrio = document.getElementById("highPrio")
     let lowPrio = document.getElementById("lowPrio")
     let noPrio = document.getElementById("noPrio")
-    let dragOil = document.getElementById("dragOil")
-    let dragCoal = document.getElementById("dragCoal")
 
     // While there can currently only be 1 item in each priority (hardcoded
     // in calc.html), doing it this way is just as easy and leaves room
     // for more priority choices in the future.
-    if (lowPrio.children.length > 0) {
-        for (let childNode of lowPrio.children) {
+    if (highPrio.children.length > 0) {
+        for (let childNode of highPrio.children) {
             let resName = childNode.name
             if (!(PRIORITY.includes(resName))) {
                 PRIORITY.splice(-1,0,resName)
             }
         }
     }
-    if (highPrio.children.length > 0) {
-        for (let childNode of highPrio.children) {
+    if (lowPrio.children.length > 0) {
+        for (let childNode of lowPrio.children) {
             let resName = childNode.name
             if (!(PRIORITY.includes(resName))) {
                 PRIORITY.splice(-1,0,resName)
@@ -419,32 +455,6 @@ function changeOilPriority() {
 function handleOil(settings) {
     changeOilPriority()
 }
-
-// kovarex
-var DEFAULT_KOVAREX = true
-
-var kovarexEnabled
-
-function renderKovarex(settings) {
-    var k = DEFAULT_KOVAREX
-    if ("k" in settings) {
-        k = settings.k !== "off"
-    }
-    setKovarex(k)
-    var input = document.getElementById("kovarex")
-    input.checked = k
-}
-
-function setKovarex(enabled) {
-    kovarexEnabled = enabled
-    if (enabled) {
-        solver.removeDisabledRecipes({"kovarex-enrichment-process": true})
-    } else {
-        solver.addDisabledRecipes({"kovarex-enrichment-process": true})
-    }
-}
-
-
 
 // belt
 var DEFAULT_BELT = "Conveyor Belt MK.I"
@@ -482,29 +492,12 @@ function setPreferredBelt(name) {
             preferredBeltSpeed = belt.speed
         }
     }
-}
-
-// pipe
-var DEFAULT_PIPE = RationalFromFloat(17)
-
-var minPipeLength = DEFAULT_PIPE
-var maxPipeThroughput = null
-
-function renderPipe(settings) {
-    var pipe = DEFAULT_PIPE.toDecimal(0)
-    if ("pipe" in settings) {
-        pipe = settings.pipe
-    }
-    setMinPipe(pipe)
-    document.getElementById("pipe_length").value = minPipeLength.toDecimal(0)
-}
-
-function setMinPipe(lengthString) {
-    minPipeLength = RationalFromString(lengthString)
-    maxPipeThroughput = pipeThroughput(minPipeLength)
+    hackDeuteriumFractionation() //hacks.js
 }
 
 // mining productivity bonus
+
+// Usable feature, but disabled until I can rework the math
 var DEFAULT_MINING_PROD = "0"
 
 function renderMiningProd(settings) {
@@ -566,35 +559,6 @@ function updateProlifModeUI(mode) {
     var dpmTip = document.getElementById("default_prolif_mode_tip")
     dpmTip.textContent = dpmSlider.value == 1 ? 'Productivity' : 'Speed'
     dpmTip.className = ("setting-tip tip-" + mode)
-}
-
-// default beacon
-function renderDefaultBeacon(settings) {
-    var defaultBeacon = null
-    var defaultCount = zero
-    if ("db" in settings) {
-        defaultBeacon = shortModules[settings.db]
-    }
-    if ("dbc" in settings) {
-        defaultCount = RationalFromString(settings.dbc)
-    }
-    spec.setDefaultBeacon(defaultBeacon, defaultCount)
-
-    var dbcField = document.getElementById("default_beacon_count")
-    dbcField.value = defaultCount.toDecimal(0)
-
-    var oldDefMod = document.getElementById("default_beacon")
-    var cell = oldDefMod.parentNode
-    var node = document.createElement("span")
-    node.id = "default_beacon"
-    moduleDropdown(
-        d3.select(node),
-        "default_beacon_dropdown",
-        d => d === defaultBeacon,
-        changeDefaultBeacon,
-        d => d === null || d.canBeacon(),
-    )
-    cell.replaceChild(node, oldDefMod)
 }
 
 // visualizer settings
@@ -706,15 +670,11 @@ function renderSettings(settings) {
     renderMinimumAssembler(settings)
     renderFurnace(settings)
     renderAltRecipes(settings)
-    // renderOil(settings)
     handleOil(settings) //Oil made directly in HTML
-    // renderKovarex(settings)
     renderBelt(settings)
-    // renderPipe(settings)
-    renderMiningProd(settings)
+    // renderMiningProd(settings)
     renderDefaultProlifMode(settings)
     renderDefaultModule(settings)
-    renderDefaultBeacon(settings)
     renderVisualizerType(settings)
     renderVisualizerDirection(settings)
     renderNodeBreadth(settings)

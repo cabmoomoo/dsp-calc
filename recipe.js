@@ -154,7 +154,7 @@ Recipe.prototype = {
 }
 
 function makeRecipe(data, d, items) {
-    var time = RationalFromFloat(d.energy_required)
+    var time = RationalFromFloat(d.time)
     var products = []
     for (var i=0; i < d.results.length; i++) {
         products.push(makeIngredient(data, d.results[i], items))
@@ -210,11 +210,11 @@ function getRecipeGraph(data) {
         var entity = data.resource[entityName]
         var category = entity.category
         if (!category) {
-            category = "basic-solid"
+            category = "mining"
         }
-        if (category != "basic-solid") {
+        /* if (category != "basic-solid") {
             continue
-        }
+        } */
         var name = entity.name
         var props = entity.minable
         var ingredients = null
@@ -238,7 +238,7 @@ function getRecipeGraph(data) {
             name,
             entity.icon_col,
             entity.icon_row,
-            "mining-" + category,
+            category,
             hardness,
             RationalFromFloat(props.mining_time),
             ingredients,

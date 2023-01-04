@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 
-"""Utility for maintaining the Dyson Sphere Program wiki.
+"""Utility for extracting data directly from game files.
 
-This command-line script (usually) produces output on stdout in a format that
-can be directly cut-and-pasted to the edit box of pages at
-https://dyson-sphere-program.fandom.com/. In the usual case where there is
-existing content, replace that content entirely, and then use the diff feature
-to verify correctness.
+This command-line script (usually) produces a json file tailored for
+compatibility with the Factorio Calculator. A decent bit of this file
+is carry-over from the original wiki project. If you want to see the
+major differences, look below the # NEW CODE section.
+
+To generate a data.json file in the ../data/ folder, run this python
+script with the argument --json
 
 To run, this requires the following files in the current directory:
 * ItemProtoSet.dat
@@ -29,7 +31,6 @@ from dysonsphere import ERecipeType, EItemType
 
 # These aren't worth importing from a file
 STARTING_RECIPES = [1, 2, 3, 4, 5, 6, 50]
-STARTING_TECHS = [1]
 MADE_FROM = {
     ERecipeType.NONE:'-',
     ERecipeType.SMELT:'冶炼设备',
@@ -80,19 +81,6 @@ BUILDING_CATEGORIES = [
     '戴森球类',  # Dyson Sphere Program (8)
     '环改类']    # Environment Modification (9)
 
-
-# Patches we make to be explicit about what techs unlock items.
-# This lists the recipe id of recipes to be "fixed": Their first output item
-# will be marked as having an explict_tech_dep of the tech that unlocks
-# the recipe. This works around cases where multiple recipes, unlocked by
-# multiple techs produce the same item.
-# to the tech id.
-UNLOCK_HACKS = [
-    16,  # Plasma Extract Refining
-    17,  # Energetic Graphite
-    37,  # Crystal Silicon
-    78]  # Space Warper
-
 # Tweaks to the sort-key function, to get the recipe list to sort in a better
 # order.
 KEY_TWEAKS = {75: 103, #Universe Matrix -> After Gravity Matrix
@@ -105,23 +93,6 @@ KEY_TWEAKS = {75: 103, #Universe Matrix -> After Gravity Matrix
     91: 91, #Storage Mk. II
     87: 92} #Splitter
 COLOR_RE = re.compile('<color="([^"]*)">([^<]*)</color>')
-
-SPECIAL_MATERIALS_COMMENT="""
--- Raw materials that are not always available, and enable secondary or
--- "special" crafting recipes. In same cases, this just means that harvesting
--- the material directly enables skipping a production chain.
--- These are item_ids, ordered in the way they are presented to the user.
--- Sometimes not all options may be available."""
-SPECIAL_MATERIALS = [
-    1016,  # Unipolar Magnet
-    1015,  # Spiniform Stalagmite Crystal
-    1014,  # Optical Grating Crystal
-    1117,  # Organic Crystal
-    1011,  # Fire Ice
-    1116,  # Sulfuric Acid
-    1013,  # Fractal Silicon
-    1012,  # Kimberlite Ore
-    1003]  # Silicon Ore
 
 def translate_fields(translations, proto_set, fields):
     """In-place replace text with translations for one proto_set."""
@@ -278,16 +249,14 @@ def format_recipe_for_JSON(recipe_entry, ID_dict):
         'category': rec.type.name,
         'ingredients': inputs,
         'results': outputs,
-        'energy_required': time_spend,
+        'time': time_spend,
     }
     if disabled:
         fields['disabled'] = 'true'
 
     if rec.name == 'Deuterium Fractionation':
-        fields['energy_required'] = 1
+        fields['time'] = 1
         fields['ingredients'][0]['amount'] = 1
-        fields['results'][0]["probability"] = 0.01
-        fields['results'].append({"name": "Hydrogen", "amount": 1, "probability":0.99})
     
     return (fields['name'], fields)
 
@@ -298,13 +267,18 @@ def prepare_resources(items):
         if item["type"] == "RESOURCE":
             all_resources.append(item)
     
+    all_resources.append(items["Organic Crystal"])
+    special_names = ["Silicon Ore", "Organic Crystal"]
+
     prepped_resources = {}
     for x in all_resources:
         fields = {}
-        if (x["name"] != "Silicon Ore"):
+        if (x["name"] not in special_names):
             fields["name"] = x["name"]
-        else:
+        elif (x["name"] == "Silicon Ore"):
             fields["name"] = "Silicon Vein"
+        elif (x["name"] == "Organic Crystal"):
+            fields["name"] = "Organic Crystal Vein"
         fields["minable"] = {
             "mining_time": 1,
             "results": [{
@@ -314,6 +288,8 @@ def prepare_resources(items):
         }
         prepped_resources[x["name"]] = fields
 
+    prepped_resources["Crude Oil"]["category"] = "oil"
+    prepped_resources["Water"]["category"] = "pump"
 
     #all_resources.append(manual_JSON.organic_crystal_hack(items))
     return prepped_resources
@@ -354,7 +330,7 @@ def print_JSON(data):
     ]
 
     # "../data/data.json"
-    save_file = open("../data/testing_data.json", "w")
+    save_file = open("../data/data.json", "w")
     save_file.write(json.dumps(mega_dict))
     save_file.close
 

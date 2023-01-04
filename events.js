@@ -97,12 +97,6 @@ function ItemHandler(target) {
     }
 }
 
-// Triggered when a build target's recipe selector is changed.
-function RecipeSelectorHandler(target, i) {
-    target.recipeIndex = i
-    itemUpdate()
-}
-
 // The "x" button to remove a target.
 function RemoveHandler(target) {
     this.handleEvent = function(event) {
@@ -197,18 +191,6 @@ function oilPriorityChanged() {
 // Triggered when the Kovarex checkbox is toggled.
 function changeKovarex(event) {
     setKovarex(event.target.checked)
-    itemUpdate()
-}
-
-// Triggered when an Alt Recipe checkbox is toggeled.
-function changeAlt(event, name) {
-    setAltRecipe(event.target.checked, name)
-    itemUpdate()
-}
-
-// Triggered when the crysil checkbox is toggled.
-function changeCrySil(event) {
-    setCrySil(event.target.checked)
     itemUpdate()
 }
 

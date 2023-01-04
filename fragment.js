@@ -42,14 +42,21 @@ function formatSettings(targets) {
     if (spec.furnace.name != DEFAULT_FURNACE) {
         settings += "furnace=" + spec.furnace.name + "&"
     }
-    /* if (altRecipesEnabled != DEFAULT_ALTS) {
-        settings += "a=" + altRecipesEnabled + "&"
-    } */
+    let altDifference = []
+    for (let recName of ENABLED_ALTS) {
+        if (!(DEFAULT_ENABLED_ALTS.includes(recName))) {
+            altDifference.push(recName)
+        }
+    }
+    if (altDifference.length > 0) {
+        settings += "alt="
+        for (let recName of altDifference) {
+            settings += recName + ","
+        }
+        settings += "&"
+    }
     if (preferredBelt != DEFAULT_BELT) {
         settings += "belt=" + preferredBelt + "&"
-    }
-    if (!minPipeLength.equal(DEFAULT_PIPE)) {
-        settings += "pipe=" + minPipeLength.toDecimal(0) + "&"
     }
     if (!spec.miningProd.isZero()) {
         var hundred = RationalFromFloat(100)
@@ -160,7 +167,7 @@ function formatSettings(targets) {
     }
     var zip = "zip=" + window.btoa(pako.deflateRaw(settings, {to: "string"}))
     if (zip.length < settings.length) {
-        return zip
+        // return zip
     }
     return settings
 }

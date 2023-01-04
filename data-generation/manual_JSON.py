@@ -38,7 +38,7 @@ def prepare_furnaces():
     furnaces["Plane Smelter"] = {
         "crafting_categories": ["SMELT"],
         "crafting_speed": 2,
-        "energy_usage": 360000,
+        "energy_usage": 1440000,
         "name": "Plane Smelter"
     }
     return furnaces
@@ -46,22 +46,22 @@ def prepare_furnaces():
 def prepare_drills():
     drills = {
         "Mining Machine": {
-            "energy_usage": 420,
-            "mining_speed": 60,
+            "energy_usage": 420000,
+            "mining_speed": "1/2",
             "name": "Mining Machine",
             "resource_categories": [ "mining" ]
         },
         "Oil Extractor": {
             "name": "Oil Extractor",
             "resource_categories": [ "oil" ],
-            "mining_speed": 120,
-            "energy_usage": 840
+            "mining_speed": "5/2",
+            "energy_usage": 840000
         },
         "Water Pump": {
             "name": "Water Pump",
             "resource_categories": [ "pump" ],
-            "mining_speed": 60,
-            "energy_usage": 300
+            "mining_speed": "5/6",
+            "energy_usage": 300000
         }
     }
     return drills
@@ -88,19 +88,19 @@ def prepare_assemblers():
         "Assembling Machine Mk.I": {
             "crafting_categories": [ "ASSEMBLE" ],
             "crafting_speed": 0.75,
-            "energy_usage": 360000,
+            "energy_usage": 270000,
             "name": "Assembling Machine Mk.I"
         },
         "Assembling Machine Mk.II": {
             "crafting_categories": [ "ASSEMBLE" ],
             "crafting_speed": 1,
-            "energy_usage": 360000,
+            "energy_usage": 540000,
             "name": "Assembling Machine Mk.II"
         },
         "Assembling Machine Mk.III": {
             "crafting_categories": [ "ASSEMBLE" ],
             "crafting_speed": 1.5,
-            "energy_usage": 360000,
+            "energy_usage": 1080000,
             "name": "Assembling Machine Mk.III"
         },
         "Oil Refinery": {
