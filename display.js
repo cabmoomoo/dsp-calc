@@ -650,23 +650,6 @@ function FactoryRow(row, recipe) {
 
     var prolifModeCell = document.createElement("td")
     prolifModeCell.classList.add("pad", "module", "factory")
-    /* let {inputs} = moduleDropdown(
-        d3.select(prolifModeCell),
-        "prolif-" + recipeName + "-mode",
-        d => d === null,
-        BeaconHandler(recipeName),
-        d => d === null || d.canBeacon(),
-    )
-    this.beacon = inputs */
-
-    /* this.beaconCount = document.createElement("input")
-    this.beaconCount.addEventListener("change", new BeaconCountHandler(recipeName))
-    this.beaconCount.type = "number"
-    this.beaconCount.value = 0
-    this.beaconCount.classList.add("beacon")
-    this.beaconCount.title = "The number of broadcasted modules which will affect this factory."
-    beaconCell.appendChild(this.beaconCount)
-    this.node.appendChild(beaconCell) */
 
     var prolifMode = document.createElement("input")
     prolifMode.addEventListener("change", new ProlifModeHandler(recipeName))
@@ -789,6 +772,10 @@ FactoryRow.prototype = {
         this.modules[index][name].checked = true
     },
     setProlifMode: function(mode) {
+        if (this.factory.prolifSpeedOnly) {
+            this.setProlifSpeedOnly()
+            return
+        }
         this.prolifMode = mode
         let modeNum = 1
         if (mode == 'Speed') {
@@ -801,15 +788,15 @@ FactoryRow.prototype = {
         }
         this.prolifModeInput.value = modeNum
     },
-    setDisplayedBeacon: function(module, count) {
-        var name
-        if (module) {
-            name = module.name
-        } else {
-            name = NO_MODULE
-        }
-        this.beacon[name].checked = true
-        this.beaconCount.value = count.toString()
+    setProlifSpeedOnly: function() {
+        this.prolifMode = "Speed"
+        let speedTip = document.createElement("p")
+        speedTip.textContent = "Speed Only"
+        speedTip.classList = "tip-Speed"
+        let cell = this.prolifModeInput.parentElement
+        cell.replaceChildren()
+        this.prolifModeInput = speedTip
+        cell.appendChild(this.prolifModeInput)
     },
     csv: function() {
         var parts = []

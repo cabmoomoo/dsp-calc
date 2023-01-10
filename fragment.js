@@ -128,7 +128,6 @@ function formatSettings(targets) {
         }
         var factory = spec.spec[recipeName]
         var modules = []
-        var beacon = ""
         var any = false
         for (var i=0; i < factory.modules.length; i++) {
             var module = factory.modules[i]
@@ -143,22 +142,8 @@ function formatSettings(targets) {
                 any = true
             }
         }
-        if (factory.beaconModule !== spec.defaultBeacon || !factory.beaconCount.equal(spec.defaultBeaconCount)) {
-            var beaconModule = factory.beaconModule
-            var moduleName
-            if (beaconModule) {
-                moduleName = beaconModule.shortName()
-            } else {
-                moduleName = "null"
-            }
-            beacon = sprintf("%s:%d", moduleName, factory.beaconCount.toFloat())
-            any = true
-        }
         if (any) {
             var recipeSpec = sprintf("%s:%s", recipeName, modules.join(":"))
-            if (beacon != "") {
-                recipeSpec += ";" + beacon
-            }
             specs.push(recipeSpec)
         }
     }
@@ -167,7 +152,7 @@ function formatSettings(targets) {
     }
     var zip = "zip=" + window.btoa(pako.deflateRaw(settings, {to: "string"}))
     if (zip.length < settings.length) {
-        // return zip
+        return zip
     }
     return settings
 }
