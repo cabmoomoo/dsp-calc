@@ -14,6 +14,33 @@ See the License for the specific language governing permissions and
 limitations under the License.*/
 "use strict"
 
+// Manual list of all items than cannot get the "Extra Products" benefit from Proliferators
+var NO_PROD = [
+    // ITEMS:
+    "Energetic Graphite",
+    "X-Ray Cracking",
+    "Antimatter Fuel Rod",
+    "Reforming Refine",
+    "Deuterium Fractionation",
+    "Logistics Drone",
+    "Logistics Vessel",
+    "Deuterium",
+    "Mass-Energy Storage",
+    // BUILDINGS:
+    "Wireless Power Tower",
+    "Satellite Substation",
+    "Conveyor Belt MK.II",
+    "Conveyor Belt MK.III",
+    "Interstellar Logistics Station",
+    "Orbital Collector",
+    "Sorter MK.II",
+    "Sorter MK.III",
+    "Assembling Machine MK.II",
+    "Assembling Machine MK.III",
+    "Plane Smelter",
+    "Quantum Chemical Plant"
+]
+
 function Module(name, col, row, category, order, productivity, speed, power, limit) {
     // Other module effects not modeled by this calculator.
     this.name = name
@@ -44,9 +71,6 @@ Module.prototype = {
             return recipe.name in this.limit
         }
         return true
-    },
-    canBeacon: function() {
-        return this.productivity.isZero()
     },
     hasProdEffect: function() {
         return !this.productivity.isZero()

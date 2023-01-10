@@ -231,21 +231,6 @@ function changeDefaultProlifMode(modeNum) {
     itemUpdate()
 }
 
-// Triggered when the default beacon module is changed.
-function changeDefaultBeacon(module) {
-    spec.setDefaultBeacon(module, spec.defaultBeaconCount)
-    recipeTable.updateDisplayedModules()
-    itemUpdate()
-}
-
-// Triggered when the default beacon count is changed.
-function changeDefaultBeaconCount(event) {
-    var count = RationalFromString(event.target.value)
-    spec.setDefaultBeacon(spec.defaultBeacon, count)
-    recipeTable.updateDisplayedModules()
-    itemUpdate()
-}
-
 // Triggered when the visualizer setting box is toggled.
 function toggleVisualizerSettings() {
     let classes = document.getElementById("graph-wrapper").classList

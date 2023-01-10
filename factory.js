@@ -133,9 +133,8 @@ function Factory(factoryDef, spec, recipe) {
     this.recipe = recipe
     this.modules = []
     this.setFactory(factoryDef, spec)
-    this.prolifMode = spec.defaultProlifMode
-    this.beaconModule = spec.defaultBeacon
-    this.beaconCount = spec.defaultBeaconCount
+    this.prolifSpeedOnly = NO_PROD.includes(recipe.name)
+    this.prolifMode = this.prolifSpeedOnly ? "Speed" : spec.defaultProlifMode
 }
 Factory.prototype = {
     constructor: Factory,
@@ -175,12 +174,6 @@ Factory.prototype = {
             }
             speed = speed.add(module.speed)
         }
-        if (this.modules.length > 0) {
-            var beaconModule = this.beaconModule
-            if (beaconModule) {
-                speed = speed.add(beaconModule.speed.mul(this.beaconCount).mul(half))
-            }
-        }
         return speed
     },
     prodEffect: function(spec) {
@@ -202,12 +195,6 @@ Factory.prototype = {
                 continue
             }
             power = power.add(module.power)
-        }
-        if (this.modules.length > 0) {
-            var beaconModule = this.beaconModule
-            if (beaconModule) {
-                power = power.add(beaconModule.power.mul(this.beaconCount).mul(half))
-            }
         }
         var minimum = RationalFromFloats(1, 5)
         if (power.less(minimum)) {
@@ -245,7 +232,7 @@ Factory.prototype = {
                 needRecalc = other.setModule(i, module) || needRecalc
             }
         }
-        other.prolifMode = this.prolifMode
+        other.prolifMode = other.prolifSpeedOnly ? 'Speed' : this.prolifMode
         return needRecalc
     },
 }
@@ -343,9 +330,6 @@ function FactorySpec(factories) {
     this.ignore = {}
 
     this.defaultModule = null
-    // XXX: Not used yet.
-    this.defaultBeacon = null
-    this.defaultBeaconCount = zero
 }
 FactorySpec.prototype = {
     constructor: FactorySpec,
@@ -408,7 +392,6 @@ FactorySpec.prototype = {
             return factory
         }
         this.spec[recipe.name] = factoryDef.makeFactory(this, recipe)
-        this.spec[recipe.name].prolifMode = this.defaultProlifMode
         return this.spec[recipe.name]
     },
     moduleCount: function(recipe) {
@@ -435,11 +418,6 @@ FactorySpec.prototype = {
         var prolifMode = factory.prolifMode
         return prolifMode
     },
-    getBeaconInfo: function(recipe) {
-        var factory = this.getFactory(recipe)
-        var module = factory.beaconModule
-        return {"module": module, "count": factory.beaconCount}
-    },
     setDefaultModule: function(module) {
         // Set anything set to the old default to the new.
         for (var recipeName in this.spec) {
@@ -453,28 +431,12 @@ FactorySpec.prototype = {
         }
         this.defaultModule = module
     },
-    setDefaultBeacon: function(module, count) {
-        for (var recipeName in this.spec) {
-            var factory = this.spec[recipeName]
-            var recipe = factory.recipe
-            // Set anything set to the old defeault beacon module to the new.
-            if (factory.beaconModule === this.defaultBeacon && (!module || module.canUse(recipe))) {
-                factory.beaconModule = module
-            }
-            // Set any beacon counts equal to the old default to the new one.
-            if (factory.beaconCount.equal(this.defaultBeaconCount)) {
-                factory.beaconCount = count
-            }
-        }
-        this.defaultBeacon = module
-        this.defaultBeaconCount = count
-    },
     setDefaultProlifMode: function(mode) {
         for (var recipeName in this.spec) {
             var factory = this.spec[recipeName]
             var recipe = factory.recipe
             // Set anything set to the old default to the new.
-            if (factory.prolifMode == this.defaultProlifMode || !(factory.prolifMode)) {
+            if ((factory.prolifMode == this.defaultProlifMode || !(factory.prolifMode)) && !(factory.prolifSpeedOnly)) {
                 factory.prolifMode = mode
             }
         }
