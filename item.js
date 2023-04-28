@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.*/
 "use strict"
 
-function Item(name, col, row, phase, group, subgroup, order) {
+function Item(name, col, row, phase, group, subgroup, order, sprays) {
     this.name = name
     this.icon_col = col
     this.icon_row = row
@@ -24,6 +24,7 @@ function Item(name, col, row, phase, group, subgroup, order) {
     this.group = group
     this.subgroup = subgroup
     this.order = order
+    this.sprays = sprays
 }
 Item.prototype = {
     constructor: Item,
@@ -50,6 +51,15 @@ Item.prototype = {
         return false
     },
     produce: function(rate, ignore, spec) {
+        var prolif
+        try {
+            prolif = spec.spec[this.name].modules[0]
+        } catch {
+            prolif = false
+        }
+        if (prolif) {
+            prolif = solver.items[prolif.name]
+        }
         var totals = new Totals(rate, this)
         if (this.isWeird()) {
             totals.addUnfinished(this.name, rate)
@@ -65,7 +75,13 @@ Item.prototype = {
         var ingredients = recipe.ingredients.concat(recipe.fuelIngredient(spec))
         for (var i=0; i < ingredients.length; i++) {
             var ing = ingredients[i]
-            var subTotals = ing.item.produce(rate.mul(ing.amount), ignore, spec)
+            var ingAmount = rate.mul(ing.amount)
+            var subTotals = ing.item.produce(ingAmount, ignore, spec)
+            // I don't like this way of handling self proliferation. It's not very performant and uses an arbitrary hard-coded precision. 
+            if (prolif && !ingAmount.less(tinyNum)) {
+                var prolifSubTotals = prolif.produce(ingAmount.div(prolif["sprays"]), ignore, spec)
+                subTotals.combine(prolifSubTotals)
+            }
             totals.combine(subTotals)
         }
         return totals
@@ -108,6 +124,12 @@ function getItem(data, items, name) {
         } else {
             phase = "solid"
         }
+        var sprays
+        if (d.sprays) {
+            sprays = RationalFromFloat(d.sprays)
+        } else {
+            sprays = zero
+        }
         var item = new Item(
             name,
             d.icon_col,
@@ -116,6 +138,7 @@ function getItem(data, items, name) {
             d.group,
             d.subgroup,
             d.order,
+            sprays
         )
         items[name] = item
         return item

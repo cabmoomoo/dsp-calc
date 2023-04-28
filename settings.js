@@ -467,6 +467,7 @@ function renderBelt(settings) {
     if ("belt" in settings) {
         pref = settings.belt
     }
+    console.log(pref)
     setPreferredBelt(pref)
     var oldNode = document.getElementById("belt")
     var cell = oldNode.parentNode
@@ -559,6 +560,26 @@ function updateProlifModeUI(mode) {
     var dpmTip = document.getElementById("default_prolif_mode_tip")
     dpmTip.textContent = dpmSlider.value == 1 ? 'Productivity' : 'Speed'
     dpmTip.className = ("setting-tip tip-" + mode)
+}
+
+// self-prolif settings
+function renderSelfProlif(settings) {
+    var defaultModule = null
+    if ("sp" in settings) {
+        defaultModule = shortModules[settings.sp]
+    }
+
+    var oldSelPro = document.getElementById("self_prolif")
+    var cell = oldSelPro.parentNode
+    var node = document.createElement("span")
+    node.id = "self_prolif"
+    moduleDropdown(
+        d3.select(node),
+        "self_prolif_dropdown",
+        d => d === defaultModule,
+        changeSelfProlif,
+    )
+    cell.replaceChild(node, oldSelPro)
 }
 
 // visualizer settings
@@ -675,6 +696,7 @@ function renderSettings(settings) {
     // renderMiningProd(settings)
     renderDefaultProlifMode(settings)
     renderDefaultModule(settings)
+    renderSelfProlif(settings)
     renderVisualizerType(settings)
     renderVisualizerDirection(settings)
     renderNodeBreadth(settings)

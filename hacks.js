@@ -23,3 +23,30 @@ function hackDeuteriumFractionation() {
     rec.time = prodSpeed.reciprocate()
     // Also see: setPreferredBelt in settings.js
 }
+
+/*
+When you spray proliferator with proliferator, the number of sprays increases. This code is very ugly, and there are probably better ways to handle it, but meh. This is a setting that most will only change once.
+*/
+function hackSelfProlifChange(module) {
+    proliferator = module["name"]
+    if (proliferator == "Proliferator Mk.I") {
+        solver.items["Proliferator Mk.I"].sprays = RationalFromFloat(13)
+        solver.items["Proliferator Mk.II"].sprays = RationalFromFloat(27)
+        solver.items["Proliferator Mk.III"].sprays = RationalFromFloat(67)
+    }
+    else if (proliferator == "Proliferator Mk.II") {
+        solver.items["Proliferator Mk.I"].sprays = RationalFromFloat(14)
+        solver.items["Proliferator Mk.II"].sprays = RationalFromFloat(28)
+        solver.items["Proliferator Mk.III"].sprays = RationalFromFloat(72)
+    }
+    else if (proliferator == "Proliferator Mk.III") {
+        solver.items["Proliferator Mk.I"].sprays = RationalFromFloat(15)
+        solver.items["Proliferator Mk.II"].sprays = RationalFromFloat(30)
+        solver.items["Proliferator Mk.III"].sprays = RationalFromFloat(75)
+    }
+    else {
+        solver.items["Proliferator Mk.I"].sprays = RationalFromFloat(12)
+        solver.items["Proliferator Mk.II"].sprays = RationalFromFloat(24)
+        solver.items["Proliferator Mk.III"].sprays = RationalFromFloat(60)
+    }
+}

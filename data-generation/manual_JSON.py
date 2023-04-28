@@ -150,7 +150,8 @@ def prepare_prolif_modules(items):
                 "speed": {
                     "bonus": 0.25
                 }
-            }
+            },
+            "sprays": 12
         },
         "Proliferator Mk.II": {
             "name": "Proliferator Mk.II",
@@ -164,7 +165,8 @@ def prepare_prolif_modules(items):
                 "speed": {
                     "bonus": 0.5
                 }
-            }
+            },
+            "sprays": 24
         },
         "Proliferator Mk.III": {
             "name": "Proliferator Mk.II",
@@ -178,7 +180,8 @@ def prepare_prolif_modules(items):
                 "speed": {
                     "bonus": 1
                 }
-            }
+            },
+            "sprays": 60
         },
     }
     allItems = items

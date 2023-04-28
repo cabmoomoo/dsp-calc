@@ -151,6 +151,8 @@ function formatSettings(targets) {
         settings += "&modules=" + specs.join(",")
     }
     var zip = "zip=" + window.btoa(pako.deflateRaw(settings, {to: "string"}))
+    // console.log(zip.length, " compared to ", settings.length)
+    // Not really sure what I did to make this not work, worth further investigation
     if (zip.length < settings.length) {
         return zip
     }
@@ -160,6 +162,9 @@ function formatSettings(targets) {
 function loadSettings(fragment) {
     var settings = {}
     fragment = fragment.substr(1)
+    while ((fragment.search("%20")) > -1) {
+        fragment = fragment.replace("%20", " ")
+    }
     var pairs = fragment.split("&")
     for (var i=0; i < pairs.length; i++) {
         var j = pairs[i].indexOf("=")

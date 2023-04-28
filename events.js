@@ -231,6 +231,12 @@ function changeDefaultProlifMode(modeNum) {
     itemUpdate()
 }
 
+// Triggered when the self proliferation setting is changed.
+function changeSelfProlif(module) {
+    hackSelfProlifChange(module)
+    itemUpdate()
+}
+
 // Triggered when the visualizer setting box is toggled.
 function toggleVisualizerSettings() {
     let classes = document.getElementById("graph-wrapper").classList

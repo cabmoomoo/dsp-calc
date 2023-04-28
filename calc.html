@@ -289,6 +289,11 @@ limitations under the License.-->
             <span id="default_prolif_mode_tip" class="setting-tip"></span></td>
         </tr>
 
+        <tr>
+        <td class="setting-label">Self-proliferation:</td>
+        <td><span id="self_prolif"></span></td>
+        </tr>
+
         <!-- Mining productivity is a bit more complicated in DSP than Factorio
             I'll have to come back when I can do the math required for technology
             that increases mining speed while *also* decreasing consumption -->
@@ -364,21 +369,26 @@ limitations under the License.-->
         <p>
         While I think the game supports different levels of proliferation on different ingredients, the benefits of such mixing would be minimal. This calculator assumes when a recipe is set to have a proliferator level, all items entering that recipe's facilities will be 100% proliferated at that level.
         <p>
-        For example: the default recipe of this calculator is circuit boards, which require 2 iron ingots and 1 copper ingot per cylce. Setting the circuit boards recipe to have Proliferator Mk.III means you expect all iron and copper ingots entering the facility to be sprayed.
+        For example: the default recipe of this calculator is circuit boards, which require 2 iron ingots and 1 copper ingot per cycle. Setting the circuit boards recipe to have Proliferator Mk.III means you expect all iron and copper ingots entering the facility to be sprayed.
         <p>
         The calculator does support recipes that cannot use the "Extra Products" mode of Proliferators, but the list is manually added, so errors or missing recipes may be present. If the ratios don't seem to be working out right in game, double check that all recipes used are set to the proliferator mode expected.
 
+        <h3>What is self-proliferation?</h3>
+        This may get a little loopy, but stick with me. Proliferator items, once sprayed, will be able to add more sprays to a sprayer.
+        <p>
+        For example, when a MkIII is sprayed with MkIII, the tooltip will inform you that it now contains 75 sprays instead of 60. The benefits of this do not apply to MkI proliferator, as it consumes 1 spray to gain 1 spray. However, any combination other than MkI on MkI yields a net positive of sprays.
+        
         <h3>What's the deal with deuterium fractionators?</h3>
         Deuterium fractionators will operate as fast as you can feed them hydrogen. As such, the speed one fractionator works at is based entirely on the speed of the belt feeding it. In a closed loop, 1 fractionator being fed by a saturated Mk.I belt will produce an average of 0.06 deuterium per second. As such, once the belt is saturated, you only need an average of 0.06 hydrogen per second incoming.
         <p>
         Deuterium fractionators also support item stacking. To calculate this, simply divide the number of fractionators needed for your desired rate by the height of your stacks. 
         <p>
-        Do note, the factory tab lists the total hyrdogen being produced by all recipes, including the hyrdogen that will be looped. For a better understanding of this, I encourage you to utilize the Visualize tab.
+        Do note, the factory tab lists the total hydrogen being produced by all recipes, including the hydrogen that will be looped. For a better understanding of this, I encourage you to utilize the Visualize tab.
 
         <h3>Why do I need 8 mining machines for only 240 ore/min?</h3>
         Resource gathering machines make a few assumptions or assertions:
         <ul>
-            <li>Mining machines (MM) produce ore at a rate of 30/min/vein. As that is not something the calculator can easily indicate, I figured it would be more useful for the number to show how many veins are required. The 90 iron ore per minute required to run 1 circuit board assembler could be supplied via 1 MM accessing 3 veins, 3 MMs each with 1 vein, or anything inbetween.</li>
+            <li>Mining machines (MM) produce ore at a rate of 30/min/vein. As that is not something the calculator can easily indicate, I figured it would be more useful for the number to show how many veins are required. The 90 iron ore per minute required to run 1 circuit board assembler could be supplied via 1 MM accessing 3 veins, 3 MMs each with 1 vein, or anything in between.</li>
             <li>Oil wells are highly variable, but a quick glance at the starter planet yielded an average of 2.5 oil/second. As the exact oil/second required for a factory will be shown anyway, I figured showing a roughly average number of extractors required would be good enough.</li>
             <li>Water pumps are weird in that they extract at 50 per minute. Their "mining speed" may be strange, but the number of pumps shown is the number needed.</li>
         </ul>

@@ -198,6 +198,9 @@ function loadData(modName, settings) {
 
                 var singleModuleSettings = factoryModuleSettings.split(":")
                 var recipeName = singleModuleSettings[0]
+                while ((recipeName.search("%20")) > -1) {
+                    recipeName = recipeName.replace("%20", " ")
+                }
                 var recipe = recipes[recipeName]
                 var moduleNameList = singleModuleSettings.slice(1)
                 for (var j=0; j < moduleNameList.length; j++) {

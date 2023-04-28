@@ -17,7 +17,7 @@ limitations under the License.*/
 // Manual list of all items than cannot get the "Extra Products" benefit from Proliferators
 var NO_PROD = [
     // ITEMS:
-    "Energetic Graphite",
+    //"Energetic Graphite",
     "X-Ray Cracking",
     "Antimatter Fuel Rod",
     "Reforming Refine",

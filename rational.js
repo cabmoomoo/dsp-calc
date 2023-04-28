@@ -207,3 +207,4 @@ var one = new Rational(bigInt.one, bigInt.one)
 var half = new Rational(bigInt.one, bigInt(2))
 var oneThird = new Rational(bigInt.one, bigInt(3))
 var twoThirds = new Rational(bigInt(2), bigInt(3))
+var tinyNum = new Rational(bigInt(1), bigInt(1000)) //Arbitrarily small number
